@@ -22,43 +22,6 @@
   flex-wrap: wrap;
 }
 
-.gameCard {
-  display: flex;
-  margin-right: 20px;
-  background: rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 1px 5px 0px rgba(200, 200, 20, 0.1);
-
-  flex-basis: 50%;
-  height: 200px;
-  padding: 20px;
-}
-
-.gameCard:hover .gameCardTitle {
-  color: var(--text-highlight);
-}
-
-.gameCardImg {
-  width: 160px;
-  height: 160px;
-
-  object-fit: contain;
-  border-radius: 50%;
-}
-
-.gameCardText {
-  padding-left: 20px;
-  overflow: hidden;
-}
-
-.gameCardTitle {
-  font-size: 24px;
-}
-
-.gameCardDescription {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .searchContainer {
   position: relative;
 
