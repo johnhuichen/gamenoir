@@ -133,14 +133,12 @@ async function updateModule({
 }
 
 function addDosboxScript() {
-  setTimeout(() => {
-    const script = document.createElement("script");
+  const script = document.createElement("script");
 
-    script.src = DOSBOX_JS_URL;
-    script.async = true;
+  script.src = DOSBOX_JS_URL;
+  script.async = true;
 
-    document.body.appendChild(script);
-  }, 2000);
+  document.body.appendChild(script);
 }
 
 const initialState = { isDosboxLoading: false, isDosboxReady: false };
