@@ -10,32 +10,28 @@ export interface HomePageGame {
   shortDescription: string;
 }
 
-function getGames(): HomePageGame[] {
-  const dosgameMdDir = path.join(process.cwd(), "lib/dosgame/md");
-  const arcadeMdDir = path.join(process.cwd(), "lib/arcade/md");
+const dosgameMdDir = path.join(process.cwd(), "lib/dosgame/md");
+const arcadeMdDir = path.join(process.cwd(), "lib/arcade/md");
 
-  function getGameDataForDir(dir: string, gameType: string): HomePageGame[] {
-    const fileNames = fs.readdirSync(dir);
-    const gameData = fileNames.map(fileName => {
-      const filePath = path.join(dir, fileName);
-      const fileContent = fs.readFileSync(filePath, "utf8");
-      const { data } = matter(fileContent);
-      const { name, imgFile, shortDescription } = data;
-      return {
-        id: fileName.replace(/\.md$/, ""),
-        name,
-        imgFile,
-        shortDescription,
-        gameType,
-      };
-    });
-    return gameData;
-  }
-
-  return [
-    ...getGameDataForDir(dosgameMdDir, "dosgame"),
-    ...getGameDataForDir(arcadeMdDir, "arcade"),
-  ];
+function getGameDataForDir(dir: string, gameType: string): HomePageGame[] {
+  const fileNames = fs.readdirSync(dir);
+  const gameData = fileNames.map(fileName => {
+    const filePath = path.join(dir, fileName);
+    const fileContent = fs.readFileSync(filePath, "utf8");
+    const { data } = matter(fileContent);
+    const { name, imgFile, shortDescription } = data;
+    return {
+      id: fileName.replace(/\.md$/, ""),
+      name,
+      imgFile,
+      shortDescription,
+      gameType,
+    };
+  });
+  return gameData;
 }
 
-export { getGames };
+const dosgames = getGameDataForDir(dosgameMdDir, "dosgame");
+const arcadeGames = getGameDataForDir(arcadeMdDir, "arcade");
+
+export { dosgames, arcadeGames };
