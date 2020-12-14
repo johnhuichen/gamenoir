@@ -17,6 +17,9 @@ interface SearchResponse {
   error?: string;
 }
 
+// TODO
+// move searchbar to home page so that the data list can be generated with npm build
+// no need to call api
 const SearchBar: React.FC = () => {
   const [searchResult, setSearchResult] = useState<SearchGame[]>([]);
 

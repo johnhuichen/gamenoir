@@ -1,8 +1,8 @@
 import { useReducer, useCallback } from "react";
-import fetch from "isomorphic-unfetch";
 import * as BrowserFS from "browserfs";
 
 import { CanvasElement } from "components/shared/Canvas";
+import { fetchFile, formatBytes } from "lib/utils";
 
 interface UseDosboxProps {
   canvasRef: React.RefObject<CanvasElement>;
@@ -105,8 +105,18 @@ async function updateModule({
   canvas: CanvasElement;
   gameFile: string;
 }) {
-  const response = await fetch(gameFile);
-  const arrayBuffer = await response.arrayBuffer();
+  const arrayBuffer = await fetchFile(gameFile, {
+    onProgress: event => {
+      const percentage = Math.floor(
+        (event.total / (event.loaded / event.total)) * 100
+      );
+      console.log(
+        `${percentage}%`,
+        formatBytes(event.loaded),
+        formatBytes(event.total)
+      );
+    },
+  });
   const zipData = BrowserFS.BFSRequire("buffer").Buffer.from(arrayBuffer);
   const gameName = gameFile.replace(/\//, "").replace(/\.zip$/, "");
   const browserFSConfig = getBrowserFSConfig({ gameName, zipData });

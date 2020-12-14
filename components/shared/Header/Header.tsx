@@ -3,7 +3,6 @@ import Link from "next/link";
 import cn from "classnames";
 import { useRouter } from "next/router";
 
-import SearchBar from "./SearchBar";
 import styles from "./Header.module.css";
 
 const PAGES = {
@@ -36,7 +35,6 @@ const Header: React.FC = () => {
           </a>
         </Link>
       </div>
-      <SearchBar />
       <div className={styles.rightContainer}>
         <Link href="/">
           <a
@@ -68,7 +66,6 @@ const Header: React.FC = () => {
             Arcade Demo
           </a>
         </Link>
-        <i aria-hidden className={cn("fas fa-bars", styles.hamburger)} />
       </div>
     </div>
   );

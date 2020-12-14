@@ -48,12 +48,3 @@
 .link.current {
   color: var(--text-highlight);
 }
-
-.hamburger {
-  font-size: 28px;
-  cursor: pointer;
-}
-
-.hamburger:hover {
-  color: var(--text-highlight);
-}
