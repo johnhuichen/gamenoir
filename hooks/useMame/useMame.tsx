@@ -133,7 +133,9 @@ async function updateModule({
     onError: noop,
   });
   const zipData = BrowserFS.BFSRequire("buffer").Buffer.from(arrayBuffer);
-  const gameName = gameFile.replace(/\//, "").replace(/\.zip$/, "");
+  const gameName = gameFile
+    .substring(gameFile.lastIndexOf("/") + 1)
+    .replace(/\.zip$/, "");
   const browserFSConfig = getBrowserFSConfig({ zipData, gameName });
   BrowserFS.configure(browserFSConfig, browserFSCallback);
 
