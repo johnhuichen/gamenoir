@@ -99,9 +99,9 @@ function getBrowserFSConfig({
 }
 
 async function browserFSCallback() {
-  const BFS = new BrowserFS.EmscriptenFS();
-  FS.mkdir("/emulator");
-  FS.mount(BFS, { root: "/" }, "/emulator");
+  // const BFS = new BrowserFS.EmscriptenFS();
+  // FS.mkdir("/emulator");
+  // FS.mount(BFS, { root: "/" }, "/emulator");
 }
 
 function locateFile(fileName: string): string {
@@ -135,6 +135,7 @@ async function updateModule({
   const zipData = BrowserFS.BFSRequire("buffer").Buffer.from(arrayBuffer);
   const gameName = gameFile.replace(/\//, "").replace(/\.zip$/, "");
   const browserFSConfig = getBrowserFSConfig({ zipData, gameName });
+  BrowserFS.configure(browserFSConfig, browserFSCallback);
 
   window.Module = {
     arguments: getModuleArgs(gameName),
@@ -145,7 +146,9 @@ async function updateModule({
     noInitialRun: false,
     locateFile,
     preInit: () => {
-      BrowserFS.configure(browserFSConfig, browserFSCallback);
+      const BFS = new BrowserFS.EmscriptenFS();
+      FS.mkdir("/emulator");
+      FS.mount(BFS, { root: "/" }, "/emulator");
     },
     preRun: [],
   };
