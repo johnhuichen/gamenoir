@@ -1,7 +1,8 @@
-import { useMemo, useState } from "react";
+import { createRef, useMemo, useState, useCallback } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { GetStaticProps } from "next";
+import cn from "classnames";
 import debounce from "lodash/debounce";
 
 import { getGames, HomePageGame } from "lib/home";
@@ -37,12 +38,14 @@ const GameCard: React.FC<HomePageGame> = ({
 };
 
 const Home: React.FC<Props> = ({ games }: Props) => {
+  const inputRef = createRef<HTMLInputElement>();
   const [filteredGames, setFilteredGames] = useState<HomePageGame[] | null>(
     null
   );
   const handleChangeInput = useMemo(
     () =>
       debounce(async (e: { target: HTMLInputElement }) => {
+        console.log("here?");
         const { value } = e.target;
 
         if (!value.trim()) {
@@ -57,6 +60,13 @@ const Home: React.FC<Props> = ({ games }: Props) => {
       }, 300),
     [games]
   );
+  const handleClearSearch = useCallback(() => {
+    if (inputRef.current) {
+      inputRef.current.value = "";
+      setFilteredGames(null);
+    }
+  }, [inputRef]);
+
   const gamesToDisplay = useMemo(() => {
     return filteredGames || games;
   }, [filteredGames, games]);
@@ -69,12 +79,16 @@ const Home: React.FC<Props> = ({ games }: Props) => {
       </Head>
       <div className={styles.container}>
         <div className={styles.searchContainer}>
-          <i aria-hidden className="fas fa-search" />
+          <i aria-hidden className={cn("fas fa-search", styles.searchIcon)} />
           <input
+            ref={inputRef}
             className={styles.searchInput}
-            placeholder="You can find it by searching too"
+            placeholder="Try searching for the games"
             onChange={handleChangeInput}
           />
+          <button onClick={handleClearSearch}>
+            <i aria-hidden className="fas fa-times" />
+          </button>
         </div>
         <div className={styles.gameContianer}>
           {!!gamesToDisplay.length &&
