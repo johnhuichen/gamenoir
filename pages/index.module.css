@@ -1,9 +1,11 @@
 .container {
   margin: 0 var(--viewport-margin);
   min-height: calc(100vh - 200px);
+}
 
+.gameContianer {
   display: flex;
-  cursor: pointer;
+  margin-top: 50px;
 }
 
 .gameCard {
@@ -41,4 +43,37 @@
 .gameCardDescription {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.searchContainer {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  max-width: 500px;
+  padding: 5px 10px;
+  cursor: pointer;
+
+  border-bottom: 1px solid var(--text-primary);
+}
+
+.searchContainer i {
+  font-size: 18px;
+}
+
+.searchIcon {
+  margin-right: 10px;
+}
+
+.searchInput {
+  font-size: 18px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+}
+
+.searchInput:focus {
+  outline: none;
 }
