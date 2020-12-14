@@ -24,7 +24,7 @@ const CanvasStatus: React.FC<Props> = ({
       start();
     }
   }, [start, isLoading, isReady]);
-  const progressWidth = useMemo(() => `${percentage}%`, [percentage]);
+  const progressWidth = useMemo(() => `${percentage || 0}%`, [percentage]);
 
   if (isReady) {
     return null;
@@ -39,7 +39,7 @@ const CanvasStatus: React.FC<Props> = ({
         <div className={styles.progressBar}>
           <div
             className={styles.progressBarInner}
-            styles={{ width: progressWidth }}
+            style={{ width: progressWidth }}
           />
         </div>
       </div>
