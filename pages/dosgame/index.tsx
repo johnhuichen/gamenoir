@@ -1,42 +1,17 @@
 import { createRef, useMemo, useState, useCallback } from "react";
 import Head from "next/head";
-import Link from "next/link";
 import { GetStaticProps } from "next";
 import cn from "classnames";
 import debounce from "lodash/debounce";
 
 import { dosgames, HomePageGame } from "lib/home";
-import Emoji from "components/shared/Emoji";
+import GameCard from "components/shared/GameCard";
 
 import styles from "./index.module.css";
 
 interface Props {
   games: HomePageGame[];
 }
-
-const GameCard: React.FC<HomePageGame> = ({
-  id,
-  name,
-  imgFile,
-  shortDescription,
-  gameType,
-}: HomePageGame) => {
-  return (
-    <Link href={`/${gameType}/${id}`}>
-      <a href={`/${gameType}/${id}`} className={styles.gameCard}>
-        <img
-          className={styles.gameCardImg}
-          src={imgFile}
-          alt={`${name}-avatar`}
-        />
-        <div className={styles.gameCardText}>
-          <div className={styles.gameCardTitle}> {name}</div>
-          <div className={styles.gameCardDescription}> {shortDescription}</div>
-        </div>
-      </a>
-    </Link>
-  );
-};
 
 const Dosgame: React.FC<Props> = ({ games }: Props) => {
   const inputRef = createRef<HTMLInputElement>();
