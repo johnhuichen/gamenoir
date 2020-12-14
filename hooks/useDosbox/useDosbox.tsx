@@ -12,15 +12,15 @@ interface UseDosboxProps {
 interface UseDosboxState {
   isDosboxLoading: boolean;
   isDosboxReady: boolean;
-  loaded?: string;
-  total?: string;
+  loadedSize?: string;
+  totalSize?: string;
   percentage?: number;
 }
 
 interface UseDosboxAction {
   type: string;
-  loaded?: string;
-  total?: string;
+  loadedSize?: string;
+  totalSize?: string;
   percentage?: number;
 }
 
@@ -119,8 +119,8 @@ async function updateModule({
 
     dispatch({
       type: "SET_LOADING_DETAILS",
-      total: formatBytes(total),
-      loaded: formatBytes(loaded),
+      totalSize: formatBytes(total),
+      loadedSize: formatBytes(loaded),
       percentage,
     });
   };
@@ -163,6 +163,8 @@ function addDosboxScript() {
 const initialState = {
   isDosboxLoading: false,
   isDosboxReady: false,
+  totalSize: "141kb",
+  loadedSize: "124kb",
 };
 
 function reducer(state: UseDosboxState, action: UseDosboxAction) {
@@ -172,8 +174,8 @@ function reducer(state: UseDosboxState, action: UseDosboxAction) {
     case "SET_LOADING_DETAILS":
       return {
         ...state,
-        total: action.total,
-        loaded: action.loaded,
+        totalSize: action.totalSize,
+        loadedSize: action.loadedSize,
         percentage: action.percentage,
       };
     case "SET_READY":

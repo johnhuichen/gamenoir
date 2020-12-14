@@ -21,9 +21,9 @@ const Dosgame: React.FC<DosgameProps> = ({
     stopDosbox,
     isDosboxLoading,
     isDosboxReady,
-    // loaded,
-    // total,
-    // percentage,
+    loadedSize,
+    totalSize,
+    percentage,
   } = useDosbox({
     canvasRef,
     gameFile,
@@ -48,6 +48,9 @@ const Dosgame: React.FC<DosgameProps> = ({
           isLoading={isDosboxLoading}
           isReady={isDosboxReady}
           start={startDosbox}
+          loadedSize={loadedSize}
+          totalSize={totalSize}
+          percentage={percentage}
         />
         <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
       </div>

@@ -27,6 +27,9 @@ interface Props {
   isLoading: boolean;
   isReady: boolean;
   start: () => void;
+  loadedSize: string;
+  totalSize: string;
+  percentage: number;
 }
 
 const DISPLAY_MODES = {
@@ -42,6 +45,9 @@ const Canvas: React.FC<Props> = ({
   isLoading,
   isReady,
   start,
+  loadedSize,
+  totalSize,
+  percentage,
 }: Props) => {
   const [displayMode, setDisplayMode] = useState(DISPLAY_MODES.NORMAL);
   const canvasContainerRef = createRef<DivElement>();
@@ -108,7 +114,14 @@ const Canvas: React.FC<Props> = ({
         isTheater={isTheater}
         isFullScreen={isFullScreen}
       />
-      <CanvasStatus isLoading={isLoading} isReady={isReady} start={start} />
+      <CanvasStatus
+        isLoading={isLoading}
+        isReady={isReady}
+        start={start}
+        loadedSize={loadedSize}
+        totalSize={totalSize}
+        percentage={percentage}
+      />
     </div>
   );
 };
