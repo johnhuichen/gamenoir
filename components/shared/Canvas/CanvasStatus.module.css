@@ -1,0 +1,51 @@
+.playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Press Start 2P";
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+}
+
+.playButton i {
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+.playButton:hover,
+.playButton:hover i {
+  color: var(--text-highlight);
+}
+
+.loading {
+  font-size: 24px;
+  color: var(--text-highlight);
+}
+
+.progressIndicator {
+  width: 300px;
+  z-index: 10;
+}
+
+.progressDescription {
+  font-size: 18px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.progressBar {
+  height: 10px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.progressBarInner {
+  height: 100%;
+  background: var(--text-highlight);
+}

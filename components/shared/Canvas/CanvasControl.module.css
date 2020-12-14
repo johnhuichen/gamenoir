@@ -1,0 +1,19 @@
+.container {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  padding: 20px;
+}
+
+.toggleBtn {
+  margin-bottom: 10px;
+}
+
+.toggleBtn i {
+  font-size: 24px;
+}
+
+.toggleBtn:hover i {
+  color: var(--text-highlight);
+}
