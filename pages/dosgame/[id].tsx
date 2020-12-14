@@ -14,14 +14,12 @@ const Dosgame: React.FC<DosgameProps> = ({
   gameFile,
   imgFile,
   descriptionHtml,
-  commands,
 }: DosgameProps) => {
   const canvasRef = createRef<CanvasElement>();
   const { startDosbox, stopDosbox, isDosboxLoading, isDosboxReady } = useDosbox(
     {
       canvasRef,
       gameFile,
-      commands,
     }
   );
 

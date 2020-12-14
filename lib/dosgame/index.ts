@@ -9,7 +9,6 @@ export interface DosgameProps {
   name: string;
   gameFile: string;
   imgFile: string;
-  commands: string[];
   descriptionHtml: string;
 }
 
@@ -21,7 +20,7 @@ async function getDosgameProps(id: string): Promise<DosgameProps> {
   const filePath = path.join(mdDirectory, `${id}.md`);
   const fileContent = fs.readFileSync(filePath, "utf8");
   const { data, content } = matter(fileContent);
-  const { name, gameFile, imgFile, commands } = data;
+  const { name, gameFile, imgFile } = data;
   const processedContent = await remark()
     .use(remarkHtml)
     .process(content);
@@ -32,7 +31,6 @@ async function getDosgameProps(id: string): Promise<DosgameProps> {
     name,
     gameFile,
     imgFile,
-    commands: JSON.parse(commands),
     descriptionHtml,
   };
 }
