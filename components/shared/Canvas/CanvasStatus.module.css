@@ -1,0 +1,23 @@
+.playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Press Start 2P";
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+}
+
+.playButton i {
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+.playButton:hover,
+.playButton:hover i {
+  color: var(--text-highlight);
+}

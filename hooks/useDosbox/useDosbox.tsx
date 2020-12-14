@@ -1,0 +1,187 @@
+import { useReducer, useCallback } from "react";
+import fetch from "isomorphic-unfetch";
+import * as BrowserFS from "browserfs";
+
+import { CanvasElement } from "components/shared/Canvas";
+
+interface UseDosboxProps {
+  canvasRef: React.RefObject<CanvasElement>;
+  gameFile: string;
+  commands: string[];
+}
+
+interface UseDosboxState {
+  isDosboxLoading: boolean;
+  isDosboxReady: boolean;
+}
+
+interface UseDosboxAction {
+  type: string;
+}
+
+interface UseDosboxData extends UseDosboxState {
+  startDosbox: () => void;
+  stopDosbox: () => void;
+}
+
+declare global {
+  interface Window {
+    Module: {
+      arguments: string[];
+      screenIsReadOnly: boolean;
+      print: (msg: string) => void;
+      printErr: (msg: string) => void;
+      canvas: CanvasElement;
+      noInitialRun: boolean;
+      locateFile: (fileName: string) => string;
+      preInit: () => void;
+      preRun: any;
+    };
+  }
+  // eslint-disable-next-line
+  var FS: any;
+}
+
+const logger = (msg: string) => console.log(msg);
+
+// TODO
+// server this file and mem file over the cdn for production
+const DOSBOX_JS_URL = "/dosbox-sync.js";
+
+function getModuleArgs(commands: string[]): string[] {
+  const extraCommands = commands.flatMap(command => ["-c", command]);
+  return ["-c", "mount c /emulator/c", "-c", "c:", ...extraCommands];
+}
+
+function getBrowserFSConfig({
+  gameName,
+  zipData,
+}: {
+  gameName: string;
+  zipData: Buffer;
+}) {
+  const writable = {
+    fs: "AsyncMirror",
+    options: {
+      sync: { fs: "InMemory" },
+      async: {
+        fs: "IndexedDB",
+        options: { storeName: `gamenoir-${gameName}` },
+      },
+    },
+  };
+  const readable = {
+    fs: "MountableFileSystem",
+    options: {
+      "/c": {
+        fs: "ZipFS",
+        options: {
+          zipData,
+        },
+      },
+    },
+  };
+  return {
+    fs: "OverlayFS",
+    options: {
+      writable,
+      readable,
+    },
+  };
+}
+
+function browserFSCallback() {
+  const BFS = new BrowserFS.EmscriptenFS();
+  FS.mkdir("/emulator");
+  FS.mount(BFS, { root: "/" }, "/emulator");
+}
+
+function locateFile(fileName: string): string {
+  return `/${fileName}`;
+}
+
+async function updateModule({
+  canvas,
+  gameFile,
+  commands,
+}: {
+  canvas: CanvasElement;
+  gameFile: string;
+  commands: string[];
+}) {
+  const response = await fetch(gameFile);
+  const arrayBuffer = await response.arrayBuffer();
+  const zipData = BrowserFS.BFSRequire("buffer").Buffer.from(arrayBuffer);
+  const gameName = gameFile.replace(/\//, "").replace(/\.zip$/, "");
+  const browserFSConfig = getBrowserFSConfig({ gameName, zipData });
+
+  window.Module = {
+    arguments: getModuleArgs(commands),
+    screenIsReadOnly: true,
+    print: logger,
+    printErr: logger,
+    canvas,
+    noInitialRun: false,
+    locateFile,
+    preInit: () => {
+      BrowserFS.configure(browserFSConfig, browserFSCallback);
+    },
+    preRun: () => {
+      console.log("about to run dosbox");
+    },
+  };
+}
+
+function addDosboxScript() {
+  const script = document.createElement("script");
+
+  script.src = DOSBOX_JS_URL;
+  script.async = true;
+
+  document.body.appendChild(script);
+}
+
+const initialState = { isDosboxLoading: false, isDosboxReady: false };
+
+function reducer(state: UseDosboxState, action: UseDosboxAction) {
+  switch (action.type) {
+    case "SET_LOADING":
+      return { ...state, isDosboxLoading: true };
+    case "SET_READY":
+      return { ...state, isDosboxLoading: false, isDosboxReady: true };
+    case "RESET":
+      return initialState;
+    default:
+      return state;
+  }
+}
+
+export default function useDosbox({
+  canvasRef,
+  gameFile,
+  commands,
+}: UseDosboxProps): UseDosboxData {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const startDosbox = useCallback(async () => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      try {
+        dispatch({ type: "SET_LOADING" });
+
+        await updateModule({ canvas, gameFile, commands });
+        addDosboxScript();
+
+        dispatch({ type: "SET_READY" });
+      } catch {
+        dispatch({ type: "RESET" });
+      }
+    }
+  }, [canvasRef, gameFile, commands]);
+
+  const stopDosbox = useCallback(() => {
+    window.location.reload(false);
+  }, []);
+
+  return { ...state, startDosbox, stopDosbox };
+}

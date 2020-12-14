@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: var(--footer-height);
+  padding: 20px;
+}
+
+.copyright {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.contactus {
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
