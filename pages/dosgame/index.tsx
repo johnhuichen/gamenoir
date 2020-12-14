@@ -5,7 +5,7 @@ import { GetStaticProps } from "next";
 import cn from "classnames";
 import debounce from "lodash/debounce";
 
-import { dosgames, arcadeGames, HomePageGame } from "lib/home";
+import { dosgames, HomePageGame } from "lib/home";
 import Emoji from "components/shared/Emoji";
 
 import styles from "./index.module.css";
@@ -38,7 +38,7 @@ const GameCard: React.FC<HomePageGame> = ({
   );
 };
 
-const Home: React.FC<Props> = ({ games }: Props) => {
+const Dosgame: React.FC<Props> = ({ games }: Props) => {
   const inputRef = createRef<HTMLInputElement>();
   const [filteredGames, setFilteredGames] = useState<HomePageGame[] | null>(
     null
@@ -79,23 +79,11 @@ const Home: React.FC<Props> = ({ games }: Props) => {
       </Head>
       <div className={styles.container}>
         <div className={styles.announcement}>
-          Merry Christmas everyone! <Emoji symbol="🎉" label="Party Pooper" />{" "}
-          <Emoji symbol="🎉" label="Party Pooper" />
-          <Emoji symbol="🎅" label="Santa" />
+          Do you know that you can save your progress and come back later?
           <br />
           <br />
-          Here you can play hundreds of classic games that you loved since
-          childhood. All our games have been tested by us, we promise they are
-          fun.
-          <br />
-          <br />
-          If you find a problem or want to make a special game request, just
-          shoot us a message (
-          <a href="mailto:cliffgoslinginc@gmail.com">
-            cliffgoslinginc@gmail.com
-          </a>
-          ). We will see what we can do <Emoji symbol="😊" label="Smiley" />
-          <Emoji symbol="😊" label="Smiley" />
+          Your game progress will be saved in your browser, so as long as you
+          don&apos;t clear browser data, your saved game will always be there
         </div>
         <div className={styles.searchContainer}>
           <i aria-hidden className={cn("fas fa-search", styles.searchIcon)} />
@@ -133,9 +121,9 @@ const Home: React.FC<Props> = ({ games }: Props) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const games = [...dosgames, ...arcadeGames];
+  const games = [...dosgames];
 
   return { props: { games } };
 };
 
-export default Home;
+export default Dosgame;

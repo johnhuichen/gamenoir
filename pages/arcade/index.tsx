@@ -38,7 +38,7 @@ const GameCard: React.FC<HomePageGame> = ({
   );
 };
 
-const Home: React.FC<Props> = ({ games }: Props) => {
+const ArcadeGame: React.FC<Props> = ({ games }: Props) => {
   const inputRef = createRef<HTMLInputElement>();
   const [filteredGames, setFilteredGames] = useState<HomePageGame[] | null>(
     null
@@ -78,25 +78,6 @@ const Home: React.FC<Props> = ({ games }: Props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.container}>
-        <div className={styles.announcement}>
-          Merry Christmas everyone! <Emoji symbol="🎉" label="Party Pooper" />{" "}
-          <Emoji symbol="🎉" label="Party Pooper" />
-          <Emoji symbol="🎅" label="Santa" />
-          <br />
-          <br />
-          Here you can play hundreds of classic games that you loved since
-          childhood. All our games have been tested by us, we promise they are
-          fun.
-          <br />
-          <br />
-          If you find a problem or want to make a special game request, just
-          shoot us a message (
-          <a href="mailto:cliffgoslinginc@gmail.com">
-            cliffgoslinginc@gmail.com
-          </a>
-          ). We will see what we can do <Emoji symbol="😊" label="Smiley" />
-          <Emoji symbol="😊" label="Smiley" />
-        </div>
         <div className={styles.searchContainer}>
           <i aria-hidden className={cn("fas fa-search", styles.searchIcon)} />
           <input
@@ -133,9 +114,9 @@ const Home: React.FC<Props> = ({ games }: Props) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const games = [...dosgames, ...arcadeGames];
+  const games = [...arcadeGames];
 
   return { props: { games } };
 };
 
-export default Home;
+export default ArcadeGame;

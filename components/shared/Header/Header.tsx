@@ -14,11 +14,11 @@ const PAGES = {
 const Header: React.FC = () => {
   const { route } = useRouter();
   const currentPage = useMemo(() => {
-    if (route === "/dosgame/[id]") {
+    if (/^\/dosgame/.test(route)) {
       return PAGES.DOSGAME;
     }
 
-    if (route === "/arcade/[id]") {
+    if (/^\/arcade/.test(route)) {
       return PAGES.ARCADE;
     }
 
@@ -46,24 +46,24 @@ const Header: React.FC = () => {
             Home
           </a>
         </Link>
-        <Link href="/dosgame/pal-1995">
+        <Link href="/dosgame">
           <a
-            href="/dosgame/pal-1995"
+            href="/dosgame"
             className={cn(styles.link, {
               [styles.current]: currentPage === PAGES.DOSGAME,
             })}
           >
-            Dos Demo
+            Dos Games
           </a>
         </Link>
-        <Link href="/arcade/mvsc">
+        <Link href="/arcade">
           <a
-            href="/arcade/mvsc"
+            href="/arcade"
             className={cn(styles.link, {
               [styles.current]: currentPage === PAGES.ARCADE,
             })}
           >
-            Arcade Demo
+            Arcade Games
           </a>
         </Link>
       </div>
