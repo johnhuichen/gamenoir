@@ -98,11 +98,7 @@ function getBrowserFSConfig({
   };
 }
 
-async function browserFSCallback() {
-  // const BFS = new BrowserFS.EmscriptenFS();
-  // FS.mkdir("/emulator");
-  // FS.mount(BFS, { root: "/" }, "/emulator");
-}
+async function browserFSCallback() {}
 
 function locateFile(fileName: string): string {
   return `/${fileName}`;
