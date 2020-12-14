@@ -7,7 +7,6 @@ import { CanvasElement } from "components/shared/Canvas";
 interface UseDosboxProps {
   canvasRef: React.RefObject<CanvasElement>;
   gameFile: string;
-  commands: string[];
 }
 
 interface UseDosboxState {
@@ -35,6 +34,7 @@ declare global {
       noInitialRun: boolean;
       locateFile: (fileName: string) => string;
       preInit: () => void;
+      // eslint-disable-next-line
       preRun: any;
     };
   }
@@ -47,11 +47,6 @@ const logger = (msg: string) => console.log(msg);
 // TODO
 // server this file and mem file over the cdn for production
 const DOSBOX_JS_URL = "/dosbox-sync.js";
-
-function getModuleArgs(commands: string[]): string[] {
-  const extraCommands = commands.flatMap(command => ["-c", command]);
-  return ["-c", "mount c /emulator/c", "-c", "c:", ...extraCommands];
-}
 
 function getBrowserFSConfig({
   gameName,
@@ -91,9 +86,12 @@ function getBrowserFSConfig({
 }
 
 function browserFSCallback() {
-  const BFS = new BrowserFS.EmscriptenFS();
-  FS.mkdir("/emulator");
-  FS.mount(BFS, { root: "/" }, "/emulator");
+  try {
+    const fs = BrowserFS.BFSRequire("fs");
+    fs.writeFileSync("/dosbox.conf", fs.readFileSync("/c/dosbox.conf"));
+  } catch (error) {
+    console.log("Error writing dosbox conf", error);
+  }
 }
 
 function locateFile(fileName: string): string {
@@ -103,11 +101,9 @@ function locateFile(fileName: string): string {
 async function updateModule({
   canvas,
   gameFile,
-  commands,
 }: {
   canvas: CanvasElement;
   gameFile: string;
-  commands: string[];
 }) {
   const response = await fetch(gameFile);
   const arrayBuffer = await response.arrayBuffer();
@@ -115,8 +111,10 @@ async function updateModule({
   const gameName = gameFile.replace(/\//, "").replace(/\.zip$/, "");
   const browserFSConfig = getBrowserFSConfig({ gameName, zipData });
 
+  BrowserFS.configure(browserFSConfig, browserFSCallback);
+
   window.Module = {
-    arguments: getModuleArgs(commands),
+    arguments: ["-conf", "/emulator/dosbox.conf"],
     screenIsReadOnly: true,
     print: logger,
     printErr: logger,
@@ -124,7 +122,9 @@ async function updateModule({
     noInitialRun: false,
     locateFile,
     preInit: () => {
-      BrowserFS.configure(browserFSConfig, browserFSCallback);
+      const BFS = new BrowserFS.EmscriptenFS();
+      FS.mkdir("/emulator");
+      FS.mount(BFS, { root: "/" }, "/emulator");
     },
     preRun: () => {
       console.log("about to run dosbox");
@@ -159,7 +159,6 @@ function reducer(state: UseDosboxState, action: UseDosboxAction) {
 export default function useDosbox({
   canvasRef,
   gameFile,
-  commands,
 }: UseDosboxProps): UseDosboxData {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -169,7 +168,7 @@ export default function useDosbox({
       try {
         dispatch({ type: "SET_LOADING" });
 
-        await updateModule({ canvas, gameFile, commands });
+        await updateModule({ canvas, gameFile });
         addDosboxScript();
 
         dispatch({ type: "SET_READY" });
@@ -177,7 +176,7 @@ export default function useDosbox({
         dispatch({ type: "RESET" });
       }
     }
-  }, [canvasRef, gameFile, commands]);
+  }, [canvasRef, gameFile]);
 
   const stopDosbox = useCallback(() => {
     window.location.reload(false);
