@@ -2,7 +2,7 @@ import { useReducer, useCallback } from "react";
 import * as BrowserFS from "browserfs";
 
 import { CanvasElement } from "components/shared/Canvas";
-import { fetchFile, formatBytes } from "lib/utils";
+import { noop, fetchFile, formatBytes, RequestEvent } from "lib/utils";
 
 interface UseDosboxProps {
   canvasRef: React.RefObject<CanvasElement>;
@@ -12,10 +12,16 @@ interface UseDosboxProps {
 interface UseDosboxState {
   isDosboxLoading: boolean;
   isDosboxReady: boolean;
+  loaded?: string;
+  total?: string;
+  percentage?: number;
 }
 
 interface UseDosboxAction {
   type: string;
+  loaded?: string;
+  total?: string;
+  percentage?: number;
 }
 
 interface UseDosboxData extends UseDosboxState {
@@ -101,21 +107,26 @@ function locateFile(fileName: string): string {
 async function updateModule({
   canvas,
   gameFile,
+  dispatch,
 }: {
   canvas: CanvasElement;
   gameFile: string;
+  dispatch: (action: UseDosboxAction) => void;
 }) {
+  const onProgress = (event: RequestEvent) => {
+    const { total, loaded } = event;
+    const percentage = Math.floor((loaded / total) * 100);
+
+    dispatch({
+      type: "SET_LOADING_DETAILS",
+      total: formatBytes(total),
+      loaded: formatBytes(loaded),
+      percentage,
+    });
+  };
   const arrayBuffer = await fetchFile(gameFile, {
-    onProgress: event => {
-      const percentage = Math.floor(
-        (event.total / (event.loaded / event.total)) * 100
-      );
-      console.log(
-        `${percentage}%`,
-        formatBytes(event.loaded),
-        formatBytes(event.total)
-      );
-    },
+    onProgress,
+    onError: noop,
   });
   const zipData = BrowserFS.BFSRequire("buffer").Buffer.from(arrayBuffer);
   const gameName = gameFile.replace(/\//, "").replace(/\.zip$/, "");
@@ -136,9 +147,7 @@ async function updateModule({
       FS.mkdir("/emulator");
       FS.mount(BFS, { root: "/" }, "/emulator");
     },
-    preRun: () => {
-      console.log("about to run dosbox");
-    },
+    preRun: noop,
   };
 }
 
@@ -151,12 +160,22 @@ function addDosboxScript() {
   document.body.appendChild(script);
 }
 
-const initialState = { isDosboxLoading: false, isDosboxReady: false };
+const initialState = {
+  isDosboxLoading: false,
+  isDosboxReady: false,
+};
 
 function reducer(state: UseDosboxState, action: UseDosboxAction) {
   switch (action.type) {
     case "SET_LOADING":
       return { ...state, isDosboxLoading: true };
+    case "SET_LOADING_DETAILS":
+      return {
+        ...state,
+        total: action.total,
+        loaded: action.loaded,
+        percentage: action.percentage,
+      };
     case "SET_READY":
       return { ...state, isDosboxLoading: false, isDosboxReady: true };
     case "RESET":
@@ -178,7 +197,7 @@ export default function useDosbox({
       try {
         dispatch({ type: "SET_LOADING" });
 
-        await updateModule({ canvas, gameFile });
+        await updateModule({ canvas, gameFile, dispatch });
         addDosboxScript();
 
         dispatch({ type: "SET_READY" });

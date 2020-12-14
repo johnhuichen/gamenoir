@@ -16,12 +16,18 @@ const Dosgame: React.FC<DosgameProps> = ({
   descriptionHtml,
 }: DosgameProps) => {
   const canvasRef = createRef<CanvasElement>();
-  const { startDosbox, stopDosbox, isDosboxLoading, isDosboxReady } = useDosbox(
-    {
-      canvasRef,
-      gameFile,
-    }
-  );
+  const {
+    startDosbox,
+    stopDosbox,
+    isDosboxLoading,
+    isDosboxReady,
+    // loaded,
+    // total,
+    // percentage,
+  } = useDosbox({
+    canvasRef,
+    gameFile,
+  });
 
   useEffect(() => {
     return () => {

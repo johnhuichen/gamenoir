@@ -1,3 +1,8 @@
+export interface RequestEvent extends Event {
+  total: number;
+  loaded: number;
+}
+
 // eslint-disable-next-line
 function noop() {}
 
@@ -18,8 +23,8 @@ async function fetchFile(
     onProgress = noop,
     onError = noop,
   }: {
-    onProgress: (event: Event) => void;
-    onError: (event: Event) => void;
+    onProgress: (event: RequestEvent) => void;
+    onError: (event: RequestEvent) => void;
   }
 ): Promise<ArrayBuffer> {
   return new Promise((resolve, reject) => {
