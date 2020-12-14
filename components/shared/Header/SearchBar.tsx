@@ -1,6 +1,5 @@
 import { useState, useMemo, useCallback } from "react";
 import Link from "next/link";
-import fetch from "isomorphic-unfetch";
 import debounce from "lodash/debounce";
 
 import styles from "./SearchBar.module.css";
@@ -11,11 +10,11 @@ interface SearchGame {
   gameType: string;
 }
 
-interface SearchResponse {
-  query: string;
-  result: SearchGame[];
-  error?: string;
-}
+// interface SearchResponse {
+//   query: string;
+//   result: SearchGame[];
+//   error?: string;
+// }
 
 // TODO
 // move searchbar to home page so that the data list can be generated with npm build
@@ -25,18 +24,20 @@ const SearchBar: React.FC = () => {
 
   const handleChangeInput = useMemo(
     () =>
-      debounce(async (e: { target: HTMLInputElement }) => {
-        const { value: query } = e.target;
+      // debounce(async (e: { target: HTMLInputElement }) => {
+      debounce(() => {
+        // const { value: query } = e.target;
+        setSearchResult([]);
 
-        const response = (await fetch("/api/hello", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ query }),
-        }).then(res => res.json())) as SearchResponse;
+        // const response = (await fetch("/api/hello", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({ query }),
+        // }).then(res => res.json())) as SearchResponse;
 
-        setSearchResult(response.result);
+        // setSearchResult(response.result);
       }, 300),
     []
   );

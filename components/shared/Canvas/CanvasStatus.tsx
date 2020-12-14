@@ -6,9 +6,9 @@ interface Props {
   isLoading: boolean;
   isReady: boolean;
   start: () => void;
-  loadedSize: string;
-  totalSize: string;
-  percentage: number;
+  loadedSize: string | undefined;
+  totalSize: string | undefined;
+  percentage: number | undefined;
 }
 
 const CanvasStatus: React.FC<Props> = ({

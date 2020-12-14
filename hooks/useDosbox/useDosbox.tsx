@@ -163,8 +163,6 @@ function addDosboxScript() {
 const initialState = {
   isDosboxLoading: false,
   isDosboxReady: false,
-  totalSize: "141kb",
-  loadedSize: "124kb",
 };
 
 function reducer(state: UseDosboxState, action: UseDosboxAction) {

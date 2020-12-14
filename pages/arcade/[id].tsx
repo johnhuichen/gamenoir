@@ -16,7 +16,15 @@ const Arcade: React.FC<ArcadeProps> = ({
   descriptionHtml,
 }: ArcadeProps) => {
   const canvasRef = createRef<CanvasElement>();
-  const { startMame, stopMame, isMameLoading, isMameReady } = useMame({
+  const {
+    startMame,
+    stopMame,
+    isMameLoading,
+    isMameReady,
+    loadedSize,
+    totalSize,
+    percentage,
+  } = useMame({
     canvasRef,
     gameFile,
   });
@@ -40,6 +48,9 @@ const Arcade: React.FC<ArcadeProps> = ({
           isLoading={isMameLoading}
           isReady={isMameReady}
           start={startMame}
+          loadedSize={loadedSize}
+          totalSize={totalSize}
+          percentage={percentage}
         />
         <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
       </div>

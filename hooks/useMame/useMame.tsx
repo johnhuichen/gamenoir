@@ -1,8 +1,8 @@
 import { useReducer, useCallback } from "react";
-import fetch from "isomorphic-unfetch";
 import * as BrowserFS from "browserfs";
 
 import { CanvasElement } from "components/shared/Canvas";
+import { noop, fetchFile, formatBytes, RequestEvent } from "lib/utils";
 
 interface UseMameProps {
   canvasRef: React.RefObject<CanvasElement>;
@@ -12,10 +12,16 @@ interface UseMameProps {
 interface UseMameState {
   isMameLoading: boolean;
   isMameReady: boolean;
+  loadedSize?: string;
+  totalSize?: string;
+  percentage?: number;
 }
 
 interface UseMameAction {
   type: string;
+  loadedSize?: string;
+  totalSize?: string;
+  percentage?: number;
 }
 
 interface UseMameData extends UseMameState {
@@ -105,12 +111,27 @@ function locateFile(fileName: string): string {
 async function updateModule({
   canvas,
   gameFile,
+  dispatch,
 }: {
   canvas: CanvasElement;
   gameFile: string;
+  dispatch: (action: UseMameAction) => void;
 }) {
-  const response = await fetch(gameFile);
-  const arrayBuffer = await response.arrayBuffer();
+  const onProgress = (event: RequestEvent) => {
+    const { total, loaded } = event;
+    const percentage = Math.floor((loaded / total) * 100);
+
+    dispatch({
+      type: "SET_LOADING_DETAILS",
+      totalSize: formatBytes(total),
+      loadedSize: formatBytes(loaded),
+      percentage,
+    });
+  };
+  const arrayBuffer = await fetchFile(gameFile, {
+    onProgress,
+    onError: noop,
+  });
   const zipData = BrowserFS.BFSRequire("buffer").Buffer.from(arrayBuffer);
   const gameName = gameFile.replace(/\//, "").replace(/\.zip$/, "");
   const browserFSConfig = getBrowserFSConfig({ zipData, gameName });
@@ -145,6 +166,13 @@ function reducer(state: UseMameState, action: UseMameAction) {
   switch (action.type) {
     case "SET_LOADING":
       return { ...state, isMameLoading: true };
+    case "SET_LOADING_DETAILS":
+      return {
+        ...state,
+        totalSize: action.totalSize,
+        loadedSize: action.loadedSize,
+        percentage: action.percentage,
+      };
     case "SET_READY":
       return { ...state, isMameLoading: false, isMameReady: true };
     case "RESET":
@@ -166,7 +194,7 @@ export default function useMame({
       try {
         dispatch({ type: "SET_LOADING" });
 
-        await updateModule({ canvas, gameFile });
+        await updateModule({ canvas, gameFile, dispatch });
         addMameScript();
 
         dispatch({ type: "SET_READY" });
