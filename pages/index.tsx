@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { GetStaticProps } from "next";
@@ -37,25 +37,29 @@ const GameCard: React.FC<HomePageGame> = ({
 };
 
 const Home: React.FC<Props> = ({ games }: Props) => {
+  const [filteredGames, setFilteredGames] = useState<HomePageGame[] | null>(
+    null
+  );
   const handleChangeInput = useMemo(
     () =>
-      // debounce(async (e: { target: HTMLInputElement }) => {
-      debounce(() => {
-        // const { value: query } = e.target;
-        setSearchResult([]);
+      debounce(async (e: { target: HTMLInputElement }) => {
+        const { value } = e.target;
 
-        // const response = (await fetch("/api/hello", {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify({ query }),
-        // }).then(res => res.json())) as SearchResponse;
+        if (!value.trim()) {
+          setFilteredGames(null);
+        }
 
-        // setSearchResult(response.result);
+        const keyword = value.trim().toLowerCase();
+        const result = games.filter(game =>
+          game.name.toLowerCase().includes(keyword)
+        );
+        setFilteredGames(result);
       }, 300),
-    []
+    [games]
   );
+  const gamesToDisplay = useMemo(() => {
+    return filteredGames || games;
+  }, [filteredGames, games]);
 
   return (
     <>
@@ -73,16 +77,22 @@ const Home: React.FC<Props> = ({ games }: Props) => {
           />
         </div>
         <div className={styles.gameContianer}>
-          {games.map(game => (
-            <GameCard
-              key={`game-${game.id}`}
-              id={game.id}
-              name={game.name}
-              imgFile={game.imgFile}
-              shortDescription={game.shortDescription}
-              gameType={game.gameType}
-            />
-          ))}
+          {!!gamesToDisplay.length &&
+            gamesToDisplay.map(game => (
+              <GameCard
+                key={`game-${game.id}`}
+                id={game.id}
+                name={game.name}
+                imgFile={game.imgFile}
+                shortDescription={game.shortDescription}
+                gameType={game.gameType}
+              />
+            ))}
+          {!gamesToDisplay.length && (
+            <div className={styles.noGames}>
+              We haven&apos;t found anything that matches your search.
+            </div>
+          )}
         </div>
       </div>
     </>
