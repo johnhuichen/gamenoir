@@ -7,36 +7,3 @@
   display: flex;
   margin-top: 50px;
 }
-
-.searchContainer {
-  position: relative;
-
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  max-width: 500px;
-  padding: 5px 10px;
-  cursor: pointer;
-
-  border-bottom: 1px solid var(--text-primary);
-}
-
-.searchContainer i {
-  font-size: 18px;
-}
-
-.searchIcon {
-  margin-right: 10px;
-}
-
-.searchInput {
-  font-size: 18px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  width: 100%;
-}
-
-.searchInput:focus {
-  outline: none;
-}
