@@ -4,11 +4,10 @@
 }
 
 .announcement {
-  font-size: 18px;
-  background: var(--bg-primary);
+  font-size: 20px;
+  background: var(--bg-opaque);
   margin-bottom: 50px;
   padding: 20px;
-  opacity: 0.8;
 }
 
 .announcement a {

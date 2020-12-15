@@ -8,7 +8,7 @@
 .gameCard {
   display: flex;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--bg-opaque);
   box-shadow: 0px 1px 5px 0px rgba(200, 200, 20, 0.1);
   padding: 20px;
   margin-right: 20px;

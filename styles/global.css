@@ -4,6 +4,7 @@
   --text-active: #fff;
 
   --bg-primary: #111;
+  --bg-opaque: rgba(10, 10, 10, 0.5);
   --bg-hightlight: #28abb9;
 
   --text-on-light: #000;
