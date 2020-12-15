@@ -14,7 +14,7 @@ const PAGES = {
 };
 
 const Header: React.FC = () => {
-  const { route, locale } = useRouter();
+  const { route, locale, asPath } = useRouter();
   const translations = useMemo(() => getTranslations(locale as string), [
     locale,
   ]);
@@ -74,9 +74,9 @@ const Header: React.FC = () => {
         </Link>
 
         <div>
-          <Link href={route} locale="zh-CN">
+          <Link href={asPath} locale="zh-CN">
             <a
-              href={route}
+              href={asPath}
               className={cn(styles.localeLink, {
                 [styles.active]: locale === "zh-CN",
               })}
@@ -85,9 +85,9 @@ const Header: React.FC = () => {
             </a>
           </Link>
           <span className={styles.localeSeparator}>/</span>
-          <Link href={route} locale="en-US">
+          <Link href={asPath} locale="en-US">
             <a
-              href={route}
+              href={asPath}
               className={cn(styles.localeLink, {
                 [styles.active]: locale === "en-US",
               })}

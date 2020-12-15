@@ -58,8 +58,15 @@ const Arcade: React.FC<ArcadeProps> = ({
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = arcadeIds.map(id => ({ params: { id } }));
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
+  const paths = (locales || [])
+    .map(locale =>
+      arcadeIds.map(id => ({
+        params: { id },
+        locale,
+      }))
+    )
+    .flat();
 
   return { paths, fallback: false };
 };
