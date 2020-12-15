@@ -58,8 +58,15 @@ const Dosgame: React.FC<DosgameProps> = ({
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = dosgameIds.map(id => ({ params: { id } }));
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
+  const paths = locales
+    .map(locale =>
+      dosgameIds.map(id => ({
+        params: { id },
+        locale,
+      }))
+    )
+    .flat();
 
   return { paths, fallback: false };
 };
