@@ -59,7 +59,7 @@ const Dosgame: React.FC<DosgameProps> = ({
 };
 
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-  const paths = locales
+  const paths = (locales || [])
     .map(locale =>
       dosgameIds.map(id => ({
         params: { id },
