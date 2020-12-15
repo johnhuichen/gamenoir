@@ -1,7 +1,9 @@
 import { useMemo } from "react";
 import Link from "next/link";
-import cn from "classnames";
 import { useRouter } from "next/router";
+import cn from "classnames";
+
+import getTranslations from "translations/header";
 
 import styles from "./Header.module.css";
 
@@ -12,8 +14,12 @@ const PAGES = {
 };
 
 const Header: React.FC = () => {
-  const { route } = useRouter();
-  const currentPage = useMemo(() => {
+  const { route, locale } = useRouter();
+  const translations = useMemo(() => getTranslations(locale as string), [
+    locale,
+  ]);
+
+  const activePage = useMemo(() => {
     if (/^\/dosgame/.test(route)) {
       return PAGES.DOSGAME;
     }
@@ -40,32 +46,56 @@ const Header: React.FC = () => {
           <a
             href="/"
             className={cn(styles.link, {
-              [styles.current]: currentPage === PAGES.HOME,
+              [styles.active]: activePage === PAGES.HOME,
             })}
           >
-            Home
+            {translations.home}
           </a>
         </Link>
         <Link href="/dosgame">
           <a
             href="/dosgame"
             className={cn(styles.link, {
-              [styles.current]: currentPage === PAGES.DOSGAME,
+              [styles.active]: activePage === PAGES.DOSGAME,
             })}
           >
-            Dos Games
+            {translations.dosGames}
           </a>
         </Link>
         <Link href="/arcade">
           <a
             href="/arcade"
             className={cn(styles.link, {
-              [styles.current]: currentPage === PAGES.ARCADE,
+              [styles.active]: activePage === PAGES.ARCADE,
             })}
           >
-            Arcade Games
+            {translations.arcadeGames}
           </a>
         </Link>
+
+        <div>
+          <Link href={route} locale="zh-CN">
+            <a
+              href={route}
+              className={cn(styles.localeLink, {
+                [styles.active]: locale === "zh-CN",
+              })}
+            >
+              中
+            </a>
+          </Link>
+          <span className={styles.localeSeparator}>/</span>
+          <Link href={route} locale="en-US">
+            <a
+              href={route}
+              className={cn(styles.localeLink, {
+                [styles.active]: locale === "en-US",
+              })}
+            >
+              EN
+            </a>
+          </Link>
+        </div>
       </div>
     </div>
   );
