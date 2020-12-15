@@ -1,11 +1,10 @@
-import { createRef, useMemo, useState, useCallback } from "react";
+import { useMemo, useState, useCallback } from "react";
 import Head from "next/head";
 import { GetStaticProps } from "next";
-import cn from "classnames";
-import debounce from "lodash/debounce";
 
 import { arcadeGames, HomePageGame } from "lib/home";
 import GameCard from "components/shared/GameCard";
+import Search from "components/shared/Search";
 
 import styles from "./index.module.css";
 
@@ -14,33 +13,29 @@ interface Props {
 }
 
 const ArcadeGame: React.FC<Props> = ({ games }: Props) => {
-  const inputRef = createRef<HTMLInputElement>();
   const [filteredGames, setFilteredGames] = useState<HomePageGame[] | null>(
     null
   );
-  const handleChangeInput = useMemo(
-    () =>
-      debounce(async (e: { target: HTMLInputElement }) => {
-        const { value } = e.target;
+  const handleChangeInput = useCallback(
+    value => {
+      if (!value.trim()) {
+        setFilteredGames(null);
+      }
 
-        if (!value.trim()) {
-          setFilteredGames(null);
-        }
-
-        const keyword = value.trim().toLowerCase();
-        const result = games.filter(game =>
-          game.name.toLowerCase().includes(keyword)
-        );
-        setFilteredGames(result);
-      }, 300),
+      const keyword = value.trim().toLowerCase();
+      const result = games.filter(
+        game =>
+          game.name.toLowerCase().includes(keyword) ||
+          game.shortDescription.toLowerCase().includes(keyword)
+      );
+      setFilteredGames(result);
+    },
     [games]
   );
+
   const handleClearSearch = useCallback(() => {
-    if (inputRef.current) {
-      inputRef.current.value = "";
-      setFilteredGames(null);
-    }
-  }, [inputRef]);
+    setFilteredGames(null);
+  }, []);
 
   const gamesToDisplay = useMemo(() => {
     return filteredGames || games;
@@ -53,18 +48,10 @@ const ArcadeGame: React.FC<Props> = ({ games }: Props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.container}>
-        <div className={styles.searchContainer}>
-          <i aria-hidden className={cn("fas fa-search", styles.searchIcon)} />
-          <input
-            ref={inputRef}
-            className={styles.searchInput}
-            placeholder="Try searching for the games"
-            onChange={handleChangeInput}
-          />
-          <button onClick={handleClearSearch}>
-            <i aria-hidden className="fas fa-times" />
-          </button>
-        </div>
+        <Search
+          handleChangeInput={handleChangeInput}
+          handleClearSearch={handleClearSearch}
+        />
         <div className={styles.gameContianer}>
           {!!gamesToDisplay.length &&
             gamesToDisplay.map(game => (
