@@ -2,7 +2,7 @@ import { useMemo, useState, useCallback } from "react";
 import Head from "next/head";
 import { GetStaticProps } from "next";
 
-import { arcadeGames, HomePageGame } from "lib/home";
+import { getArcadeGames, HomePageGame } from "lib/home";
 import GameCard from "components/shared/GameCard";
 import Search from "components/shared/Search";
 
@@ -75,8 +75,8 @@ const ArcadeGame: React.FC<Props> = ({ games }: Props) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const games = [...arcadeGames];
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  const games = getArcadeGames(locale as string);
 
   return { props: { games } };
 };
