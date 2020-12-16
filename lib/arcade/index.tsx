@@ -13,7 +13,7 @@ export interface ArcadeProps {
 }
 
 function getArcadeGameIds(locale: string): string[] {
-  const mdDirectory = path.join(process.cwd(), `lib/arcade/md/${locale}`);
+  const mdDirectory = path.join(process.cwd(), `md/arcade/${locale}`);
   const fileNames = fs.readdirSync(mdDirectory);
   return fileNames.map(fileName => fileName.replace(/\.md$/, ""));
 }
@@ -22,7 +22,7 @@ async function getArcadeProps(
   id: string,
   locale: string
 ): Promise<ArcadeProps> {
-  const mdDirectory = path.join(process.cwd(), `lib/arcade/md/${locale}`);
+  const mdDirectory = path.join(process.cwd(), `md/arcade/${locale}`);
   const filePath = path.join(mdDirectory, `${id}.md`);
   const fileContent = fs.readFileSync(filePath, "utf8");
   const { data, content } = matter(fileContent);

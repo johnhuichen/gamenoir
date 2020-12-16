@@ -10,8 +10,6 @@ export interface HomePageGame {
   shortDescription: string;
 }
 
-const arcadeMdDir = path.join(process.cwd(), "lib/arcade/md");
-
 function getGameDataForDir(dir: string, gameType: string): HomePageGame[] {
   const fileNames = fs.readdirSync(dir);
   const gameData = fileNames.map(fileName => {
@@ -31,11 +29,11 @@ function getGameDataForDir(dir: string, gameType: string): HomePageGame[] {
 }
 
 function getDosGames(locale: string): HomePageGame[] {
-  const dosgameMdDir = path.join(process.cwd(), `lib/dosgame/md/${locale}`);
+  const dosgameMdDir = path.join(process.cwd(), `md/dosgame/${locale}`);
   return getGameDataForDir(dosgameMdDir, "dosgame");
 }
 function getArcadeGames(locale: string): HomePageGame[] {
-  const arcadeMdDir = path.join(process.cwd(), `lib/arcade/md/${locale}`);
+  const arcadeMdDir = path.join(process.cwd(), `md/arcade/${locale}`);
   return getGameDataForDir(arcadeMdDir, "arcade");
 }
 
