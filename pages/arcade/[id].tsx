@@ -2,7 +2,7 @@ import { createRef, useEffect } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
 
-import { arcadeIds, getArcadeProps, ArcadeProps } from "lib/arcade";
+import { getArcadeGameIds, getArcadeProps, ArcadeProps } from "lib/arcade";
 import useMame from "hooks/useMame";
 
 import Canvas, { CanvasElement } from "components/shared/Canvas";
@@ -61,7 +61,7 @@ const Arcade: React.FC<ArcadeProps> = ({
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const paths = (locales || [])
     .map(locale =>
-      arcadeIds.map(id => ({
+      getArcadeGameIds(locale).map(id => ({
         params: { id },
         locale,
       }))
@@ -71,8 +71,8 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const props = await getArcadeProps(params?.id as string);
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
+  const props = await getArcadeProps(params?.id as string, locale as string);
 
   return { props };
 };

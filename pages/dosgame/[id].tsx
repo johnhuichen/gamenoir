@@ -2,7 +2,7 @@ import { createRef, useEffect } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
 
-import { dosgameIds, getDosgameProps, DosgameProps } from "lib/dosgame";
+import { getDosgameIds, getDosgameProps, DosgameProps } from "lib/dosgame";
 import useDosbox from "hooks/useDosbox";
 
 import Canvas, { CanvasElement } from "components/shared/Canvas";
@@ -61,7 +61,7 @@ const Dosgame: React.FC<DosgameProps> = ({
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const paths = (locales || [])
     .map(locale =>
-      dosgameIds.map(id => ({
+      getDosgameIds(locale).map(id => ({
         params: { id },
         locale,
       }))
@@ -71,8 +71,8 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const props = await getDosgameProps(params?.id as string);
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
+  const props = await getDosgameProps(params?.id as string, locale as string);
 
   return { props };
 };
