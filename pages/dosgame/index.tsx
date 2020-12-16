@@ -1,10 +1,12 @@
 import { useMemo, useState, useCallback } from "react";
-import Head from "next/head";
 import { GetStaticProps } from "next";
+import Head from "next/head";
+import { useRouter } from "next/router";
 
 import { getDosGames, HomePageGame } from "lib/home";
 import GameCard from "components/shared/GameCard";
 import Search from "components/shared/Search";
+import getTranslations from "translations/dosgame";
 
 import styles from "./index.module.css";
 
@@ -13,6 +15,11 @@ interface Props {
 }
 
 const Dosgame: React.FC<Props> = ({ games }: Props) => {
+  const { locale } = useRouter();
+  const translations = useMemo(() => getTranslations(locale as string), [
+    locale,
+  ]);
+
   const [filteredGames, setFilteredGames] = useState<HomePageGame[] | null>(
     null
   );
@@ -48,13 +55,6 @@ const Dosgame: React.FC<Props> = ({ games }: Props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.container}>
-        <div className={styles.announcement}>
-          Do you know that you can save your progress and come back later?
-          <br />
-          <br />
-          Your game progress will be saved in your browser, so as long as you
-          don&apos;t clear browser data, your saved game will always be there
-        </div>
         <Search
           handleChangeInput={handleChangeInput}
           handleClearSearch={handleClearSearch}
@@ -72,9 +72,7 @@ const Dosgame: React.FC<Props> = ({ games }: Props) => {
               />
             ))}
           {!gamesToDisplay.length && (
-            <div className={styles.noGames}>
-              We haven&apos;t found anything that matches your search.
-            </div>
+            <div className={styles.notfound}>{translations.notfound}</div>
           )}
         </div>
       </div>
