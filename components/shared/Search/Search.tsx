@@ -1,6 +1,9 @@
 import { createRef, useCallback, useMemo } from "react";
+import { useRouter } from "next/router";
 import cn from "classnames";
 import debounce from "lodash/debounce";
+
+import getTranslations from "translations/search";
 
 import styles from "./Search.module.css";
 
@@ -13,6 +16,11 @@ const Search: React.FC<Props> = ({
   handleChangeInput,
   handleClearSearch,
 }: Props) => {
+  const { locale } = useRouter();
+  const translations = useMemo(() => getTranslations(locale as string), [
+    locale,
+  ]);
+
   const inputRef = createRef<HTMLInputElement>();
 
   const clearSearch = useCallback(() => {
@@ -37,7 +45,7 @@ const Search: React.FC<Props> = ({
       <input
         ref={inputRef}
         className={styles.searchInput}
-        placeholder="Try searching for the games"
+        placeholder={translations.searchPlaceholder}
         onChange={onChange}
       />
       <button onClick={clearSearch}>
