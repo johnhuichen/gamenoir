@@ -12,11 +12,17 @@ export interface DosgameProps {
   descriptionHtml: string;
 }
 
-const mdDirectory = path.join(process.cwd(), "lib/dosgame/md");
-const fileNames = fs.readdirSync(mdDirectory);
-const dosgameIds = fileNames.map(fileName => fileName.replace(/\.md$/, ""));
+function getDosgameIds(locale: string): string[] {
+  const mdDirectory = path.join(process.cwd(), `lib/dosgame/md/${locale}`);
+  const fileNames = fs.readdirSync(mdDirectory);
+  return fileNames.map(fileName => fileName.replace(/\.md$/, ""));
+}
 
-async function getDosgameProps(id: string): Promise<DosgameProps> {
+async function getDosgameProps(
+  id: string,
+  locale: string
+): Promise<DosgameProps> {
+  const mdDirectory = path.join(process.cwd(), `lib/dosgame/md/${locale}`);
   const filePath = path.join(mdDirectory, `${id}.md`);
   const fileContent = fs.readFileSync(filePath, "utf8");
   const { data, content } = matter(fileContent);
@@ -35,4 +41,4 @@ async function getDosgameProps(id: string): Promise<DosgameProps> {
   };
 }
 
-export { getDosgameProps, dosgameIds };
+export { getDosgameProps, getDosgameIds };
