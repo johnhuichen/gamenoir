@@ -3,19 +3,6 @@
   min-height: calc(100vh - 200px);
 }
 
-.announcement {
-  font-size: 18px;
-  background: var(--bg-primary);
-  margin-bottom: 50px;
-  padding: 20px;
-  opacity: 0.8;
-}
-
-.announcement a {
-  display: inline;
-  color: var(--text-highlight);
-}
-
 .gameContianer {
   display: flex;
   margin-top: 50px;

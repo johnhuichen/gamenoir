@@ -1,10 +1,12 @@
 import { useMemo, useState, useCallback } from "react";
 import Head from "next/head";
 import { GetStaticProps } from "next";
+import { useRouter } from "next/router";
 
 import { getArcadeGames, HomePageGame } from "lib/home";
 import GameCard from "components/shared/GameCard";
 import Search from "components/shared/Search";
+import getTranslations from "translations/arcade";
 
 import styles from "./index.module.css";
 
@@ -13,6 +15,11 @@ interface Props {
 }
 
 const ArcadeGame: React.FC<Props> = ({ games }: Props) => {
+  const { locale } = useRouter();
+  const translations = useMemo(() => getTranslations(locale as string), [
+    locale,
+  ]);
+
   const [filteredGames, setFilteredGames] = useState<HomePageGame[] | null>(
     null
   );
@@ -65,9 +72,7 @@ const ArcadeGame: React.FC<Props> = ({ games }: Props) => {
               />
             ))}
           {!gamesToDisplay.length && (
-            <div className={styles.noGames}>
-              We haven&apos;t found anything that matches your search.
-            </div>
+            <div className={styles.notfound}>{translations.notfound}</div>
           )}
         </div>
       </div>
