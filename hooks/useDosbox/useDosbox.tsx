@@ -1,11 +1,10 @@
 import { useReducer, useCallback } from "react";
 import * as BrowserFS from "browserfs";
 
-import { CanvasElement } from "components/shared/Canvas";
 import { noop, fetchFile, formatBytes, RequestEvent } from "lib/utils";
 
 interface UseDosboxProps {
-  canvasRef: React.RefObject<CanvasElement>;
+  canvasRef: React.RefObject<HTMLCanvasElement>;
   gameFile: string;
 }
 
@@ -36,7 +35,7 @@ declare global {
       screenIsReadOnly: boolean;
       print: (msg: string) => void;
       printErr: (msg: string) => void;
-      canvas: CanvasElement;
+      canvas: HTMLCanvasElement;
       noInitialRun: boolean;
       locateFile: (fileName: string) => string;
       preInit: () => void;
@@ -109,7 +108,7 @@ async function updateModule({
   gameFile,
   dispatch,
 }: {
-  canvas: CanvasElement;
+  canvas: HTMLCanvasElement;
   gameFile: string;
   dispatch: (action: UseDosboxAction) => void;
 }) {

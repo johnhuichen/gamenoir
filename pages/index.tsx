@@ -7,6 +7,7 @@ import { getDosGames, getArcadeGames, HomePageGame } from "lib/home";
 import GameCard from "components/shared/GameCard";
 import Emoji from "components/shared/Emoji";
 import Search from "components/shared/Search";
+import getTranslations from "translations/home";
 
 import styles from "./index.module.css";
 
@@ -39,12 +40,12 @@ const Annoucement: React.FC = () => {
 
   return (
     <div className={styles.announcement}>
-      大家2020年圣诞快乐! <Emoji symbol="🎉" label="Party Pooper" />{" "}
+      2020年圣诞快乐! <Emoji symbol="🎉" label="Party Pooper" />{" "}
       <Emoji symbol="🎉" label="Party Pooper" />{" "}
       <Emoji symbol="🎅" label="Santa" />
       <br />
       <br />
-      我们在Gamenoir提供各种Dos和街机平台上的老游戏的在线试玩。你可以一口气穿越到90年代，体验那些脍炙人口的经典电脑游戏，也可以再一次感受到和发小们一起玩红白机的快感。
+      Gamenoir提供各种Dos和街机平台上的老游戏的在线试玩。你可以一口气穿越到90年代，体验那些脍炙人口的经典电脑游戏，也可以再一次和发小们重新拾起小时候玩过的那些红白机游戏。
       <br />
       <br />
       如果你在游戏过程中遇到什么疑难困惑，或者你有一款非常想玩的老游戏，你可以直接给我们发邮件(
@@ -59,6 +60,11 @@ const Annoucement: React.FC = () => {
 };
 
 const Home: React.FC<Props> = ({ games }: Props) => {
+  const { locale } = useRouter();
+  const translations = useMemo(() => getTranslations(locale as string), [
+    locale,
+  ]);
+
   const [filteredGames, setFilteredGames] = useState<HomePageGame[] | null>(
     null
   );
@@ -95,10 +101,12 @@ const Home: React.FC<Props> = ({ games }: Props) => {
       </Head>
       <div className={styles.container}>
         <Annoucement />
-        <Search
-          handleChangeInput={handleChangeInput}
-          handleClearSearch={handleClearSearch}
-        />
+        <div className={styles.searchContainer}>
+          <Search
+            handleChangeInput={handleChangeInput}
+            handleClearSearch={handleClearSearch}
+          />
+        </div>
         <div className={styles.gameContianer}>
           {!!gamesToDisplay.length &&
             gamesToDisplay.map(game => (
@@ -112,9 +120,7 @@ const Home: React.FC<Props> = ({ games }: Props) => {
               />
             ))}
           {!gamesToDisplay.length && (
-            <div className={styles.noGames}>
-              We haven&apos;t found anything that matches your search.
-            </div>
+            <div className={styles.notfound}>{translations.notfound}</div>
           )}
         </div>
       </div>

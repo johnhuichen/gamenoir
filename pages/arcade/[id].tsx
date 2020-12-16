@@ -5,17 +5,15 @@ import Head from "next/head";
 import { getArcadeGameIds, getArcadeProps, ArcadeProps } from "lib/arcade";
 import useMame from "hooks/useMame";
 
-import Canvas, { CanvasElement } from "components/shared/Canvas";
-
+import Canvas from "components/shared/Canvas";
 import styles from "./[id].module.css";
 
 const Arcade: React.FC<ArcadeProps> = ({
   name,
   gameFile,
   imgFile,
-  descriptionHtml,
 }: ArcadeProps) => {
-  const canvasRef = createRef<CanvasElement>();
+  const canvasRef = createRef<HTMLCanvasElement>();
   const {
     startMame,
     stopMame,
@@ -52,7 +50,6 @@ const Arcade: React.FC<ArcadeProps> = ({
           totalSize={totalSize}
           percentage={percentage}
         />
-        <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
       </div>
     </>
   );
