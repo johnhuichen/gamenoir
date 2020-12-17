@@ -8,6 +8,10 @@ import Canvas from "components/shared/Canvas";
 
 import styles from "./[id].module.css";
 
+const FAQ: React.FC = () => {
+  return <div>Mock FAQ</div>;
+};
+
 const Dosgame: React.FC<DosgameProps> = ({
   name,
   gameFile,
@@ -49,6 +53,7 @@ const Dosgame: React.FC<DosgameProps> = ({
           loadedSize={loadedSize}
           totalSize={totalSize}
           percentage={percentage}
+          faq={<FAQ />}
         />
       </div>
     </>

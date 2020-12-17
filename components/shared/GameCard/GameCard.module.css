@@ -39,13 +39,13 @@
 }
 
 .gameCardTitle {
-  font-size: 18px;
+  font-size: var(--title-text-size);
   font-weight: 900;
   margin-bottom: 5px;
 }
 
 .gameCardDescription {
-  font-size: 16px;
+  font-size: var(--body-text-size);
   overflow: hidden;
   text-overflow: ellipsis;
 }

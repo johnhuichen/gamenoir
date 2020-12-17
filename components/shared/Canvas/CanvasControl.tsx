@@ -22,9 +22,9 @@ Props) => {
         onClick={handleToggleExpand}
       >
         {isTheater ? (
-          <i aria-hidden className="fas fa-compress-arrows-alt" />
+          <i aria-hidden className="fa fa-window-minimize" />
         ) : (
-          <i aria-hidden className="fas fa-expand-arrows-alt" />
+          <i aria-hidden className="fa fa-window-maximize" />
         )}
       </button>
     </div>

@@ -17,7 +17,7 @@
 }
 
 .contactus {
-  font-size: 18px;
+  font-size: var(--title-text-size);
   letter-spacing: 1px;
   text-decoration: none;
   text-transform: uppercase;
