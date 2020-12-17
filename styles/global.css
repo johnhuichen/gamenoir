@@ -1,18 +1,41 @@
 :root {
-  --text-primary: #eee;
-  --text-highlight: #41c6c3;
-  --text-active: #fff;
-
-  --bg-primary: #111;
-  --bg-opaque: rgba(10, 10, 10, 0.5);
   --bg-hightlight: #28abb9;
+  --text-highlight: #41c6c3;
 
-  --text-on-light: #000;
-  --bg-light: #eee;
+  --bg-primary: #000;
+  --text-primary: #eee;
+
+  --bg-lighter: #111;
+  --text-on-lighter: #eee;
+
+  --bg-white: #fff;
+  --text-on-white: #000;
+
+  --bg-silver: #eee;
+  --text-on-silver: #000;
+
+  --bg-blue: #2d46b9;
+  --text-on-blue: #fff;
+
+  --bg-orange: #ff4632;
+  --text-on-orange: #000;
+
+  --bg-purple: #cb1582;
+  --text-on-purple: #000;
+
+  --bg-azure: #a5ffef;
+  --text-on-azure: #cb1582;
+
+  --text-orange: #ff4632;
+  --text-blue: #2d46b9;
+  --text-purple: #cb1582;
+  --text-azure: #a5ffef;
+  --text-black: #000;
+  --text-white: #fff;
 
   --footer-height: 120px;
 
-  --viewport-margin: 32px;
+  --viewport-padding: 32px;
 }
 
 html,
@@ -22,10 +45,10 @@ body {
   font-family: "Microsoft Yahei", "Crimson+Text", sans-serif;
   color: var(--text-primary);
   line-height: 1.6;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 500;
   min-height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%),
-    url("/bg.png");
+  background: var(--bg-primary);
 }
 
 * {

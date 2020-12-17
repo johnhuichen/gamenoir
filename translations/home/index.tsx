@@ -1,21 +1,12 @@
 interface Translation {
-  brand: string;
-  home: string;
-  dosGames: string;
-  arcadeGames: string;
+  notfound: string;
 }
 
 const chineseTranslations: Translation = {
-  brand: "黑游",
-  home: "大本营",
-  dosGames: "DOS",
-  arcadeGames: "街机",
+  notfound: "啥都没找到， 要不再试一次？",
 };
 const englishTranslations: Translation = {
-  brand: "Game Noir",
-  home: "Home",
-  dosGames: "DOS",
-  arcadeGames: "Arcade",
+  notfound: "Nothing found...try another keyword?",
 };
 
 const getTranslations = (locale: string): Translation => {

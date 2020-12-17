@@ -1,9 +1,15 @@
 .container {
-  margin: 0 var(--viewport-margin);
   min-height: calc(100vh - 200px);
+  background: var(--bg-silver);
+}
+
+.searchContainer {
+  padding: var(--viewport-padding);
 }
 
 .gameContianer {
   display: flex;
-  margin-top: 50px;
+  flex-wrap: wrap;
+  padding: 50px var(--viewport-padding);
+  padding-top: 0;
 }
