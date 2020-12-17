@@ -2,14 +2,3 @@
   min-height: calc(100vh - 200px);
   background: var(--bg-silver);
 }
-
-.searchContainer {
-  padding: var(--viewport-padding);
-}
-
-.gameContianer {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 50px var(--viewport-padding);
-  padding-top: 0;
-}

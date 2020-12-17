@@ -13,16 +13,3 @@
   display: inline;
   color: var(--text-highlight);
 }
-
-.searchContainer {
-  background: var(--bg-silver);
-  padding: var(--viewport-padding);
-}
-
-.gameContianer {
-  display: flex;
-  flex-wrap: wrap;
-  background: var(--bg-silver);
-  padding: 50px var(--viewport-padding);
-  padding-top: 0;
-}
