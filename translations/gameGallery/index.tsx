@@ -3,7 +3,7 @@ interface Translation {
 }
 
 const chineseTranslations: Translation = {
-  notfound: "啥都没找到， 要不再试一次？",
+  notfound: "啥都没找到， 换个关键词再试试？",
 };
 const englishTranslations: Translation = {
   notfound: "Nothing found...try another keyword?",

@@ -26,12 +26,13 @@
   --bg-azure: #a5ffef;
   --text-on-azure: #cb1582;
 
+  --text-black: #000;
+  --text-white: #fff;
   --text-orange: #ff4632;
   --text-blue: #2d46b9;
   --text-purple: #cb1582;
   --text-azure: #a5ffef;
-  --text-black: #000;
-  --text-white: #fff;
+  --text-red: red;
 
   --body-text-size: 14px;
   --title-text-size: 16px;
