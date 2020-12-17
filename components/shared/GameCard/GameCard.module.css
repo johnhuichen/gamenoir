@@ -1,11 +1,11 @@
 .container {
-  flex-basis: 33%;
+  flex-basis: 50%;
   height: 210px;
   padding-bottom: 20px;
   padding-right: 10px;
 }
 
-.container:nth-child(3n) {
+.container:nth-child(2n) {
   padding-left: 10px;
   padding-right: 0;
 }
@@ -41,6 +41,7 @@
 .gameCardTitle {
   font-size: 18px;
   font-weight: 900;
+  margin-bottom: 5px;
 }
 
 .gameCardDescription {
