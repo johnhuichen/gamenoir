@@ -4,14 +4,22 @@
   display: flex;
   align-items: center;
   flex-grow: 1;
-  max-width: 500px;
   padding: 5px 10px;
   cursor: pointer;
+  height: 50px;
+  max-width: 500px;
 
-  border-bottom: 1px solid var(--text-primary);
+  color: var(--text-on-white);
+  border-bottom: 1px solid var(--text-on-white);
+}
+
+.searchContainer:focus .searchIcon,
+.searchContainer:hover .searchIcon {
+  transform: scale(1.1);
 }
 
 .searchContainer i {
+  color: var(--text-on-white);
   font-size: 18px;
 }
 
@@ -20,6 +28,7 @@
 }
 
 .searchInput {
+  color: var(--text-on-white);
   font-size: 18px;
   border: none;
   background: transparent;
@@ -29,4 +38,8 @@
 
 .searchInput:focus {
   outline: none;
+}
+
+.closeIcon:hover {
+  transform: scale(1.1);
 }

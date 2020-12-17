@@ -1,13 +1,12 @@
 .container {
-  margin: 0 var(--viewport-margin);
   min-height: calc(100vh - 200px);
 }
 
 .announcement {
-  font-size: 20px;
-  background: var(--bg-opaque);
+  font-size: 18px;
+  font-weight: 700;
   margin-bottom: 50px;
-  padding: 20px;
+  padding: var(--viewport-padding);
 }
 
 .announcement a {
@@ -15,8 +14,15 @@
   color: var(--text-highlight);
 }
 
+.searchContainer {
+  background: var(--bg-silver);
+  padding: var(--viewport-padding);
+}
+
 .gameContianer {
   display: flex;
-  margin-top: 50px;
   flex-wrap: wrap;
+  background: var(--bg-silver);
+  padding: 50px var(--viewport-padding);
+  padding-top: 0;
 }

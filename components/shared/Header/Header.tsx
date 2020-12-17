@@ -49,7 +49,7 @@ const Header: React.FC = () => {
         <Link href="/">
           <a href="/" className={styles.logo}>
             <i aria-hidden className="fab fa-phoenix-framework" />
-            Game Noir
+            {translations.brand}
           </a>
         </Link>
       </div>

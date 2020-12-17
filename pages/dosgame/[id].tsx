@@ -4,8 +4,7 @@ import Head from "next/head";
 
 import { getDosgameIds, getDosgameProps, DosgameProps } from "lib/dosgame";
 import useDosbox from "hooks/useDosbox";
-
-import Canvas, { CanvasElement } from "components/shared/Canvas";
+import Canvas from "components/shared/Canvas";
 
 import styles from "./[id].module.css";
 
@@ -13,9 +12,8 @@ const Dosgame: React.FC<DosgameProps> = ({
   name,
   gameFile,
   imgFile,
-  descriptionHtml,
 }: DosgameProps) => {
-  const canvasRef = createRef<CanvasElement>();
+  const canvasRef = createRef<HTMLCanvasElement>();
   const {
     startDosbox,
     stopDosbox,
@@ -52,7 +50,6 @@ const Dosgame: React.FC<DosgameProps> = ({
           totalSize={totalSize}
           percentage={percentage}
         />
-        <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
       </div>
     </>
   );

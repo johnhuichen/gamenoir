@@ -55,10 +55,12 @@ const ArcadeGame: React.FC<Props> = ({ games }: Props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.container}>
-        <Search
-          handleChangeInput={handleChangeInput}
-          handleClearSearch={handleClearSearch}
-        />
+        <div className={styles.searchContainer}>
+          <Search
+            handleChangeInput={handleChangeInput}
+            handleClearSearch={handleClearSearch}
+          />
+        </div>
         <div className={styles.gameContianer}>
           {!!gamesToDisplay.length &&
             gamesToDisplay.map(game => (

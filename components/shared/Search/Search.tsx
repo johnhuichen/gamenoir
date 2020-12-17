@@ -49,7 +49,7 @@ const Search: React.FC<Props> = ({
         onChange={onChange}
       />
       <button onClick={clearSearch}>
-        <i aria-hidden className="fas fa-times" />
+        <i aria-hidden className={cn("fas fa-times", styles.closeIcon)} />
       </button>
     </div>
   );
