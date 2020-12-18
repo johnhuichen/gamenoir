@@ -6,7 +6,7 @@
   flex-grow: 1;
   padding: 5px 10px;
   cursor: pointer;
-  height: 50px;
+  height: 35px;
   max-width: 500px;
 
   color: var(--text-on-white);
@@ -15,12 +15,12 @@
 
 .searchContainer:focus .searchIcon,
 .searchContainer:hover .searchIcon {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .searchContainer i {
   color: var(--text-on-white);
-  font-size: 18px;
+  font-size: var(--body-text-size);
 }
 
 .searchIcon {
@@ -29,7 +29,7 @@
 
 .searchInput {
   color: var(--text-on-white);
-  font-size: 18px;
+  font-size: var(--body-text-size);
   border: none;
   background: transparent;
   cursor: pointer;
@@ -41,5 +41,6 @@
 }
 
 .closeIcon:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
+  color: var(--text-red);
 }

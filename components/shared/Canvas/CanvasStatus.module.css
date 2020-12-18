@@ -5,6 +5,7 @@
   transform: translate(-50%, -50%);
   font-family: "Press Start 2P";
   font-size: 24px;
+  text-transform: uppercase;
   padding: 10px;
   cursor: pointer;
 
@@ -33,7 +34,7 @@
 }
 
 .progressDescription {
-  font-size: 18px;
+  font-size: var(--title-text-size);
   margin-bottom: 10px;
   text-align: center;
 }

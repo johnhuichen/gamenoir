@@ -1,12 +1,21 @@
 interface Translation {
-  notfound: string;
+  theaterMode: string;
+  fullScreenMode: string;
+  normalMode: string;
+  faq: string;
 }
 
 const chineseTranslations: Translation = {
-  notfound: "啥都没找到， 换个关键词再试试？",
+  theaterMode: "宽屏",
+  fullScreenMode: "全屏",
+  normalMode: "退回",
+  faq: "常见问题解答",
 };
 const englishTranslations: Translation = {
-  notfound: "Nothing found...try another keyword?",
+  theaterMode: "Theater Mode",
+  fullScreenMode: "Full Screen Mode",
+  normalMode: "Normal Mode",
+  faq: "FAQ",
 };
 
 const getTranslations = (locale: string): Translation => {
