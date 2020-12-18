@@ -30,6 +30,7 @@ interface Props {
   loadedSize: string | undefined;
   totalSize: string | undefined;
   percentage: number | undefined;
+  faqContent: React.FC;
 }
 
 const DISPLAY_MODES = {
@@ -48,6 +49,7 @@ const Canvas: React.FC<Props> = ({
   loadedSize,
   totalSize,
   percentage,
+  faqContent,
 }: Props) => {
   const [displayMode, setDisplayMode] = useState(DISPLAY_MODES.NORMAL);
   const canvasContainerRef = createRef<HTMLDivElement>();
@@ -110,8 +112,9 @@ const Canvas: React.FC<Props> = ({
       <canvas id="canvas" className={styles.canvas} ref={canvasRef} />
       <CanvasControl
         handleToggleExpand={handleToggleExpand}
-        // handleToggleFullScreen={handleToggleFullScreen}
         isTheater={isTheater}
+        faqContent={faqContent}
+        // handleToggleFullScreen={handleToggleFullScreen}
         // isFullScreen={isFullScreen}
       />
       <CanvasStatus
