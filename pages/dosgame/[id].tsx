@@ -25,11 +25,11 @@ const FAQContent: React.FC<FAQContentProps> = ({ locale }: FAQContentProps) => {
           <br />
           Moving: &larr; &uarr; &rarr; &darr;
           <br />
-          Confirmation: Enter or Space
+          Confirm: Enter or Space
           <br />
-          Cancel/Go back/Menu: Escape
+          Cancel/Back/Menu: Escape
           <br />
-          Tab, Shift, Ctrl, F1-F10 can have special purposes sometimes
+          Tab, Shift, Ctrl, F1-F10 can also be useful sometimes
           <br />
         </div>
         <br />
@@ -38,18 +38,19 @@ const FAQContent: React.FC<FAQContentProps> = ({ locale }: FAQContentProps) => {
         </div>
         <div className={styles.faqAnswer}>
           If that happens, press random number or letter a couple of times to
-          skip this part.
+          skip this part. For example, press A or 1 up to five times and hit
+          enter.
         </div>
         <br />
         <div className={styles.faqQuestion}>
-          Hitting Escape exists full screen, but I want to play in full screen
-          and use Escape?
+          Hitting the Escape key exists full screen, but I want to play in full
+          screen and use Escape?
         </div>
         <div className={styles.faqAnswer}>
           The Escape key is the default key to exit full screen mode. If you
           want to use play in full screen and use Escape, use Theater mode and
           then use your browser&apos;s own full screen mode (for example
-          Chrome's default key to toggle full screen is F11).
+          Chrome&apos;s default key to toggle full screen is F11).
         </div>
         <br />
         <div className={styles.faqQuestion}>Why is my saved game gone?</div>
@@ -71,16 +72,19 @@ const FAQContent: React.FC<FAQContentProps> = ({ locale }: FAQContentProps) => {
       <div className={styles.faqAnswer}>
         Dos游戏的操作大多用键盘操作，也有些可以使用鼠标。如果是能够使用鼠标的游戏，直接把鼠标划入屏幕再单击即可。
         <br />
-        基本键盘操作为: 方向键 (&larr; &uarr; &rarr; &darr;)
-        移动角色，Enter和空格确认，ESC取消，返回或者跳出系统菜单。
+        移动: &larr; &uarr; &rarr; &darr;
         <br />
-        某些游戏里Tab, Shift, Ctrl, F1-F10等按键也有特殊用途。
+        确认: Enter和空格
+        <br />
+        取消/返回/系统菜单: ESC
+        <br />
+        有时Tab, Shift, Ctrl, F1-F10也有特殊用途
         <br />
       </div>
       <br />
       <div className={styles.faqQuestion}>进入游戏后需要输入密码？</div>
       <div className={styles.faqAnswer}>
-        如果进入游戏后显示要输入密码，你可以按几次数字或者字母跳过。
+        如果进入游戏后显示要输入密码，你可以按几次数字或者字母跳过。比如AAAA或者11111后确认
       </div>
       <br />
       <div className={styles.faqQuestion}>
