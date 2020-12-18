@@ -4,11 +4,11 @@ import Modal from "components/shared/Modal";
 import styles from "./CanvasControl.module.css";
 
 interface Props {
-  handleToggleExpand: () => void;
-  isTheater: boolean;
+  isNormal: boolean;
   faqContent: React.ReactNode;
-  // handleToggleFullScreen: () => void;
-  // isFullScreen: boolean;
+  handleFullScreen: () => void;
+  handleExpand: () => void;
+  handleReset: () => void;
 }
 
 interface FAQProps {
@@ -20,12 +20,12 @@ const FAQ: React.FC<FAQProps> = ({ faqContent }: FAQProps) => {
 };
 
 const CanvasControl: React.FC<Props> = ({
-  handleToggleExpand,
-  isTheater,
+  isNormal,
   faqContent,
-}: // handleToggleFullScreen,
-// isFullScreen,
-Props) => {
+  handleExpand,
+  handleFullScreen,
+  handleReset,
+}: Props) => {
   const [showFAQ, setShowFAQ] = useState(false);
   const handleOpenFAQ = useCallback(() => {
     setShowFAQ(true);
@@ -36,26 +36,43 @@ Props) => {
 
   return (
     <div className={styles.container}>
-      <button
-        type="button"
-        title="Theater Mode"
-        className={styles.toggleBtn}
-        onClick={handleToggleExpand}
-      >
-        {isTheater ? (
+      {isNormal ? (
+        <>
+          <button
+            type="button"
+            title="Fullscreen Mode"
+            className={styles.toggleBtn}
+            onClick={handleFullScreen}
+          >
+            <i aria-hidden className="fas fa-expand" />
+          </button>
+          <button
+            type="button"
+            title="Theater Mode"
+            className={styles.toggleBtn}
+            onClick={handleExpand}
+          >
+            <i aria-hidden className="fa fa-window-maximize" />
+          </button>
+          <button
+            type="button"
+            title="FAQ"
+            className={styles.toggleBtn}
+            onClick={handleOpenFAQ}
+          >
+            <i aria-hidden className="fas fa-info-circle" />
+          </button>
+        </>
+      ) : (
+        <button
+          type="button"
+          title="Theater Mode"
+          className={styles.toggleBtn}
+          onClick={handleReset}
+        >
           <i aria-hidden className="fa fa-window-minimize" />
-        ) : (
-          <i aria-hidden className="fa fa-window-maximize" />
-        )}
-      </button>
-      <button
-        type="button"
-        title="Theater Mode"
-        className={styles.toggleBtn}
-        onClick={handleOpenFAQ}
-      >
-        <i aria-hidden className="fas fa-info-circle" />
-      </button>
+        </button>
+      )}
       {showFAQ && (
         <Modal handleCloseModal={handleCloseFAQ}>
           <FAQ faqContent={faqContent} />

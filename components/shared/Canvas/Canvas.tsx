@@ -6,22 +6,22 @@ import CanvasStatus from "./CanvasStatus";
 
 import styles from "./Canvas.module.css";
 
-// interface DivElement extends HTMLDivElement {
-//   exitFullscreen(): Promise<void>;
-//   mozRequestFullScreen(): Promise<void>;
-//   webkitRequestFullscreen(): Promise<void>;
-//   msRequestFullscreen(): Promise<void>;
-// }
-//
-// export interface CanvasElement extends HTMLCanvasElement {
-//   exitFullscreen(): Promise<void>;
-//   mozRequestFullScreen(): Promise<void>;
-//   webkitRequestFullscreen(): Promise<void>;
-//   msRequestFullscreen(): Promise<void>;
-// }
+interface DivElement extends HTMLDivElement {
+  exitFullscreen(): Promise<void>;
+  mozRequestFullScreen(): Promise<void>;
+  webkitRequestFullscreen(): Promise<void>;
+  msRequestFullscreen(): Promise<void>;
+}
+
+export interface CanvasElement extends HTMLCanvasElement {
+  exitFullscreen(): Promise<void>;
+  mozRequestFullScreen(): Promise<void>;
+  webkitRequestFullscreen(): Promise<void>;
+  msRequestFullscreen(): Promise<void>;
+}
 
 interface Props {
-  canvasRef: React.RefObject<HTMLCanvasElement>;
+  canvasRef: React.RefObject<CanvasElement>;
   name: string;
   imgFile: string;
   isLoading: boolean;
@@ -52,49 +52,41 @@ const Canvas: React.FC<Props> = ({
   faqContent,
 }: Props) => {
   const [displayMode, setDisplayMode] = useState(DISPLAY_MODES.NORMAL);
-  const canvasContainerRef = createRef<HTMLDivElement>();
+  const canvasContainerRef = createRef<DivElement>();
 
-  const isTheater = useMemo(() => displayMode === DISPLAY_MODES.THEATER, [
+  const isNormal = useMemo(() => displayMode === DISPLAY_MODES.NORMAL, [
     displayMode,
   ]);
-  // const isFullScreen = useMemo(() => displayMode === DISPLAY_MODES.FULLSCREEN, [
-  //   displayMode,
-  // ]);
 
-  const handleToggleExpand = useCallback(() => {
-    // if (document.fullscreen) {
-    //   document.exitFullscreen();
-    // }
-    const newMode =
-      displayMode === DISPLAY_MODES.THEATER
-        ? DISPLAY_MODES.NORMAL
-        : DISPLAY_MODES.THEATER;
-    setDisplayMode(newMode);
-  }, [displayMode]);
+  const handleExpand = useCallback(() => {
+    if (document.fullscreen) {
+      document.exitFullscreen();
+    }
+    setDisplayMode(DISPLAY_MODES.THEATER);
+  }, []);
 
-  // const handleToggleFullScreen = useCallback(() => {
-  //   const elem = canvasContainerRef.current;
-  //
-  //   if (displayMode === DISPLAY_MODES.FULLSCREEN) {
-  //     if (document.fullscreen) {
-  //       document.exitFullscreen();
-  //     }
-  //
-  //     setDisplayMode(DISPLAY_MODES.NORMAL);
-  //   } else {
-  //     if (elem?.requestFullscreen) {
-  //       elem.requestFullscreen();
-  //     } else if (elem?.webkitRequestFullscreen) {
-  //       /* Safari */
-  //       elem.webkitRequestFullscreen();
-  //     } else if (elem?.msRequestFullscreen) {
-  //       /* IE11 */
-  //       elem.msRequestFullscreen();
-  //     }
-  //
-  //     setDisplayMode(DISPLAY_MODES.FULLSCREEN);
-  //   }
-  // }, [displayMode, canvasContainerRef]);
+  const handleFullScreen = useCallback(() => {
+    const elem = canvasContainerRef.current;
+    if (elem?.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem?.webkitRequestFullscreen) {
+      /* Safari */
+      elem.webkitRequestFullscreen();
+    } else if (elem?.msRequestFullscreen) {
+      /* IE11 */
+      elem.msRequestFullscreen();
+    }
+
+    setDisplayMode(DISPLAY_MODES.FULLSCREEN);
+  }, [canvasContainerRef]);
+
+  const handleReset = useCallback(() => {
+    if (document.fullscreen) {
+      document.exitFullscreen();
+    }
+
+    setDisplayMode(DISPLAY_MODES.NORMAL);
+  }, []);
 
   // canvas id is needed because mame wasm hard coded it
   return (
@@ -105,17 +97,17 @@ const Canvas: React.FC<Props> = ({
         styles.container
       )}
     >
-      {!isTheater && <div className={styles.canvasTitle}>{name}</div>}
+      {isNormal && <div className={styles.canvasTitle}>{name}</div>}
       {!isReady && (
         <img className={styles.canvasImg} src={imgFile} alt="game background" />
       )}
       <canvas id="canvas" className={styles.canvas} ref={canvasRef} />
       <CanvasControl
-        handleToggleExpand={handleToggleExpand}
-        isTheater={isTheater}
         faqContent={faqContent}
-        // handleToggleFullScreen={handleToggleFullScreen}
-        // isFullScreen={isFullScreen}
+        isNormal={isNormal}
+        handleExpand={handleExpand}
+        handleFullScreen={handleFullScreen}
+        handleReset={handleReset}
       />
       <CanvasStatus
         isLoading={isLoading}

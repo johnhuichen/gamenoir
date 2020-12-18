@@ -5,7 +5,7 @@ import Head from "next/head";
 import { getArcadeGameIds, getArcadeProps, ArcadeProps } from "lib/arcade";
 import useMame from "hooks/useMame";
 
-import Canvas from "components/shared/Canvas";
+import Canvas, { CanvasElement } from "components/shared/Canvas";
 import styles from "./[id].module.css";
 
 const FAQContent: React.FC = () => {
@@ -17,7 +17,7 @@ const Arcade: React.FC<ArcadeProps> = ({
   gameFile,
   imgFile,
 }: ArcadeProps) => {
-  const canvasRef = createRef<HTMLCanvasElement>();
+  const canvasRef = createRef<CanvasElement>();
   const {
     startMame,
     stopMame,
