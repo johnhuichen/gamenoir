@@ -30,7 +30,7 @@ interface Props {
   loadedSize: string | undefined;
   totalSize: string | undefined;
   percentage: number | undefined;
-  faqContent: React.FC;
+  faqContent: React.ReactNode;
 }
 
 const DISPLAY_MODES = {

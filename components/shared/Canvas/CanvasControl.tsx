@@ -6,13 +6,13 @@ import styles from "./CanvasControl.module.css";
 interface Props {
   handleToggleExpand: () => void;
   isTheater: boolean;
-  faqContent: React.FC;
+  faqContent: React.ReactNode;
   // handleToggleFullScreen: () => void;
   // isFullScreen: boolean;
 }
 
 interface FAQProps {
-  faqContent: React.FC;
+  faqContent: React.ReactNode;
 }
 
 const FAQ: React.FC<FAQProps> = ({ faqContent }: FAQProps) => {

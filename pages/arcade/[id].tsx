@@ -8,6 +8,10 @@ import useMame from "hooks/useMame";
 import Canvas from "components/shared/Canvas";
 import styles from "./[id].module.css";
 
+const FAQContent: React.FC = () => {
+  return <div>Mock FAQ</div>;
+};
+
 const Arcade: React.FC<ArcadeProps> = ({
   name,
   gameFile,
@@ -49,6 +53,7 @@ const Arcade: React.FC<ArcadeProps> = ({
           loadedSize={loadedSize}
           totalSize={totalSize}
           percentage={percentage}
+          faqContent={<FAQContent />}
         />
       </div>
     </>
