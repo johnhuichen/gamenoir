@@ -32,7 +32,9 @@ const CanvasControl: React.FC<Props> = ({
   const { locale } = useRouter();
   const [showFAQ, setShowFAQ] = useState(false);
 
-  const translations = useMemo(() => getTranslations(locale), [locale]);
+  const translations = useMemo(() => getTranslations(locale as string), [
+    locale,
+  ]);
 
   const handleOpenFAQ = useCallback(() => {
     setShowFAQ(true);
