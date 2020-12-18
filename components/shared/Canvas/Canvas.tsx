@@ -1,4 +1,4 @@
-import { useState, createRef, useMemo, useCallback } from "react";
+import { createRef, useState, useMemo, useCallback, useEffect } from "react";
 import cn from "classnames";
 
 import CanvasControl from "./CanvasControl";
@@ -87,6 +87,25 @@ const Canvas: React.FC<Props> = ({
 
     setDisplayMode(DISPLAY_MODES.NORMAL);
   }, []);
+
+  useEffect(() => {
+    const canvasElement = canvasContainerRef.current;
+
+    function handleFullScreenChange() {
+      if (!document.fullscreen) {
+        setDisplayMode(DISPLAY_MODES.NORMAL);
+      }
+    }
+
+    canvasElement?.addEventListener("fullscreenchange", handleFullScreenChange);
+
+    return () => {
+      canvasElement?.removeEventListener(
+        "fullscreenchange",
+        handleFullScreenChange
+      );
+    };
+  }, [canvasContainerRef]);
 
   // canvas id is needed because mame wasm hard coded it
   return (
