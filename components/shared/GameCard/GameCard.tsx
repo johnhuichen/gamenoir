@@ -17,13 +17,14 @@ const GameCard: React.FC<Props> = ({
   shortDescription,
   gameType,
 }: Props) => {
+  const src = `${imgFile.substring(0, imgFile.lastIndexOf("/"))}/140.jpg`;
   return (
     <div className={styles.container}>
       <Link href={`/${gameType}/${id}`}>
         <a href={`/${gameType}/${id}`} className={styles.gameCard}>
           <img
             className={styles.gameCardImg}
-            src={`${imgFile.replace(/.jpg$/, "-140.jpg")}`}
+            src={src}
             alt={`${name}-avatar`}
           />
           <div className={styles.gameCardText}>
