@@ -1,5 +1,8 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
+import { useRouter } from "next/router";
+
 import Modal from "components/shared/Modal";
+import getTranslations from "translations/canvas";
 
 import styles from "./CanvasControl.module.css";
 
@@ -26,7 +29,11 @@ const CanvasControl: React.FC<Props> = ({
   handleFullScreen,
   handleReset,
 }: Props) => {
+  const { locale } = useRouter();
   const [showFAQ, setShowFAQ] = useState(false);
+
+  const translations = useMemo(() => getTranslations(locale), [locale]);
+
   const handleOpenFAQ = useCallback(() => {
     setShowFAQ(true);
   }, []);
@@ -40,7 +47,7 @@ const CanvasControl: React.FC<Props> = ({
         <>
           <button
             type="button"
-            title="Fullscreen Mode"
+            title={translations.fullScreenMode}
             className={styles.toggleBtn}
             onClick={handleFullScreen}
           >
@@ -48,7 +55,7 @@ const CanvasControl: React.FC<Props> = ({
           </button>
           <button
             type="button"
-            title="Theater Mode"
+            title={translations.theaterMode}
             className={styles.toggleBtn}
             onClick={handleExpand}
           >
@@ -56,7 +63,7 @@ const CanvasControl: React.FC<Props> = ({
           </button>
           <button
             type="button"
-            title="FAQ"
+            title={translations.faq}
             className={styles.toggleBtn}
             onClick={handleOpenFAQ}
           >
@@ -66,7 +73,7 @@ const CanvasControl: React.FC<Props> = ({
       ) : (
         <button
           type="button"
-          title="Theater Mode"
+          title={translations.normalMode}
           className={styles.toggleBtn}
           onClick={handleReset}
         >
