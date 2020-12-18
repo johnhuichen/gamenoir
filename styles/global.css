@@ -5,7 +5,7 @@
   --bg-primary: #000;
   --text-primary: #eee;
 
-  --bg-lighter: #111;
+  --bg-lighter: #222;
   --text-on-lighter: #eee;
 
   --bg-white: #fff;
@@ -26,12 +26,16 @@
   --bg-azure: #a5ffef;
   --text-on-azure: #cb1582;
 
+  --text-black: #000;
+  --text-white: #fff;
   --text-orange: #ff4632;
   --text-blue: #2d46b9;
   --text-purple: #cb1582;
   --text-azure: #a5ffef;
-  --text-black: #000;
-  --text-white: #fff;
+  --text-red: red;
+
+  --body-text-size: 14px;
+  --title-text-size: 16px;
 
   --footer-height: 120px;
 
@@ -45,7 +49,7 @@ body {
   font-family: "Microsoft Yahei", "Crimson+Text", sans-serif;
   color: var(--text-primary);
   line-height: 1.6;
-  font-size: 16px;
+  font-size: var(--body-text-size);
   font-weight: 500;
   min-height: 100vh;
   background: var(--bg-primary);

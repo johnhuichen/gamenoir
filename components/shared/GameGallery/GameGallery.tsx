@@ -41,7 +41,6 @@ const GameGallery: React.FC<Props> = ({ games, locale }: Props) => {
   const gamesToDisplay = useMemo(() => {
     return filteredGames || games;
   }, [filteredGames, games]);
-  console.log(translations.notfound);
 
   return (
     <>

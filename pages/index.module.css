@@ -3,9 +3,8 @@
 }
 
 .announcement {
-  font-size: 18px;
+  font-size: var(--title-text-size);
   font-weight: 700;
-  margin-bottom: 50px;
   padding: var(--viewport-padding);
 }
 

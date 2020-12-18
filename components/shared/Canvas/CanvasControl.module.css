@@ -11,7 +11,7 @@
 }
 
 .toggleBtn i {
-  font-size: 24px;
+  font-size: var(--title-text-size);
 }
 
 .toggleBtn:hover i {

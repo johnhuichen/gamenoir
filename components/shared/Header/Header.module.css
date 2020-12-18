@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
 
-  font-size: 24px;
+  font-size: var(--title-text-size);
   color: var(--text-highlight);
   line-height: 24px;
   font-weight: 700;
@@ -27,13 +27,13 @@
 }
 
 .logo i {
-  font-size: 32px;
+  font-size: 24px;
   margin-right: 10px;
 }
 
 .link {
   color: var(--text-faded);
-  font-size: 18px;
+  font-size: var(--title-text-size);
   text-decoration: none;
 
   margin-right: 60px;
