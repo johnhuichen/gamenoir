@@ -9,11 +9,9 @@ import Canvas, { CanvasElement } from "components/shared/Canvas";
 
 import styles from "./[id].module.css";
 
-interface FAQContentProps {
-  locale: string;
-}
+const FAQContent: React.FC = () => {
+  const { locale } = useRouter();
 
-const FAQContent: React.FC<FAQContentProps> = ({ locale }: FAQContentProps) => {
   if (locale === "en-US") {
     return (
       <div className={styles.faqContainer}>
@@ -84,7 +82,7 @@ const FAQContent: React.FC<FAQContentProps> = ({ locale }: FAQContentProps) => {
       <br />
       <div className={styles.faqQuestion}>进入游戏后需要输入密码？</div>
       <div className={styles.faqAnswer}>
-        如果进入游戏后显示要输入密码，你可以按几次数字或者字母跳过。比如AAAA或者11111后确认
+        如果进入游戏后显示要输入密码，你可以按几次数字或者字母跳过。比如AAAA或者11111后确认。
       </div>
       <br />
       <div className={styles.faqQuestion}>
@@ -92,7 +90,7 @@ const FAQContent: React.FC<FAQContentProps> = ({ locale }: FAQContentProps) => {
       </div>
       <div className={styles.faqAnswer}>
         ESC键是你浏览器默认的退出按键，如果想全屏游戏，建议宽屏后使用浏览器的全屏功能
-        （比如Chrome可以使用F11切换全屏，和大多数游戏的操作不冲突）
+        （比如Chrome可以使用F11切换全屏，和大多数游戏的操作不冲突）。
       </div>
       <br />
       <div className={styles.faqQuestion}>我的存档怎么没了？</div>
@@ -111,7 +109,6 @@ const Dosgame: React.FC<DosgameProps> = ({
   gameFile,
   imgFile,
 }: DosgameProps) => {
-  const { locale } = useRouter();
   const canvasRef = createRef<CanvasElement>();
   const {
     startDosbox,
@@ -148,7 +145,7 @@ const Dosgame: React.FC<DosgameProps> = ({
           loadedSize={loadedSize}
           totalSize={totalSize}
           percentage={percentage}
-          faqContent={<FAQContent locale={locale as string} />}
+          faqContent={<FAQContent />}
         />
       </div>
     </>
