@@ -49,6 +49,14 @@ const CanvasControl: React.FC<Props> = ({
         <>
           <button
             type="button"
+            title={translations.faq}
+            className={styles.toggleBtn}
+            onClick={handleOpenFAQ}
+          >
+            <i aria-hidden className="fas fa-info-circle" />
+          </button>
+          <button
+            type="button"
             title={translations.fullScreenMode}
             className={styles.toggleBtn}
             onClick={handleFullScreen}
@@ -62,14 +70,6 @@ const CanvasControl: React.FC<Props> = ({
             onClick={handleExpand}
           >
             <i aria-hidden className="fa fa-window-maximize" />
-          </button>
-          <button
-            type="button"
-            title={translations.faq}
-            className={styles.toggleBtn}
-            onClick={handleOpenFAQ}
-          >
-            <i aria-hidden className="fas fa-info-circle" />
           </button>
         </>
       ) : (
