@@ -1,7 +1,8 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHamburger } from "@fortawesome/free-solid-svg-icons";
 import { faPhoenixFramework } from "@fortawesome/free-brands-svg-icons";
 import cn from "classnames";
 
@@ -16,7 +17,7 @@ const PAGES = {
 };
 
 const HeaderSmall: React.FC = () => {
-  const { showMenu, setShowMenu } = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const { route, locale } = useRouter();
   const translations = useMemo(() => getTranslations(locale as string), [
     locale,
@@ -46,15 +47,24 @@ const HeaderSmall: React.FC = () => {
     return route;
   }, [route]);
 
+  const handleToggleMenu = useCallback(() => {
+    setShowMenu(!showMenu);
+  }, [showMenu]);
+
   return (
     <>
       <div className={styles.container}>
-        <Link href="/">
-          <a href="/" className={styles.logo}>
-            <FontAwesomeIcon icon={faPhoenixFramework} />
-            {translations.brand}
-          </a>
-        </Link>
+        <button className={styles.hamburger} onClick={handleToggleMenu}>
+          <FontAwesomeIcon icon={faHamburger} />
+        </button>
+        <div className={styles.logoContainer}>
+          <Link href="/">
+            <a href="/" className={styles.logo}>
+              <FontAwesomeIcon icon={faPhoenixFramework} />
+              {translations.brand}
+            </a>
+          </Link>
+        </div>
       </div>
 
       {showMenu && (

@@ -1,7 +1,8 @@
-import { useEffect, useCallback } from "react";
-import ReactDOM from "react-dom";
+import { useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+
+import Portal from "components/shared/Portal";
 
 import styles from "./Modal.module.css";
 
@@ -11,7 +12,6 @@ interface Props {
 }
 
 const Modal: React.FC<Props> = ({ children, handleCloseModal }: Props) => {
-  const portalNode = document.createElement("div");
   const handleKeyDown = useCallback(
     e => {
       if (e.key === "Enter") {
@@ -21,39 +21,23 @@ const Modal: React.FC<Props> = ({ children, handleCloseModal }: Props) => {
     [handleCloseModal]
   );
 
-  useEffect(() => {
-    const modalRoot = document.getElementById("modal-root");
-    if (portalNode) {
-      modalRoot?.appendChild(portalNode);
-    }
-
-    return () => {
-      if (portalNode) {
-        modalRoot?.removeChild(portalNode);
-      }
-    };
-  }, [portalNode]);
-
-  return portalNode
-    ? ReactDOM.createPortal(
-        <>
-          <div
-            className={styles.overlay}
-            onClick={handleCloseModal}
-            onKeyDown={handleKeyDown}
-            role="button"
-            tabIndex={0}
-          />
-          <div className={styles.container}>
-            <button onClick={handleCloseModal} className={styles.closeBtn}>
-              <FontAwesomeIcon icon={faTimes} />
-            </button>
-            {children}
-          </div>
-        </>,
-        portalNode
-      )
-    : null;
+  return (
+    <Portal>
+      <div
+        className={styles.overlay}
+        onClick={handleCloseModal}
+        onKeyDown={handleKeyDown}
+        role="button"
+        tabIndex={0}
+      />
+      <div className={styles.container}>
+        <button onClick={handleCloseModal} className={styles.closeBtn}>
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
+        {children}
+      </div>
+    </Portal>
+  );
 };
 
 export default Modal;

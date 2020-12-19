@@ -1,9 +1,15 @@
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 20px var(--viewport-padding);
   background: var(--bg-primary);
+}
+
+.logoContainer {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .logo {
@@ -19,4 +25,8 @@
 .logo svg {
   font-size: 22px;
   margin-right: 10px;
+}
+
+.hamburger svg {
+  font-size: var(--title-text-size);
 }
