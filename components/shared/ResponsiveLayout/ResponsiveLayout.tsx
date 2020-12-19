@@ -10,7 +10,7 @@ const queries: { [key: string]: string } = {
   xs: "(max-width: 320px)",
   sm: "(min-width: 321px) and (max-width: 720px)",
   md: "(min-width: 721px) and (max-width: 1024px)",
-  lg: "(min-width: 1400px)",
+  lg: "(min-width: 1025px)",
 };
 
 const ResponsiveLayout: React.FC<Props> = ({

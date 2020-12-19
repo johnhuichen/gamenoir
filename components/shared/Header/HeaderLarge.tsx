@@ -87,29 +87,24 @@ const HeaderLarge: React.FC = () => {
           </a>
         </Link>
 
-        <div>
-          <Link href={localeHref} locale="zh-CN">
-            <a
-              href={localeHref}
-              className={cn(styles.localeLink, {
+        <Link href={localeHref} locale={locale === "zh-CN" ? "en-US" : "zh-CN"}>
+          <a href={localeHref} className={cn(styles.localeLink, {})}>
+            <div
+              className={cn({
                 [styles.active]: locale === "zh-CN",
               })}
             >
               中
-            </a>
-          </Link>
-          <span className={styles.localeSeparator}>/</span>
-          <Link href={localeHref} locale="en-US">
-            <a
-              href={localeHref}
-              className={cn(styles.localeLink, {
+            </div>
+            <div
+              className={cn({
                 [styles.active]: locale === "en-US",
               })}
             >
-              EN
-            </a>
-          </Link>
-        </div>
+              En
+            </div>
+          </a>
+        </Link>
       </div>
     </div>
   );

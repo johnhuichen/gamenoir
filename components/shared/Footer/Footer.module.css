@@ -3,8 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: var(--footer-height);
-  padding: 20px;
+  height: var(--footer-height);
 }
 
 .copyright {

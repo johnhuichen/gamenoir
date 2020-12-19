@@ -1,8 +1,10 @@
 .container {
   display: flex;
   justify-content: space-between;
-  padding: 20px var(--viewport-padding);
+  align-items: center;
+  padding: 0 var(--viewport-padding);
   background: var(--bg-primary);
+  height: var(--header-height);
 }
 
 .leftContainer {
@@ -47,14 +49,22 @@
   color: var(--text-highlight);
 }
 
-.localeLink.active {
-  color: var(--text-highlight);
+.localeLink {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--text-grey);
 }
 
-.localeLink:hover {
-  color: var(--text-highlight);
+.localeLink div {
+  opacity: 0.8;
+  padding: 0 10px;
 }
 
-.localeSeparator {
-  margin: 0 10px;
+.localeLink .active {
+  opacity: 1;
+  background: var(--bg-blue);
+}
+
+.localeLink:hover :not(.active) {
+  opacity: 1;
 }
