@@ -37,10 +37,6 @@ class MyDocument extends Document {
             />
           )}
           {/* End Google Tag Manager */}
-          <script
-            src="https://kit.fontawesome.com/6ec74791b7.js"
-            crossOrigin="anonymous"
-          />
           <link
             href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
             rel="stylesheet"

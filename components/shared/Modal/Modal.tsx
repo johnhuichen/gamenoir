@@ -1,5 +1,7 @@
 import { useEffect, useCallback } from "react";
 import ReactDOM from "react-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Modal.module.css";
 
@@ -44,7 +46,7 @@ const Modal: React.FC<Props> = ({ children, handleCloseModal }: Props) => {
           />
           <div className={styles.container}>
             <button onClick={handleCloseModal} className={styles.closeBtn}>
-              <i aria-hidden className="fas fa-times" />
+              <FontAwesomeIcon icon={faTimes} />
             </button>
             {children}
           </div>

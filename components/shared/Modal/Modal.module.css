@@ -25,6 +25,6 @@
   right: 10px;
 }
 
-.closeBtn:hover i {
+.closeBtn:hover svg {
   transform: scale(1.2);
 }

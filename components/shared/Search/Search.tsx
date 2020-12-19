@@ -1,5 +1,7 @@
 import { createRef, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import cn from "classnames";
 import debounce from "lodash/debounce";
 
@@ -41,7 +43,7 @@ const Search: React.FC<Props> = ({
 
   return (
     <div className={styles.searchContainer}>
-      <i aria-hidden className={cn("fas fa-search", styles.searchIcon)} />
+      <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} />
       <input
         ref={inputRef}
         className={styles.searchInput}
@@ -49,7 +51,7 @@ const Search: React.FC<Props> = ({
         onChange={onChange}
       />
       <button onClick={clearSearch}>
-        <i aria-hidden className={cn("fas fa-times", styles.closeIcon)} />
+        <FontAwesomeIcon icon={faTimes} />
       </button>
     </div>
   );

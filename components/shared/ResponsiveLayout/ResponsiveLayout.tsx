@@ -27,6 +27,7 @@ const ResponsiveLayout: React.FC<Props> = ({
       setShow(shouldShow);
     }, 300);
 
+    updateShow();
     window.addEventListener("resize", updateShow);
 
     return () => {

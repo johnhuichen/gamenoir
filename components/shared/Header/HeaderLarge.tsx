@@ -1,6 +1,8 @@
 import { useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhoenixFramework } from "@fortawesome/free-brands-svg-icons";
 import cn from "classnames";
 
 import getTranslations from "translations/header";
@@ -48,7 +50,7 @@ const HeaderLarge: React.FC = () => {
       <div className={styles.leftContainer}>
         <Link href="/">
           <a href="/" className={styles.logo}>
-            <i aria-hidden className="fab fa-phoenix-framework" />
+            <FontAwesomeIcon icon={faPhoenixFramework} />
             {translations.brand}
           </a>
         </Link>

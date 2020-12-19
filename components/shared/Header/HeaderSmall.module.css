@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px var(--viewport-padding);
+  background: var(--bg-primary);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+
+  font-size: var(--title-text-size);
+  color: var(--text-highlight);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.logo svg {
+  font-size: 22px;
+  margin-right: 10px;
+}

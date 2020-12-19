@@ -1,6 +1,8 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhoenixFramework } from "@fortawesome/free-brands-svg-icons";
 import cn from "classnames";
 
 import getTranslations from "translations/header";
@@ -14,6 +16,7 @@ const PAGES = {
 };
 
 const HeaderSmall: React.FC = () => {
+  const { showMenu, setShowMenu } = useState(false);
   const { route, locale } = useRouter();
   const translations = useMemo(() => getTranslations(locale as string), [
     locale,
@@ -44,72 +47,75 @@ const HeaderSmall: React.FC = () => {
   }, [route]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.leftContainer}>
+    <>
+      <div className={styles.container}>
         <Link href="/">
           <a href="/" className={styles.logo}>
-            <i aria-hidden className="fab fa-phoenix-framework" />
+            <FontAwesomeIcon icon={faPhoenixFramework} />
             {translations.brand}
           </a>
         </Link>
       </div>
-      <div className={styles.rightContainer}>
-        <Link href="/">
-          <a
-            href="/"
-            className={cn(styles.link, {
-              [styles.active]: activePage === PAGES.HOME,
-            })}
-          >
-            {translations.home}
-          </a>
-        </Link>
-        <Link href="/dosgame">
-          <a
-            href="/dosgame"
-            className={cn(styles.link, {
-              [styles.active]: activePage === PAGES.DOSGAME,
-            })}
-          >
-            {translations.dosGames}
-          </a>
-        </Link>
-        <Link href="/arcade">
-          <a
-            href="/arcade"
-            className={cn(styles.link, {
-              [styles.active]: activePage === PAGES.ARCADE,
-            })}
-          >
-            {translations.arcadeGames}
-          </a>
-        </Link>
 
-        <div>
-          <Link href={localeHref} locale="zh-CN">
+      {showMenu && (
+        <div className={styles.menu}>
+          <Link href="/">
             <a
-              href={localeHref}
-              className={cn(styles.localeLink, {
-                [styles.active]: locale === "zh-CN",
+              href="/"
+              className={cn(styles.link, {
+                [styles.active]: activePage === PAGES.HOME,
               })}
             >
-              中
+              {translations.home}
             </a>
           </Link>
-          <span className={styles.localeSeparator}>/</span>
-          <Link href={localeHref} locale="en-US">
+          <Link href="/dosgame">
             <a
-              href={localeHref}
-              className={cn(styles.localeLink, {
-                [styles.active]: locale === "en-US",
+              href="/dosgame"
+              className={cn(styles.link, {
+                [styles.active]: activePage === PAGES.DOSGAME,
               })}
             >
-              EN
+              {translations.dosGames}
             </a>
           </Link>
+          <Link href="/arcade">
+            <a
+              href="/arcade"
+              className={cn(styles.link, {
+                [styles.active]: activePage === PAGES.ARCADE,
+              })}
+            >
+              {translations.arcadeGames}
+            </a>
+          </Link>
+
+          <div>
+            <Link href={localeHref} locale="zh-CN">
+              <a
+                href={localeHref}
+                className={cn(styles.localeLink, {
+                  [styles.active]: locale === "zh-CN",
+                })}
+              >
+                中
+              </a>
+            </Link>
+            <span className={styles.localeSeparator}>/</span>
+            <Link href={localeHref} locale="en-US">
+              <a
+                href={localeHref}
+                className={cn(styles.localeLink, {
+                  [styles.active]: locale === "en-US",
+                })}
+              >
+                EN
+              </a>
+            </Link>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

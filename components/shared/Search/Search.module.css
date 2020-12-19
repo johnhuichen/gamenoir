@@ -18,7 +18,7 @@
   transform: scale(1.2);
 }
 
-.searchContainer i {
+.searchContainer svg {
   color: var(--text-on-white);
   font-size: var(--body-text-size);
 }
