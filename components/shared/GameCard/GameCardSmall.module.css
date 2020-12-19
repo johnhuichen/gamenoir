@@ -1,29 +1,28 @@
 .container {
   flex-basis: 100%;
-  padding-bottom: 20px;
-}
-
-.gameCard {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 20px;
+  margin-bottom: 20px;
   background: var(--bg-white);
   color: var(--text-on-white);
 }
 
-.gameCard:hover .gameCardTitle {
-  color: var(--text-orange);
+.gameCard {
+  display: flex;
+  padding: var(--viewport-padding);
 }
 
 .gameCardImg {
-  width: 140px;
-  height: 140px;
-  min-width: 140px;
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
 
   object-fit: contain;
 
   background: var(--bg-primary);
+}
+
+.gameCardText {
+  padding-left: 20px;
+  overflow: hidden;
 }
 
 .gameCardTitle {
@@ -32,6 +31,27 @@
   margin-bottom: 5px;
 }
 
+.link {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  padding: 5px 10px;
+}
+
+.link:hover {
+  background: var(--bg-lighter);
+}
+
 .gameCardDescription {
   font-size: var(--body-text-size);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 var(--viewport-padding) 10px var(--viewport-padding);
+}
+
+.toggleDescriptionBtn {
+  color: var(--text-on-white);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5px;
 }

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Link from "next/link";
 
 import styles from "./GameCardSmall.module.css";
@@ -18,24 +17,22 @@ const GameCardSmall: React.FC<Props> = ({
   shortDescription,
   gameType,
 }: Props) => {
-  const [showDescription, setShowDescription] = useState(false);
   const src = `${imgFile.substring(0, imgFile.lastIndexOf("/"))}/140.jpg`;
 
   return (
     <div className={styles.container}>
-      <Link href={`/${gameType}/${id}`}>
-        <a href={`/${gameType}/${id}`} className={styles.gameCard}>
+      <div className={styles.gameCard}>
+        <img className={styles.gameCardImg} src={src} alt={`${name}-avatar`} />
+        <div className={styles.gameCardText}>
           <div className={styles.gameCardTitle}>{name}</div>
-          <img
-            className={styles.gameCardImg}
-            src={src}
-            alt={`${name}-avatar`}
-          />
-        </a>
-      </Link>
-      {showDescription && (
-        <div className={styles.gameCardDescription}>{shortDescription}</div>
-      )}
+          <Link href={`/${gameType}/${id}`}>
+            <a href={`/${gameType}/${id}`} className={styles.link}>
+              点击进入
+            </a>
+          </Link>
+        </div>
+      </div>
+      <div className={styles.gameCardDescription}>{shortDescription}</div>
     </div>
   );
 };
