@@ -6,6 +6,7 @@ import { faHamburger } from "@fortawesome/free-solid-svg-icons";
 import { faPhoenixFramework } from "@fortawesome/free-brands-svg-icons";
 import cn from "classnames";
 
+import useClickOutside from "hooks/useClickOutside";
 import getTranslations from "translations/header";
 
 import styles from "./HeaderSmall.module.css";
@@ -19,6 +20,7 @@ const PAGES = {
 const HeaderSmall: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
   const { route, locale } = useRouter();
+
   const translations = useMemo(() => getTranslations(locale as string), [
     locale,
   ]);
@@ -47,14 +49,20 @@ const HeaderSmall: React.FC = () => {
     return route;
   }, [route]);
 
-  const handleToggleMenu = useCallback(() => {
-    setShowMenu(!showMenu);
-  }, [showMenu]);
+  const handleOpenMenu = useCallback(() => {
+    setShowMenu(true);
+  }, []);
+
+  const handleClickOutside = useCallback(() => {
+    setShowMenu(false);
+  }, []);
+
+  const { nodeRef } = useClickOutside({ handleClickOutside });
 
   return (
     <>
       <div className={styles.container}>
-        <button className={styles.hamburger} onClick={handleToggleMenu}>
+        <button className={styles.hamburger} onClick={handleOpenMenu}>
           <FontAwesomeIcon icon={faHamburger} />
         </button>
         <Link href="/">
@@ -83,7 +91,7 @@ const HeaderSmall: React.FC = () => {
         </Link>
 
         {showMenu && (
-          <div className={styles.menu}>
+          <div ref={nodeRef} className={styles.menu}>
             <Link href="/">
               <a
                 href="/"
