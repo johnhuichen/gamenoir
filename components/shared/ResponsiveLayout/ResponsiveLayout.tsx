@@ -1,19 +1,12 @@
 import { useState, useEffect } from "react";
 import debounce from "lodash/debounce";
 
-enum ScreenSizes {
-  "xs",
-  "sm",
-  "md",
-  "lg",
-}
-
 interface Props {
   children: React.ReactElement;
-  screenSizes: ScreenSizes[];
+  screenSizes: string[];
 }
 
-const queries: { [key in keyof typeof ScreenSizes]: string } = {
+const queries: { [key: string]: string } = {
   xs: "(max-width: 320px)",
   sm: "(min-width: 321px) and (max-width: 720px)",
   md: "(min-width: 721px) and (max-width: 1024px)",
