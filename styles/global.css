@@ -43,6 +43,9 @@
 
 @media (max-width: 720px) {
   :root {
+    --body-text-size: 12px;
+    --title-text-size: 14px;
+
     --viewport-padding: 16px;
   }
 }

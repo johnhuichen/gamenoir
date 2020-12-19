@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback } from "react";
+import { useMemo, useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,7 +19,7 @@ const PAGES = {
 
 const HeaderSmall: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const { route, locale } = useRouter();
+  const { asPath, route, locale } = useRouter();
 
   const translations = useMemo(() => getTranslations(locale as string), [
     locale,
@@ -58,6 +58,10 @@ const HeaderSmall: React.FC = () => {
   }, []);
 
   const { nodeRef } = useClickOutside({ handleClickOutside });
+
+  useEffect(() => {
+    setShowMenu(false);
+  }, [asPath]);
 
   return (
     <>
