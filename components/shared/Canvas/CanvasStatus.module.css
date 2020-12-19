@@ -17,16 +17,16 @@
 }
 
 .playButton:active {
-  color: var(--text-orange);
-  border: 2px solid var(--text-orange);
+  color: var(--text-highlight);
+  border: 2px solid var(--text-highlight);
   transform: translate(-50%, -50%) scale(0.98);
 }
 
 .playButton:hover,
 .playButton:focus {
   transition: color 0.5s ease;
-  color: var(--text-orange);
-  border: 2px solid var(--text-orange);
+  color: var(--text-highlight);
+  border: 2px solid var(--text-highlight);
 }
 
 .loading {

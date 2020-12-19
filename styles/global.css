@@ -1,7 +1,4 @@
 :root {
-  --bg-hightlight: #28abb9;
-  --text-highlight: #41c6c3;
-
   --bg-primary: #000;
   --text-primary: #eee;
 
@@ -33,13 +30,21 @@
   --text-purple: #cb1582;
   --text-azure: #a5ffef;
   --text-red: red;
+  --text-grey: #222;
+  --text-highlight: #41c6c3;
 
   --body-text-size: 14px;
   --title-text-size: 16px;
 
-  --footer-height: 120px;
-
+  --header-height: 60px;
+  --footer-height: 80px;
   --viewport-padding: 32px;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --viewport-padding: 16px;
+  }
 }
 
 html,
@@ -82,9 +87,4 @@ button {
   margin: 0;
   cursor: pointer;
   color: var(--text-primary);
-  outline: none;
-
-  &:focus {
-    outline: none;
-  }
 }

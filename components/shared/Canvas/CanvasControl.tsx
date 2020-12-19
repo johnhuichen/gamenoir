@@ -1,5 +1,12 @@
 import { useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faInfoCircle,
+  faExpand,
+  faWindowMaximize,
+  faWindowMinimize,
+} from "@fortawesome/free-solid-svg-icons";
 
 import Modal from "components/shared/Modal";
 import getTranslations from "translations/canvas";
@@ -49,11 +56,19 @@ const CanvasControl: React.FC<Props> = ({
         <>
           <button
             type="button"
+            title={translations.faq}
+            className={styles.toggleBtn}
+            onClick={handleOpenFAQ}
+          >
+            <FontAwesomeIcon icon={faInfoCircle} />
+          </button>
+          <button
+            type="button"
             title={translations.fullScreenMode}
             className={styles.toggleBtn}
             onClick={handleFullScreen}
           >
-            <i aria-hidden className="fas fa-expand" />
+            <FontAwesomeIcon icon={faExpand} />
           </button>
           <button
             type="button"
@@ -61,15 +76,7 @@ const CanvasControl: React.FC<Props> = ({
             className={styles.toggleBtn}
             onClick={handleExpand}
           >
-            <i aria-hidden className="fa fa-window-maximize" />
-          </button>
-          <button
-            type="button"
-            title={translations.faq}
-            className={styles.toggleBtn}
-            onClick={handleOpenFAQ}
-          >
-            <i aria-hidden className="fas fa-info-circle" />
+            <FontAwesomeIcon icon={faWindowMaximize} />
           </button>
         </>
       ) : (
@@ -79,7 +86,7 @@ const CanvasControl: React.FC<Props> = ({
           className={styles.toggleBtn}
           onClick={handleReset}
         >
-          <i aria-hidden className="fa fa-window-minimize" />
+          <FontAwesomeIcon icon={faWindowMinimize} />
         </button>
       )}
       {showFAQ && (
