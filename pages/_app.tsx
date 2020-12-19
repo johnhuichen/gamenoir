@@ -9,13 +9,19 @@ import { GTMPageView } from "lib/gtm";
 
 import "styles/global.css";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 const App: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    router.events.on("routeChangeComplete", GTMPageView);
+    if (isProduction) {
+      router.events.on("routeChangeComplete", GTMPageView);
+    }
     return () => {
-      router.events.off("routeChangeComplete", GTMPageView);
+      if (isProduction) {
+        router.events.off("routeChangeComplete", GTMPageView);
+      }
     };
   }, [router.events]);
 
