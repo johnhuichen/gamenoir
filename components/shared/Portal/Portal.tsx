@@ -10,14 +10,10 @@ const Portal: React.FC<Props> = ({ children }: Props) => {
 
   useEffect(() => {
     const modalRoot = document.getElementById("modal-root");
-    if (portalNode) {
-      modalRoot?.appendChild(portalNode);
-    }
+    modalRoot?.appendChild(portalNode);
 
     return () => {
-      if (portalNode) {
-        modalRoot?.removeChild(portalNode);
-      }
+      modalRoot?.removeChild(portalNode);
     };
   }, [portalNode]);
 

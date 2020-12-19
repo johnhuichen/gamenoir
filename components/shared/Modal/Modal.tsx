@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import Portal from "components/shared/Portal";
+import Overlay from "components/shared/Overlay";
 
 import styles from "./Modal.module.css";
 
@@ -23,13 +24,7 @@ const Modal: React.FC<Props> = ({ children, handleCloseModal }: Props) => {
 
   return (
     <Portal>
-      <div
-        className={styles.overlay}
-        onClick={handleCloseModal}
-        onKeyDown={handleKeyDown}
-        role="button"
-        tabIndex={0}
-      />
+      <Overlay handleClick={handleCloseModal} handleKeyDown={handleKeyDown} />
       <div className={styles.container}>
         <button onClick={handleCloseModal} className={styles.closeBtn}>
           <FontAwesomeIcon icon={faTimes} />
