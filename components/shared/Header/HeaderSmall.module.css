@@ -12,7 +12,6 @@
   align-items: center;
 
   font-size: var(--title-text-size);
-  color: var(--text-highlight);
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -52,7 +51,7 @@
   left: 0;
   width: 100%;
   background: var(--bg-primary);
-  z-index: 100;
+  z-index: 10100;
 
   display: flex;
   flex-direction: column;
