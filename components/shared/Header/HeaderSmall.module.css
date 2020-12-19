@@ -1,0 +1,73 @@
+.container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px var(--viewport-padding);
+  background: var(--bg-primary);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+
+  font-size: var(--title-text-size);
+  color: var(--text-highlight);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.logo svg {
+  font-size: 22px;
+  margin-right: 10px;
+}
+
+.hamburger svg {
+  font-size: var(--title-text-size);
+}
+
+.localeLink {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--text-grey);
+}
+
+.localeLink div {
+  opacity: 0.8;
+  padding: 0 10px;
+}
+
+.localeLink .active {
+  opacity: 1;
+  background: var(--bg-blue);
+}
+
+.localeLink:hover :not(.active) {
+  opacity: 1;
+}
+
+.menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--bg-primary);
+  z-index: 100;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  text-align: center;
+  padding: 5px;
+  border-bottom: 1px solid var(--text-grey);
+}
+
+.link:focus {
+  background: var(--bg-lighter);
+}
+
+.link.active {
+  color: var(--text-highlight);
+}

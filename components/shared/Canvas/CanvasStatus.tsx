@@ -52,7 +52,7 @@ const CanvasStatus: React.FC<Props> = ({
 
   return (
     <button onClick={handleClick} className={styles.playButton} type="button">
-      <i aria-hidden className="fas fa-play" /> Play
+      Press Start
     </button>
   );
 };

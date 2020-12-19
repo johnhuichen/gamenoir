@@ -2,18 +2,19 @@
   position: absolute;
   top: 0;
   right: 0;
+  display: flex;
 
   padding: 20px;
 }
 
 .toggleBtn {
-  margin-bottom: 10px;
+  margin-right: 10px;
 }
 
-.toggleBtn i {
+.toggleBtn svg {
   font-size: var(--title-text-size);
 }
 
-.toggleBtn:hover i {
+.toggleBtn:hover svg {
   color: var(--text-highlight);
 }
