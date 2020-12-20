@@ -114,7 +114,7 @@ const Arcade: React.FC<ArcadeProps> = ({
   return (
     <>
       <Head>
-        <title>{`${name} at GameNoir`}</title>
+        <title>{name}</title>
       </Head>
       <div className={styles.container}>
         <Canvas
