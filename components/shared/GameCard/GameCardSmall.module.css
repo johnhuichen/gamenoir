@@ -32,8 +32,8 @@
 }
 
 .link {
-  background: var(--bg-primary);
-  color: var(--text-primary);
+  background: var(--bg-orange);
+  color: var(--text-on-orange);
   padding: 5px 10px;
 }
 
@@ -46,12 +46,4 @@
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0 var(--viewport-padding) 10px var(--viewport-padding);
-}
-
-.toggleDescriptionBtn {
-  color: var(--text-on-white);
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding-bottom: 5px;
 }

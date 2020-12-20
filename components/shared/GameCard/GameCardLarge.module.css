@@ -19,7 +19,7 @@
 }
 
 .gameCard:hover .gameCardTitle {
-  color: var(--text-orange);
+  color: var(--text-highlight);
 }
 
 .gameCardImg {
