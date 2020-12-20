@@ -39,8 +39,7 @@
 
 .localeLink .active {
   opacity: 1;
-  color: var(--text-on-orange);
-  background: var(--bg-orange);
+  background: var(--bg-blue);
 }
 
 .localeLink:hover :not(.active) {
@@ -70,5 +69,5 @@
 }
 
 .link.active {
-  color: var(--text-orange);
+  color: var(--text-highlight);
 }
