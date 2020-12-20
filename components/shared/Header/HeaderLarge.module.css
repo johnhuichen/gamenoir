@@ -41,30 +41,27 @@
 }
 
 .link:hover {
-  color: var(--text-highlight);
+  color: var(--text-orange);
 }
 
 .link.active {
-  color: var(--text-highlight);
+  color: var(--text-orange);
 }
 
 .localeLink {
   display: flex;
   align-items: center;
   border: 1px solid var(--text-grey);
+  background: var(--bg-lighter);
 }
 
 .localeLink div {
-  opacity: 0.8;
+  opacity: 0.5;
   padding: 0 10px;
 }
 
 .localeLink .active {
   opacity: 1;
-  color: var(--text-highlight);
-  background: var(--bg-lighter);
-}
-
-.localeLink:hover :not(.active) {
-  opacity: 1;
+  color: var(--text-on-orange);
+  background: var(--bg-orange);
 }
