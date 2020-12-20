@@ -7,3 +7,7 @@ genre: "角色扮演"
 topic: "炎龙骑士团"
 version: "原版"
 ---
+
+## 攻略
+
+http://chiuinan.github.io/game/game/intro/ch/c31/fd2/index.htm
