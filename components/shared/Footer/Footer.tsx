@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
   return (
     <div className={styles.container}>
       <a href={`mailto: ${EMAIL}`} className={styles.contactus}>
-        {translations.contactus}
+        {translations.contactus}: {EMAIL}
       </a>
       <div className={styles.copyright}>
         {`${translations.copyright} © ${new Date().getFullYear()} Game Noir`}
