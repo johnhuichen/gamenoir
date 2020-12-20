@@ -28,7 +28,9 @@ const Dosgame: React.FC<Props> = ({ games }: Props) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const games = getDosGames(locale as string);
+  const games = getDosGames(locale as string).sort((a, b) =>
+    a.name.localeCompare(b.name, "zh-CN")
+  );
 
   return { props: { games } };
 };

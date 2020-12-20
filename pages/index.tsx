@@ -77,7 +77,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const games = [
     ...getDosGames(locale as string),
     ...getArcadeGames(locale as string),
-  ];
+  ].sort((a, b) => a.name.localeCompare(b.name, "zh-CN"));
 
   return { props: { games } };
 };
