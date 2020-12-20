@@ -132,7 +132,7 @@ const Dosgame: React.FC<DosgameProps> = ({
   return (
     <>
       <Head>
-        <title>{`${name} at GameNoir`}</title>
+        <title>{name}</title>
       </Head>
       <div className={styles.container}>
         <Canvas

@@ -17,7 +17,7 @@ const ArcadeGame: React.FC<Props> = ({ games }: Props) => {
   return (
     <>
       <Head>
-        <title>Gamenoir</title>
+        <title>黑游 Game Noir</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.container}>
