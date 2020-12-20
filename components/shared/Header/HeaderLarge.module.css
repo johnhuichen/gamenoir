@@ -61,7 +61,8 @@
 
 .localeLink .active {
   opacity: 1;
-  background: var(--bg-blue);
+  color: var(--text-highlight);
+  background: var(--bg-lighter);
 }
 
 .localeLink:hover :not(.active) {
