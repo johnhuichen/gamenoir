@@ -29,16 +29,18 @@
   display: flex;
   align-items: center;
   border: 1px solid var(--text-grey);
+  background: var(--bg-lighter);
 }
 
 .localeLink div {
-  opacity: 0.8;
+  opacity: 0.5;
   padding: 0 10px;
 }
 
 .localeLink .active {
   opacity: 1;
-  background: var(--bg-blue);
+  color: var(--text-on-orange);
+  background: var(--bg-orange);
 }
 
 .localeLink:hover :not(.active) {
@@ -68,5 +70,5 @@
 }
 
 .link.active {
-  color: var(--text-highlight);
+  color: var(--text-orange);
 }

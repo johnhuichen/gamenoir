@@ -2,6 +2,9 @@
   --bg-primary: #000;
   --text-primary: #eee;
 
+  --text-highlight: #41c6c3;
+  --bg-highlight: #41c6c3;
+
   --bg-lighter: #222;
   --text-on-lighter: #eee;
 
@@ -15,7 +18,7 @@
   --text-on-blue: #fff;
 
   --bg-orange: #ff4632;
-  --text-on-orange: #000;
+  --text-on-orange: #eee;
 
   --bg-purple: #cb1582;
   --text-on-purple: #000;
@@ -31,7 +34,6 @@
   --text-azure: #a5ffef;
   --text-red: red;
   --text-grey: #222;
-  --text-highlight: #41c6c3;
 
   --body-text-size: 14px;
   --title-text-size: 16px;
