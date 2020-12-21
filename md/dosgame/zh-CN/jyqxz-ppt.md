@@ -5,5 +5,5 @@ imgFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E9%87%91%E5%BA%B8%E7%BE%
 shortDescription: "台湾网友制作的金群Mod，特点是天马行空的剧情对话和武功。"
 genre: "角色扮演"
 topic: "金庸群侠传"
-version: "Mod版"
+version: "Mod"
 ---
