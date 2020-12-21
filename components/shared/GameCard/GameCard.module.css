@@ -22,7 +22,7 @@
   }
 }
 
-@media (min-width: 930px) and (max-width: 1260px) {
+@media (min-width: 870px) and (max-width: 1260px) {
   .container {
     flex-basis: 50%;
     height: 200px;
@@ -46,7 +46,7 @@
   }
 }
 
-@media (min-width: 401px) and (max-width: 930px) {
+@media (min-width: 401px) and (max-width: 870px) {
   .container {
     flex-basis: 100%;
     height: 200px;
