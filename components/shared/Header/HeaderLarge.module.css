@@ -62,5 +62,5 @@
 
 .localeLink .active {
   opacity: 1;
-  background: var(--bg-blue);
+  background: var(--bg-orange);
 }

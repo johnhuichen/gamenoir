@@ -1,6 +1,10 @@
+import { useMemo } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-import styles from "./GameCardLarge.module.css";
+import getTranslations from "translations/gameCard";
+
+import styles from "./GameCard.module.css";
 
 interface Props {
   id: string;
@@ -10,31 +14,34 @@ interface Props {
   gameType: string;
 }
 
-const GameCardLarge: React.FC<Props> = ({
+const GameCard: React.FC<Props> = ({
   id,
   name,
   imgFile,
   shortDescription,
   gameType,
 }: Props) => {
+  const { locale } = useRouter();
+  const translations = useMemo(() => getTranslations(locale as string), [
+    locale,
+  ]);
   const src = `${imgFile.substring(0, imgFile.lastIndexOf("/"))}/140.jpg`;
   return (
     <div className={styles.container}>
-      <Link href={`/${gameType}/${id}`}>
-        <a href={`/${gameType}/${id}`} className={styles.gameCard}>
-          <img
-            className={styles.gameCardImg}
-            src={src}
-            alt={`${name}-avatar`}
-          />
-          <div className={styles.gameCardText}>
-            <div className={styles.gameCardTitle}>{name}</div>
-            <div className={styles.gameCardDescription}>{shortDescription}</div>
-          </div>
-        </a>
-      </Link>
+      <div className={styles.gameCard}>
+        <img className={styles.img} src={src} alt={`${name}-avatar`} />
+        <div className={styles.textWrapper}>
+          <div className={styles.title}>{name}</div>
+          <div className={styles.description}>{shortDescription}</div>
+          <Link href={`/${gameType}/${id}`}>
+            <a href={`/${gameType}/${id}`} className={styles.link}>
+              {translations.enterPage}
+            </a>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default GameCardLarge;
+export default GameCard;

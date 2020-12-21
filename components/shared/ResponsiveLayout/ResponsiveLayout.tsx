@@ -7,8 +7,8 @@ interface Props {
 }
 
 const queries: { [key: string]: string } = {
-  xs: "(max-width: 320px)",
-  sm: "(min-width: 321px) and (max-width: 720px)",
+  xs: "(max-width: 500px)",
+  sm: "(min-width: 401px) and (max-width: 720px)",
   md: "(min-width: 721px) and (max-width: 1024px)",
   lg: "(min-width: 1025px)",
 };

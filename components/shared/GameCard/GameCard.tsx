@@ -14,10 +14,10 @@ interface Props {
 const GameCard: React.FC<Props> = (props: Props) => {
   return (
     <>
-      <ResponsiveLayout screenSizes={["lg", "md"]}>
+      <ResponsiveLayout screenSizes={["lg", "md", "xs", "sm"]}>
         <GameCardLarge {...props} />
       </ResponsiveLayout>
-      <ResponsiveLayout screenSizes={["xs", "sm"]}>
+      <ResponsiveLayout screenSizes={[]}>
         <GameCardSmall {...props} />
       </ResponsiveLayout>
     </>

@@ -1,13 +1,85 @@
-.container {
-  flex-basis: 50%;
-  height: 200px;
-  padding-bottom: 20px;
-  padding-right: 10px;
+@media (min-width: 1261px) {
+  .container {
+    flex-basis: 33%;
+    height: 200px;
+    padding-bottom: 20px;
+    padding-right: 10px;
+  }
+
+  .container:nth-child(3n) {
+    padding-left: 10px;
+    padding-right: 0;
+  }
+
+  .img {
+    width: 140px;
+    height: 140px;
+    min-width: 140px;
+
+    object-fit: contain;
+
+    background: var(--bg-primary);
+  }
 }
 
-.container:nth-child(2n) {
-  padding-left: 10px;
-  padding-right: 0;
+@media (min-width: 930px) and (max-width: 1260px) {
+  .container {
+    flex-basis: 50%;
+    height: 200px;
+    padding-bottom: 20px;
+    padding-right: 10px;
+  }
+
+  .container:nth-child(2n) {
+    padding-left: 10px;
+    padding-right: 0;
+  }
+
+  .img {
+    width: 140px;
+    height: 140px;
+    min-width: 140px;
+
+    object-fit: contain;
+
+    background: var(--bg-primary);
+  }
+}
+
+@media (min-width: 401px) and (max-width: 930px) {
+  .container {
+    flex-basis: 100%;
+    height: 200px;
+    padding-bottom: 20px;
+  }
+
+  .img {
+    width: 140px;
+    height: 140px;
+    min-width: 140px;
+
+    object-fit: contain;
+
+    background: var(--bg-primary);
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    flex-basis: 33%;
+    flex-basis: 100%;
+    height: 200px;
+    padding-bottom: 20px;
+  }
+  .img {
+    width: 100px;
+    height: 140px;
+    min-width: 100px;
+
+    object-fit: contain;
+
+    background: var(--bg-primary);
+  }
 }
 
 .gameCard {
@@ -19,32 +91,33 @@
 }
 
 .gameCard:hover .gameCardTitle {
-  color: var(--text-highlight);
+  color: var(--text-orange);
 }
 
-.gameCardImg {
-  width: 140px;
-  height: 140px;
-  min-width: 140px;
-
-  object-fit: contain;
-
-  background: var(--bg-primary);
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
 }
 
-.gameCardText {
-  padding-left: 20px;
-  overflow: hidden;
-}
-
-.gameCardTitle {
+.title {
   font-size: var(--title-text-size);
   font-weight: 900;
-  margin-bottom: 5px;
 }
 
-.gameCardDescription {
+.description {
+  flex-grow: 1;
   font-size: var(--body-text-size);
   overflow: hidden;
-  text-overflow: ellipsis;
+}
+
+.link {
+  background: var(--bg-orange);
+  color: var(--text-on-orange);
+  padding: 5px 10px;
+  align-self: flex-start;
+}
+
+.link:hover {
+  background: var(--bg-lighter);
 }
