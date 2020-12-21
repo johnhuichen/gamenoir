@@ -5,5 +5,5 @@ imgFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E7%82%8E%E9%BE%99%E9%AA%
 shortDescription: "休息不回血并打上最大化成长补丁。适合炎龙2老玩家的挑战。"
 genre: "角色扮演"
 topic: "炎龙骑士团"
-version: "Mod版"
+version: "Mod"
 ---

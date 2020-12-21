@@ -5,7 +5,7 @@ imgFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E7%82%8E%E9%BE%99%E9%AA%
 shortDescription: "敌我休息都不会回复生命值，同时对关卡调整，增加挑战性，引爆新激情!"
 genre: "角色扮演"
 topic: "炎龙骑士团"
-version: "Mod版"
+version: "Mod"
 ---
 
 Test5.23 版更新总览 【由于还是 test 版本 难免会有不足之处 希望能得到各位玩家的反馈 特别是难度方面的体会 联系 QQ:28813076 QQ 群:4975543 邮箱地址:stylkkk@163.com】

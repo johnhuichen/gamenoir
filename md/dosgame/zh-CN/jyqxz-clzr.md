@@ -5,5 +5,5 @@ imgFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E9%87%91%E5%BA%B8%E7%BE%
 shortDescription: "金群Dos修改版里公认最好的Mod，已经是最终版。"
 genre: "角色扮演"
 topic: "金庸群侠传"
-version: "Mod版"
+version: "Mod"
 ---
