@@ -1,6 +1,6 @@
 @media (min-width: 1261px) {
   .container {
-    flex-basis: 33%;
+    width: 33%;
     height: 200px;
     padding-bottom: 20px;
     padding-right: 10px;
@@ -20,11 +20,18 @@
 
     background: var(--bg-primary);
   }
+
+  .textWrapper {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    width: calc(100% - 140px);
+  }
 }
 
 @media (min-width: 870px) and (max-width: 1260px) {
   .container {
-    flex-basis: 50%;
+    width: 50%;
     height: 200px;
     padding-bottom: 20px;
     padding-right: 10px;
@@ -44,11 +51,18 @@
 
     background: var(--bg-primary);
   }
+
+  .textWrapper {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    width: calc(100% - 140px);
+  }
 }
 
 @media (min-width: 401px) and (max-width: 870px) {
   .container {
-    flex-basis: 100%;
+    width: 100%;
     height: 200px;
     padding-bottom: 20px;
   }
@@ -62,12 +76,18 @@
 
     background: var(--bg-primary);
   }
+
+  .textWrapper {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    width: calc(100% - 140px);
+  }
 }
 
 @media (max-width: 400px) {
   .container {
-    flex-basis: 33%;
-    flex-basis: 100%;
+    width: 100%;
     height: 200px;
     padding-bottom: 20px;
   }
@@ -80,6 +100,13 @@
 
     background: var(--bg-primary);
   }
+
+  .textWrapper {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    width: calc(100% - 100px);
+  }
 }
 
 .gameCard {
@@ -90,16 +117,15 @@
   color: var(--text-on-lighter2);
 }
 
-.textWrapper {
-  display: flex;
-  flex-direction: column;
-  padding-left: 10px;
-}
-
 .title {
   font-size: var(--title-text-size);
   color: var(--text-on-lighter2);
   font-weight: 900;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 20px;
 }
 
 .title:hover,
@@ -111,6 +137,7 @@
   flex-grow: 1;
   font-size: var(--body-text-size);
   overflow: hidden;
+  margin-bottom: 5px;
 }
 
 .link {
