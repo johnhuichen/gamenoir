@@ -31,7 +31,11 @@ const GameCard: React.FC<Props> = ({
       <div className={styles.gameCard}>
         <img className={styles.img} src={src} alt={`${name}-avatar`} />
         <div className={styles.textWrapper}>
-          <div className={styles.title}>{name}</div>
+          <Link href={`/${gameType}/${id}`}>
+            <a href={`/${gameType}/${id}`} className={styles.title}>
+              {name}
+            </a>
+          </Link>
           <div className={styles.description}>{shortDescription}</div>
           <Link href={`/${gameType}/${id}`}>
             <a href={`/${gameType}/${id}`} className={styles.link}>

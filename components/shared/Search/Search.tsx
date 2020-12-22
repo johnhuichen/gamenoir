@@ -1,4 +1,4 @@
-import { createRef, useCallback, useMemo } from "react";
+import { createRef, useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -18,6 +18,7 @@ const Search: React.FC<Props> = ({
   handleChangeInput,
   handleClearSearch,
 }: Props) => {
+  const [input, setInput] = useState("");
   const { locale } = useRouter();
   const translations = useMemo(() => getTranslations(locale as string), [
     locale,
@@ -37,9 +38,11 @@ const Search: React.FC<Props> = ({
       debounce(async (e: { target: HTMLInputElement }) => {
         const { value } = e.target;
         handleChangeInput(value);
+        setInput(value);
       }, 300),
     [handleChangeInput]
   );
+  console.log(input);
 
   return (
     <div className={styles.searchContainer}>
@@ -50,9 +53,11 @@ const Search: React.FC<Props> = ({
         placeholder={translations.searchPlaceholder}
         onChange={onChange}
       />
-      <button onClick={clearSearch}>
-        <FontAwesomeIcon icon={faTimes} />
-      </button>
+      {!!input && (
+        <button onClick={clearSearch} className={styles.closeIcon}>
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
+      )}
     </div>
   );
 };

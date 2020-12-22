@@ -90,10 +90,6 @@
   color: var(--text-on-white);
 }
 
-.gameCard:hover .gameCardTitle {
-  color: var(--text-orange);
-}
-
 .textWrapper {
   display: flex;
   flex-direction: column;
@@ -102,7 +98,13 @@
 
 .title {
   font-size: var(--title-text-size);
+  color: var(--text-on-white);
   font-weight: 900;
+}
+
+.title:hover,
+.title:focus {
+  color: var(--text-highlight);
 }
 
 .description {
@@ -112,8 +114,9 @@
 }
 
 .link {
-  background: var(--bg-orange);
-  color: var(--text-on-orange);
+  font-weight: 700;
+  background: var(--bg-teal);
+  color: var(--text-on-teal);
   padding: 5px 10px;
   align-self: flex-start;
 }
