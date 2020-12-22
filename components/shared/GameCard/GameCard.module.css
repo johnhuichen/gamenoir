@@ -86,12 +86,8 @@
   display: flex;
   height: 100%;
   padding: 20px;
-  background: var(--bg-white);
-  color: var(--text-on-white);
-}
-
-.gameCard:hover .gameCardTitle {
-  color: var(--text-orange);
+  background: var(--bg-lighter2);
+  color: var(--text-on-lighter2);
 }
 
 .textWrapper {
@@ -102,7 +98,13 @@
 
 .title {
   font-size: var(--title-text-size);
+  color: var(--text-on-lighter2);
   font-weight: 900;
+}
+
+.title:hover,
+.title:focus {
+  color: var(--text-highlight);
 }
 
 .description {
@@ -112,12 +114,14 @@
 }
 
 .link {
-  background: var(--bg-orange);
-  color: var(--text-on-orange);
+  font-weight: 700;
+  background: var(--bg-teal);
+  color: var(--text-on-teal);
   padding: 5px 10px;
   align-self: flex-start;
 }
 
 .link:hover {
+  color: var(--text-on-lighter);
   background: var(--bg-lighter);
 }
