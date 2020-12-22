@@ -32,22 +32,6 @@
   margin-right: 10px;
 }
 
-.link {
-  color: var(--text-faded);
-  font-size: var(--title-text-size);
-  text-decoration: none;
-
-  margin-right: 60px;
-}
-
-.link:hover {
-  color: var(--text-highlight);
-}
-
-.link.active {
-  color: var(--text-highlight);
-}
-
 .localeLink {
   display: flex;
   align-items: center;
@@ -58,9 +42,14 @@
 .localeLink div {
   opacity: 0.5;
   padding: 0 10px;
+  line-height: 20px;
+  height: 20px;
+  font-size: var(--text-body-size);
+  font-weight: 800;
 }
 
 .localeLink .active {
   opacity: 1;
-  background: var(--bg-orange);
+  color: var(--text-on-teal);
+  background: var(--bg-teal);
 }
