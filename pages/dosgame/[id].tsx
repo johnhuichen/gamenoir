@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { getDosgameIds, getDosgameProps, DosgameProps } from "lib/dosgame";
 import useDosbox from "hooks/useDosbox";
 import Canvas, { CanvasElement } from "components/shared/Canvas";
+import VirtualKeyboard from "components/shared/VirtualKeyboard";
 
 import styles from "./[id].module.css";
 
@@ -147,6 +148,7 @@ const Dosgame: React.FC<DosgameProps> = ({
           percentage={percentage}
           faqContent={<FAQContent />}
         />
+        <VirtualKeyboard canvasRef={canvasRef} />
       </div>
     </>
   );

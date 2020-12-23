@@ -64,19 +64,19 @@ const CanvasControl: React.FC<Props> = ({
           </button>
           <button
             type="button"
-            title={translations.fullScreenMode}
-            className={styles.toggleBtn}
-            onClick={handleFullScreen}
-          >
-            <FontAwesomeIcon icon={faExpand} />
-          </button>
-          <button
-            type="button"
             title={translations.theaterMode}
             className={styles.toggleBtn}
             onClick={handleExpand}
           >
             <FontAwesomeIcon icon={faWindowMaximize} />
+          </button>
+          <button
+            type="button"
+            title={translations.fullScreenMode}
+            className={styles.toggleBtn}
+            onClick={handleFullScreen}
+          >
+            <FontAwesomeIcon icon={faExpand} />
           </button>
         </>
       ) : (

@@ -1,0 +1,85 @@
+.left {
+  position: fixed;
+  left: 0;
+  bottom: 25px;
+  opacity: 0.9;
+  font-size: 25px;
+  outline: none;
+  padding: 10px 5px;
+  z-index: 10000;
+}
+
+.up {
+  position: fixed;
+  left: 27px;
+  bottom: 60px;
+  opacity: 0.9;
+  font-size: 25px;
+  outline: none;
+  padding: 5px 10px;
+  z-index: 10000;
+}
+
+.right {
+  position: fixed;
+  left: 67px;
+  bottom: 25px;
+  opacity: 0.9;
+  font-size: 25px;
+  outline: none;
+  padding: 10px 5px;
+  z-index: 10000;
+}
+
+.down {
+  position: fixed;
+  left: 27px;
+  bottom: 0px;
+  opacity: 0.9;
+  font-size: 25px;
+  outline: none;
+  padding: 5px 10px;
+  z-index: 10000;
+}
+
+.escape {
+  position: fixed;
+  left: 20px;
+  top: 50px;
+  opacity: 0.9;
+  font-size: 12px;
+  outline: none;
+  padding: 5px 10px;
+  z-index: 10000;
+
+  color: var(--text-on-silver);
+  background: var(--bg-silver);
+}
+
+.enter {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  opacity: 0.9;
+  font-size: 12px;
+  outline: none;
+  padding: 5px 10px;
+  z-index: 10000;
+
+  color: var(--text-on-silver);
+  background: var(--bg-silver);
+}
+
+.space {
+  position: fixed;
+  right: 90px;
+  bottom: 20px;
+  opacity: 0.9;
+  font-size: 12px;
+  outline: none;
+  padding: 5px 10px;
+  z-index: 10000;
+
+  color: var(--text-on-silver);
+  background: var(--bg-silver);
+}
