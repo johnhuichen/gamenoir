@@ -104,6 +104,7 @@ const VirtualKeyboard: React.FC<Props> = ({ canvasRef }: Props) => {
         onTouchStart={() => simulateKeyHold(37)}
         onTouchEnd={() => simulateKeyRelease(37)}
         onTouchCancel={() => simulateKeyRelease(37)}
+        onMouseUp={() => simulateKeyRelease(37)}
         onContextMenu={e => e.preventDefault()}
         className={styles.left}
       >
