@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useLayoutEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleLeft,
@@ -86,7 +86,7 @@ const VirtualKeyboard: React.FC<Props> = ({ canvasRef }: Props) => {
     [simulateKeyEvent]
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setIsMobile(
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
         navigator.userAgent
@@ -98,6 +98,8 @@ const VirtualKeyboard: React.FC<Props> = ({ canvasRef }: Props) => {
     }
 
     document.addEventListener("touchmove", preventBehavior, { passive: false });
+
+    window.scrollTo(0, 1);
   }, []);
 
   if (!isMobile) {
