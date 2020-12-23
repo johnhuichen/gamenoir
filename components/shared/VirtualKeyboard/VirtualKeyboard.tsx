@@ -92,6 +92,12 @@ const VirtualKeyboard: React.FC<Props> = ({ canvasRef }: Props) => {
         navigator.userAgent
       )
     );
+
+    function preventBehavior(e: Event) {
+      e.preventDefault();
+    }
+
+    document.addEventListener("touchmove", preventBehavior, { passive: false });
   }, []);
 
   if (!isMobile) {
@@ -104,7 +110,6 @@ const VirtualKeyboard: React.FC<Props> = ({ canvasRef }: Props) => {
         onTouchStart={() => simulateKeyHold(37)}
         onTouchEnd={() => simulateKeyRelease(37)}
         onTouchCancel={() => simulateKeyRelease(37)}
-        onMouseUp={() => simulateKeyRelease(37)}
         onContextMenu={e => e.preventDefault()}
         className={styles.left}
       >
