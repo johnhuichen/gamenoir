@@ -8,10 +8,14 @@ import styles from "./Footer.module.css";
 const EMAIL = "cliffgoslinginc@gmail.com";
 
 const Footer: React.FC = () => {
-  const { locale } = useRouter();
+  const { route, locale } = useRouter();
   const translations = useMemo(() => getTranslations(locale as string), [
     locale,
   ]);
+
+  if (/^\/dosgame/.test(route) || /^\/arcade/.test(route)) {
+    return null;
+  }
 
   return (
     <div className={styles.container}>

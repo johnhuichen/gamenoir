@@ -16,11 +16,7 @@ const HeaderLarge: React.FC = () => {
   ]);
 
   const localeHref = useMemo(() => {
-    if (/^\/dosgame/.test(route)) {
-      return "/";
-    }
-
-    if (/^\/arcade/.test(route)) {
+    if (/^\/dosgame/.test(route) || /^\/arcade/.test(route)) {
       return "/";
     }
 
