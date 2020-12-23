@@ -8,7 +8,6 @@
   .img {
     width: 100%;
     height: 250px;
-    margin-bottom: 10px;
 
     object-fit: contain;
 
@@ -31,7 +30,6 @@
   .img {
     width: 100%;
     height: 250px;
-    margin-bottom: 10px;
 
     object-fit: contain;
 
@@ -59,7 +57,6 @@
   .img {
     width: 100%;
     height: 250px;
-    margin-bottom: 10px;
 
     object-fit: contain;
 
@@ -82,7 +79,6 @@
   .img {
     width: 100%;
     height: 250px;
-    margin-bottom: 10px;
 
     object-fit: contain;
 
@@ -99,7 +95,6 @@
   .img {
     width: 100%;
     height: 250px;
-    margin-bottom: 10px;
 
     object-fit: contain;
 
@@ -111,13 +106,13 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 20px;
   background: var(--bg-lighter2);
   color: var(--text-on-lighter2);
 }
 
 .textWrapper {
   flex-grow: 1;
+  padding: 10px;
 }
 
 .title {
@@ -147,6 +142,7 @@
   font-size: 12px;
   line-height: 12px;
   color: var(--text-highlight);
+  padding: 10px;
 }
 
 .link svg {
