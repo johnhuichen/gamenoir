@@ -65,20 +65,20 @@ const Canvas: React.FC<Props> = ({
     setDisplayMode(DISPLAY_MODES.THEATER);
   }, []);
 
-  const handleFullScreen = useCallback(() => {
-    const elem = canvasContainerRef.current;
-    if (elem?.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem?.webkitRequestFullscreen) {
-      /* Safari */
-      elem.webkitRequestFullscreen();
-    } else if (elem?.msRequestFullscreen) {
-      /* IE11 */
-      elem.msRequestFullscreen();
-    }
-
-    setDisplayMode(DISPLAY_MODES.FULLSCREEN);
-  }, [canvasContainerRef]);
+  // const handleFullScreen = useCallback(() => {
+  //   const elem = canvasContainerRef.current;
+  //   if (elem?.requestFullscreen) {
+  //     elem.requestFullscreen();
+  //   } else if (elem?.webkitRequestFullscreen) {
+  //     /* Safari */
+  //     elem.webkitRequestFullscreen();
+  //   } else if (elem?.msRequestFullscreen) {
+  //     /* IE11 */
+  //     elem.msRequestFullscreen();
+  //   }
+  //
+  //   setDisplayMode(DISPLAY_MODES.FULLSCREEN);
+  // }, [canvasContainerRef]);
 
   const handleReset = useCallback(() => {
     if (document.fullscreen) {
@@ -125,7 +125,6 @@ const Canvas: React.FC<Props> = ({
         faqContent={faqContent}
         isNormal={isNormal}
         handleExpand={handleExpand}
-        handleFullScreen={handleFullScreen}
         handleReset={handleReset}
       />
       <CanvasStatus
