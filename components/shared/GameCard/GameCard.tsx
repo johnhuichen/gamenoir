@@ -27,12 +27,10 @@ const GameCard: React.FC<Props> = ({
   const translations = useMemo(() => getTranslations(locale as string), [
     locale,
   ]);
-  // use 400px
-  const src = `${imgFile.substring(0, imgFile.lastIndexOf("/"))}/original.jpg`;
   return (
     <div className={styles.container}>
       <div className={styles.gameCard}>
-        <img className={styles.img} src={src} alt={`${name}-avatar`} />
+        <img className={styles.img} src={imgFile} alt={`${name}-avatar`} />
         <div className={styles.textWrapper}>
           <Link href={`/${gameType}/${id}`}>
             <a href={`/${gameType}/${id}`} className={styles.title}>
