@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleLeft,
@@ -6,6 +6,7 @@ import {
   faAngleRight,
   faAngleDown,
 } from "@fortawesome/free-solid-svg-icons";
+import debounce from "lodash/debounce";
 
 import { CanvasElement } from "components/shared/Canvas";
 import Portal from "components/shared/Portal";
@@ -64,26 +65,28 @@ const VirtualKeyboard: React.FC<Props> = ({ canvasRef }: Props) => {
     [canvasRef]
   );
 
+  const simulateKeyHold = useMemo(
+    () =>
+      debounce((keyCode: number): void => {
+        simulateKeyEvent(keyCode, true);
+      }, 100),
+    [simulateKeyEvent]
+  );
+
+  const simulateKeyRelease = useMemo(
+    () =>
+      debounce((keyCode: number): void => {
+        simulateKeyEvent(keyCode, false);
+      }, 100),
+    [simulateKeyEvent]
+  );
+
   const simulateKeyPress = useCallback(
     (keyCode: number): void => {
-      simulateKeyEvent(keyCode, true);
-      setTimeout(() => simulateKeyEvent(keyCode, false), 100);
+      simulateKeyHold(keyCode);
+      setTimeout(() => simulateKeyRelease(keyCode), 200);
     },
-    [simulateKeyEvent]
-  );
-
-  const simulateKeyHold = useCallback(
-    (keyCode: number): void => {
-      simulateKeyEvent(keyCode, true);
-    },
-    [simulateKeyEvent]
-  );
-
-  const simulateKeyRelease = useCallback(
-    (keyCode: number): void => {
-      simulateKeyEvent(keyCode, false);
-    },
-    [simulateKeyEvent]
+    [simulateKeyHold, simulateKeyRelease]
   );
 
   useEffect(() => {
@@ -101,6 +104,7 @@ const VirtualKeyboard: React.FC<Props> = ({ canvasRef }: Props) => {
   return (
     <Portal>
       <button
+        onClick={() => simulateKeyPress(37)}
         onTouchStart={() => simulateKeyHold(37)}
         onTouchEnd={() => simulateKeyRelease(37)}
         onTouchCancel={() => simulateKeyRelease(37)}
@@ -110,6 +114,7 @@ const VirtualKeyboard: React.FC<Props> = ({ canvasRef }: Props) => {
         <FontAwesomeIcon icon={faAngleLeft} />
       </button>
       <button
+        onClick={() => simulateKeyPress(38)}
         onTouchStart={() => simulateKeyHold(38)}
         onTouchEnd={() => simulateKeyRelease(38)}
         onTouchCancel={() => simulateKeyRelease(38)}
@@ -119,6 +124,7 @@ const VirtualKeyboard: React.FC<Props> = ({ canvasRef }: Props) => {
         <FontAwesomeIcon icon={faAngleUp} />
       </button>
       <button
+        onClick={() => simulateKeyPress(39)}
         onTouchStart={() => simulateKeyHold(39)}
         onTouchEnd={() => simulateKeyRelease(39)}
         onTouchCancel={() => simulateKeyRelease(39)}
@@ -128,6 +134,7 @@ const VirtualKeyboard: React.FC<Props> = ({ canvasRef }: Props) => {
         <FontAwesomeIcon icon={faAngleRight} />
       </button>
       <button
+        onClick={() => simulateKeyPress(40)}
         onTouchStart={() => simulateKeyHold(40)}
         onTouchEnd={() => simulateKeyRelease(40)}
         onTouchCancel={() => simulateKeyRelease(40)}
@@ -137,6 +144,7 @@ const VirtualKeyboard: React.FC<Props> = ({ canvasRef }: Props) => {
         <FontAwesomeIcon icon={faAngleDown} />
       </button>
       <button
+        onClick={() => simulateKeyPress(27)}
         onTouchStart={() => simulateKeyHold(27)}
         onTouchEnd={() => simulateKeyRelease(27)}
         onTouchCancel={() => simulateKeyRelease(27)}
@@ -146,25 +154,31 @@ const VirtualKeyboard: React.FC<Props> = ({ canvasRef }: Props) => {
         ESC
       </button>
       <button
+        onClick={() => simulateKeyPress(13)}
         onTouchStart={() => simulateKeyHold(13)}
         onTouchEnd={() => simulateKeyRelease(13)}
         onTouchCancel={() => simulateKeyRelease(13)}
+        onContextMenu={e => e.preventDefault()}
         className={styles.enter}
       >
         ENTER
       </button>
       <button
+        onClick={() => simulateKeyPress(32)}
         onTouchStart={() => simulateKeyHold(32)}
         onTouchEnd={() => simulateKeyRelease(32)}
         onTouchCancel={() => simulateKeyRelease(32)}
+        onContextMenu={e => e.preventDefault()}
         className={styles.space}
       >
         SPACE
       </button>
       <button
+        onClick={() => simulateKeyPress(9)}
         onTouchStart={() => simulateKeyHold(9)}
         onTouchEnd={() => simulateKeyRelease(9)}
         onTouchCancel={() => simulateKeyRelease(9)}
+        onContextMenu={e => e.preventDefault()}
         className={styles.tab}
       >
         TAB
