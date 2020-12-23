@@ -40,7 +40,9 @@
   --text-highlight: #41c6c3;
 
   --body-text-size: 12px;
+  --body-line-height: 16px;
   --title-text-size: 14px;
+  --title-line-height: 18px;
 
   --header-height: 60px;
   --footer-height: 80px;
@@ -59,7 +61,7 @@ body {
   margin: 0;
   font-family: "Microsoft Yahei", "Crimson+Text", sans-serif;
   color: var(--text-primary);
-  line-height: 1.6;
+  line-height: var(--body-line-height);
   font-size: var(--body-text-size);
   font-weight: 500;
   min-height: 100vh;

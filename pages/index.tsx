@@ -18,40 +18,28 @@ const Annoucement: React.FC = () => {
   if (locale === "en-US") {
     return (
       <div className={styles.announcement}>
-        Merry Christmas everyone! <Emoji symbol="🎉" label="Party Pooper" />{" "}
+        Merry Christmas! <Emoji symbol="🎉" label="Party Pooper" />{" "}
         <Emoji symbol="🎉" label="Party Pooper" /> <br />
         <br />
-        Here you can play hundreds of classic games that you loved since
-        childhood. All our games have been tested by us, we promise they are
-        fun.
-        <br />
-        <br />
-        If you find a problem or want to make a special game request, just shoot
-        us a message (
+        You can play dos and arcade games at Game Noir. We We make sure
+        everything just works, but if you do find a problem, just send us an
+        email (
         <a href="mailto:cliffgoslinginc@gmail.com">cliffgoslinginc@gmail.com</a>
-        ). We will see what we can do <Emoji symbol="😊" label="Smiley" />
-        <Emoji symbol="😊" label="Smiley" />
+        ).
       </div>
     );
   }
 
   return (
     <div className={styles.announcement}>
-      2020年圣诞快乐! <Emoji symbol="🎉" label="Party Pooper" />{" "}
-      <Emoji symbol="🎉" label="Party Pooper" />{" "}
-      <Emoji symbol="🎅" label="Santa" />
+      圣诞快乐! <Emoji symbol="🎉" label="Party Pooper" />{" "}
+      <Emoji symbol="🎉" label="Party Pooper" /> <br />
       <br />
-      <br />
-      Gamenoir提供各种Dos和街机平台上的老游戏的在线试玩。你可以一口气穿越到90年代，体验那些脍炙人口的经典电脑游戏，也可以再一次和发小们重新拾起小时候玩过的那些红白机游戏。
+      我们提供各种Dos和街机老游戏的在线试玩,每款游戏都经过我们测试可以运行。友情提示：在电脑上玩游戏的效果要比手机上更好哦
       <br />
       <br />
       如果你在游戏过程中遇到什么疑难困惑，或者你有一款非常想玩的老游戏，你可以直接给我们发邮件(
-      <a href="mailto:cliffgoslinginc@gmail.com">cliffgoslinginc@gmail.com</a>
-      ). 我们一定会尽力帮你实现你的愿望 <Emoji
-        symbol="😊"
-        label="Smiley"
-      />{" "}
-      <Emoji symbol="😊" label="Smiley" /> <Emoji symbol="🎅" label="Santa" />
+      <a href="mailto:cliffgoslinginc@gmail.com">cliffgoslinginc@gmail.com</a>)
     </div>
   );
 };

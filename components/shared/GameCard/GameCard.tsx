@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 
 import getTranslations from "translations/gameCard";
 
@@ -42,7 +42,7 @@ const GameCard: React.FC<Props> = ({
         <Link href={`/${gameType}/${id}`}>
           <a href={`/${gameType}/${id}`} className={styles.link}>
             {translations.enterPage}
-            <FontAwesomeIcon icon={faChevronRight} />
+            <FontAwesomeIcon icon={faPowerOff} />
           </a>
         </Link>
       </div>

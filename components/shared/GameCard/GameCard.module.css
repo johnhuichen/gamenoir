@@ -121,14 +121,13 @@
 }
 
 .title {
+  display: flex;
   font-size: var(--title-text-size);
+  line-height: var(--title-line-height);
   color: var(--text-on-lighter2);
   font-weight: 900;
   width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-height: 20px;
+  margin-bottom: 10px;
 }
 
 .title:hover,
