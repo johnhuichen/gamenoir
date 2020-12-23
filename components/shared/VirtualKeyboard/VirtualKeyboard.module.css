@@ -1,0 +1,119 @@
+.left {
+  position: fixed;
+  left: 0;
+  bottom: 30px;
+  opacity: 0.9;
+  font-size: 25px;
+  outline: none;
+  padding: 10px;
+  z-index: 10000;
+}
+
+.up {
+  position: fixed;
+  left: 35px;
+  bottom: 65px;
+  opacity: 0.9;
+  font-size: 25px;
+  outline: none;
+  padding: 10px;
+  z-index: 10000;
+}
+
+.right {
+  position: fixed;
+  left: 75px;
+  bottom: 30px;
+  opacity: 0.9;
+  font-size: 25px;
+  outline: none;
+  padding: 10px;
+  z-index: 10000;
+}
+
+.down {
+  position: fixed;
+  left: 35px;
+  bottom: 0px;
+  opacity: 0.9;
+  font-size: 25px;
+  outline: none;
+  padding: 10px;
+  z-index: 10000;
+}
+
+.escape {
+  position: fixed;
+  left: 20px;
+  bottom: 120px;
+  opacity: 0.5;
+  font-size: 10px;
+  outline: none;
+  z-index: 10000;
+
+  display: flex;
+  justify-content: center;
+  width: 60px;
+  padding: 5px 10px;
+
+  color: var(--text-on-silver);
+  background: var(--bg-silver);
+  user-select: none;
+}
+
+.enter {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  opacity: 0.5;
+  font-size: 10px;
+  outline: none;
+  z-index: 10000;
+
+  display: flex;
+  justify-content: center;
+  width: 60px;
+  padding: 5px 10px;
+
+  color: var(--text-on-silver);
+  background: var(--bg-silver);
+  user-select: none;
+}
+
+.space {
+  position: fixed;
+  right: 20px;
+  bottom: 50px;
+  opacity: 0.5;
+  font-size: 10px;
+  outline: none;
+  z-index: 10000;
+
+  display: flex;
+  justify-content: center;
+  width: 60px;
+  padding: 5px 10px;
+
+  color: var(--text-on-silver);
+  background: var(--bg-silver);
+  user-select: none;
+}
+
+.tab {
+  position: fixed;
+  right: 20px;
+  bottom: 80px;
+  opacity: 0.5;
+  font-size: 10px;
+  outline: none;
+  z-index: 10000;
+
+  display: flex;
+  justify-content: center;
+  width: 60px;
+  padding: 5px 10px;
+
+  color: var(--text-on-silver);
+  background: var(--bg-silver);
+  user-select: none;
+}

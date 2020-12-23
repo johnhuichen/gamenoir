@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfoCircle,
-  faExpand,
+  // faExpand,
   faWindowMaximize,
   faWindowMinimize,
 } from "@fortawesome/free-solid-svg-icons";
@@ -16,7 +16,7 @@ import styles from "./CanvasControl.module.css";
 interface Props {
   isNormal: boolean;
   faqContent: React.ReactNode;
-  handleFullScreen: () => void;
+  // handleFullScreen: () => void;
   handleExpand: () => void;
   handleReset: () => void;
 }
@@ -33,7 +33,7 @@ const CanvasControl: React.FC<Props> = ({
   isNormal,
   faqContent,
   handleExpand,
-  handleFullScreen,
+  // handleFullScreen,
   handleReset,
 }: Props) => {
   const { locale } = useRouter();
@@ -61,14 +61,6 @@ const CanvasControl: React.FC<Props> = ({
             onClick={handleOpenFAQ}
           >
             <FontAwesomeIcon icon={faInfoCircle} />
-          </button>
-          <button
-            type="button"
-            title={translations.fullScreenMode}
-            className={styles.toggleBtn}
-            onClick={handleFullScreen}
-          >
-            <FontAwesomeIcon icon={faExpand} />
           </button>
           <button
             type="button"

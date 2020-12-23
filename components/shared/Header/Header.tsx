@@ -17,11 +17,11 @@ const HeaderLarge: React.FC = () => {
 
   const localeHref = useMemo(() => {
     if (/^\/dosgame/.test(route)) {
-      return "/dosgame";
+      return "/";
     }
 
     if (/^\/arcade/.test(route)) {
-      return "/arcade";
+      return "/";
     }
 
     return route;

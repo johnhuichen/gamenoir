@@ -4,7 +4,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: "Press Start 2P";
-  font-size: 24px;
+  font-size: 1em;
   text-transform: uppercase;
   padding: 20px 30px;
   cursor: pointer;
@@ -30,7 +30,7 @@
 }
 
 .loading {
-  font-size: 24px;
+  font-size: 1em;
   color: var(--text-highlight);
 }
 

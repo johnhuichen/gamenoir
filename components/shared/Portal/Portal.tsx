@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 interface Props {
@@ -6,18 +6,20 @@ interface Props {
 }
 
 const Portal: React.FC<Props> = ({ children }: Props) => {
-  const portalNode = document.createElement("div");
+  const [portalNode, setPortalNode] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const newPortalNode = document.createElement("div");
     const modalRoot = document.getElementById("modal-root");
-    modalRoot?.appendChild(portalNode);
+    modalRoot?.appendChild(newPortalNode);
+    setPortalNode(newPortalNode);
 
     return () => {
-      modalRoot?.removeChild(portalNode);
+      modalRoot?.removeChild(newPortalNode);
     };
-  }, [portalNode]);
+  }, []);
 
-  return ReactDOM.createPortal(children, portalNode);
+  return portalNode ? ReactDOM.createPortal(children, portalNode) : null;
 };
 
 export default Portal;
