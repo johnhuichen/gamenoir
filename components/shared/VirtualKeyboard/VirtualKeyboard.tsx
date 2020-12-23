@@ -64,10 +64,27 @@ const VirtualKeyboard: React.FC<Props> = ({ canvasRef }: Props) => {
     [canvasRef]
   );
 
-  function simulateKeyPress(keyCode: number): void {
-    simulateKeyEvent(keyCode, true);
-    setTimeout(() => simulateKeyEvent(keyCode, false), 100);
-  }
+  const simulateKeyPress = useCallback(
+    (keyCode: number): void => {
+      simulateKeyEvent(keyCode, true);
+      setTimeout(() => simulateKeyEvent(keyCode, false), 100);
+    },
+    [simulateKeyEvent]
+  );
+
+  const simulateKeyHold = useCallback(
+    (keyCode: number): void => {
+      simulateKeyEvent(keyCode, true);
+    },
+    [simulateKeyEvent]
+  );
+
+  const simulateKeyRelease = useCallback(
+    (keyCode: number): void => {
+      simulateKeyEvent(keyCode, false);
+    },
+    [simulateKeyEvent]
+  );
 
   useEffect(() => {
     setIsMobile(
@@ -80,34 +97,68 @@ const VirtualKeyboard: React.FC<Props> = ({ canvasRef }: Props) => {
   if (!isMobile) {
     return null;
   }
+
   return (
     <Portal>
       <button
-        onClick={e => {
-          simulateKeyPress(37);
-        }}
-        onMouseDown={() => console.log("onKeyDown")}
+        onTouchStart={() => simulateKeyHold(37)}
+        onTouchEnd={() => simulateKeyRelease(37)}
+        onTouchCancel={() => simulateKeyRelease(37)}
         onContextMenu={e => e.preventDefault()}
         className={styles.left}
       >
         <FontAwesomeIcon icon={faAngleLeft} />
       </button>
-      <button onClick={() => simulateKeyPress(38)} className={styles.up}>
+      <button
+        onTouchStart={() => simulateKeyHold(38)}
+        onTouchEnd={() => simulateKeyRelease(38)}
+        onTouchCancel={() => simulateKeyRelease(38)}
+        onContextMenu={e => e.preventDefault()}
+        className={styles.up}
+      >
         <FontAwesomeIcon icon={faAngleUp} />
       </button>
-      <button onClick={() => simulateKeyPress(39)} className={styles.right}>
+      <button
+        onTouchStart={() => simulateKeyHold(39)}
+        onTouchEnd={() => simulateKeyRelease(39)}
+        onTouchCancel={() => simulateKeyRelease(39)}
+        onContextMenu={e => e.preventDefault()}
+        className={styles.right}
+      >
         <FontAwesomeIcon icon={faAngleRight} />
       </button>
-      <button onClick={() => simulateKeyPress(40)} className={styles.down}>
+      <button
+        onTouchStart={() => simulateKeyHold(40)}
+        onTouchEnd={() => simulateKeyRelease(40)}
+        onTouchCancel={() => simulateKeyRelease(40)}
+        onContextMenu={e => e.preventDefault()}
+        className={styles.down}
+      >
         <FontAwesomeIcon icon={faAngleDown} />
       </button>
-      <button onClick={() => simulateKeyPress(27)} className={styles.escape}>
+      <button
+        onTouchStart={() => simulateKeyHold(27)}
+        onTouchEnd={() => simulateKeyRelease(27)}
+        onTouchCancel={() => simulateKeyRelease(27)}
+        onContextMenu={e => e.preventDefault()}
+        className={styles.escape}
+      >
         ESC
       </button>
-      <button onClick={() => simulateKeyPress(13)} className={styles.enter}>
+      <button
+        onTouchStart={() => simulateKeyHold(13)}
+        onTouchEnd={() => simulateKeyRelease(13)}
+        onTouchCancel={() => simulateKeyRelease(13)}
+        className={styles.enter}
+      >
         ENTER
       </button>
-      <button onClick={() => simulateKeyPress(32)} className={styles.space}>
+      <button
+        onTouchStart={() => simulateKeyHold(32)}
+        onTouchEnd={() => simulateKeyRelease(32)}
+        onTouchCancel={() => simulateKeyRelease(32)}
+        className={styles.space}
+      >
         SPACE
       </button>
     </Portal>
