@@ -39,8 +39,8 @@
   --text-grey: #222;
   --text-highlight: #41c6c3;
 
-  --body-text-size: 14px;
-  --title-text-size: 16px;
+  --body-text-size: 12px;
+  --title-text-size: 14px;
 
   --header-height: 60px;
   --footer-height: 80px;
@@ -49,9 +49,6 @@
 
 @media (max-width: 720px) {
   :root {
-    --body-text-size: 12px;
-    --title-text-size: 14px;
-
     --viewport-padding: 16px;
   }
 }

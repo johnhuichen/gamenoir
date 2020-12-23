@@ -3,10 +3,10 @@ interface Translation {
 }
 
 const chineseTranslations: Translation = {
-  enterPage: "点我开始游戏",
+  enterPage: "开始游戏",
 };
 const englishTranslations: Translation = {
-  enterPage: "Click me to play",
+  enterPage: "Play",
 };
 
 const getTranslations = (locale: string): Translation => {
