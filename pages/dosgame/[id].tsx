@@ -134,6 +134,7 @@ const Dosgame: React.FC<DosgameProps> = ({
     <>
       <Head>
         <title>{name}</title>
+        <meta name="mobile-web-app-capable" content="yes" />
       </Head>
       <div className={styles.container}>
         <Canvas
