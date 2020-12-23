@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhoenixFramework } from "@fortawesome/free-brands-svg-icons";
+import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import cn from "classnames";
 
 import getTranslations from "translations/header";
@@ -28,7 +28,7 @@ const HeaderLarge: React.FC = () => {
       <div className={styles.leftContainer}>
         <Link href="/">
           <a href="/" className={styles.logo}>
-            <FontAwesomeIcon icon={faPhoenixFramework} />
+            <FontAwesomeIcon icon={faPowerOff} />
             {translations.brand}
           </a>
         </Link>

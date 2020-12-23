@@ -1,6 +1,8 @@
 import { useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 
 import getTranslations from "translations/gameCard";
 
@@ -25,11 +27,10 @@ const GameCard: React.FC<Props> = ({
   const translations = useMemo(() => getTranslations(locale as string), [
     locale,
   ]);
-  const src = `${imgFile.substring(0, imgFile.lastIndexOf("/"))}/140.jpg`;
   return (
     <div className={styles.container}>
       <div className={styles.gameCard}>
-        <img className={styles.img} src={src} alt={`${name}-avatar`} />
+        <img className={styles.img} src={imgFile} alt={`${name}-avatar`} />
         <div className={styles.textWrapper}>
           <Link href={`/${gameType}/${id}`}>
             <a href={`/${gameType}/${id}`} className={styles.title}>
@@ -37,12 +38,13 @@ const GameCard: React.FC<Props> = ({
             </a>
           </Link>
           <div className={styles.description}>{shortDescription}</div>
-          <Link href={`/${gameType}/${id}`}>
-            <a href={`/${gameType}/${id}`} className={styles.link}>
-              {translations.enterPage}
-            </a>
-          </Link>
         </div>
+        <Link href={`/${gameType}/${id}`}>
+          <a href={`/${gameType}/${id}`} className={styles.link}>
+            {translations.enterPage}
+            <FontAwesomeIcon icon={faPowerOff} />
+          </a>
+        </Link>
       </div>
     </div>
   );

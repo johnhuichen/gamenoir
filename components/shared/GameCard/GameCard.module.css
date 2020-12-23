@@ -1,7 +1,52 @@
-@media (min-width: 1261px) {
+@media (min-width: 1401px) {
+  .container {
+    width: 20%;
+    padding-bottom: 20px;
+    padding-right: 10px;
+  }
+
+  .img {
+    width: 100%;
+    height: 250px;
+    margin-bottom: 10px;
+
+    object-fit: contain;
+
+    background: var(--bg-primary);
+  }
+
+  .container:nth-child(5n) {
+    padding-left: 10px;
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 1301px) and (max-width: 1400px) {
+  .container {
+    width: 25%;
+    padding-bottom: 20px;
+    padding-right: 10px;
+  }
+
+  .img {
+    width: 100%;
+    height: 250px;
+    margin-bottom: 10px;
+
+    object-fit: contain;
+
+    background: var(--bg-primary);
+  }
+
+  .container:nth-child(4n) {
+    padding-left: 10px;
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 1101px) and (max-width: 1300px) {
   .container {
     width: 33%;
-    height: 200px;
     padding-bottom: 20px;
     padding-right: 10px;
   }
@@ -12,27 +57,19 @@
   }
 
   .img {
-    width: 140px;
-    height: 140px;
-    min-width: 140px;
+    width: 100%;
+    height: 250px;
+    margin-bottom: 10px;
 
     object-fit: contain;
 
     background: var(--bg-primary);
   }
-
-  .textWrapper {
-    display: flex;
-    flex-direction: column;
-    padding-left: 10px;
-    width: calc(100% - 140px);
-  }
 }
 
-@media (min-width: 870px) and (max-width: 1260px) {
+@media (min-width: 601px) and (max-width: 1100px) {
   .container {
     width: 50%;
-    height: 200px;
     padding-bottom: 20px;
     padding-right: 10px;
   }
@@ -43,89 +80,54 @@
   }
 
   .img {
-    width: 140px;
-    height: 140px;
-    min-width: 140px;
+    width: 100%;
+    height: 250px;
+    margin-bottom: 10px;
 
     object-fit: contain;
 
     background: var(--bg-primary);
   }
-
-  .textWrapper {
-    display: flex;
-    flex-direction: column;
-    padding-left: 10px;
-    width: calc(100% - 140px);
-  }
 }
 
-@media (min-width: 401px) and (max-width: 870px) {
+@media (max-width: 600px) {
   .container {
     width: 100%;
-    height: 200px;
     padding-bottom: 20px;
   }
 
   .img {
-    width: 140px;
-    height: 140px;
-    min-width: 140px;
-
-    object-fit: contain;
-
-    background: var(--bg-primary);
-  }
-
-  .textWrapper {
-    display: flex;
-    flex-direction: column;
-    padding-left: 10px;
-    width: calc(100% - 140px);
-  }
-}
-
-@media (max-width: 400px) {
-  .container {
     width: 100%;
-    height: 200px;
-    padding-bottom: 20px;
-  }
-  .img {
-    width: 100px;
-    height: 140px;
-    min-width: 100px;
+    height: 250px;
+    margin-bottom: 10px;
 
     object-fit: contain;
 
     background: var(--bg-primary);
-  }
-
-  .textWrapper {
-    display: flex;
-    flex-direction: column;
-    padding-left: 10px;
-    width: calc(100% - 100px);
   }
 }
 
 .gameCard {
   display: flex;
+  flex-direction: column;
   height: 100%;
   padding: 20px;
   background: var(--bg-lighter2);
   color: var(--text-on-lighter2);
 }
 
+.textWrapper {
+  flex-grow: 1;
+}
+
 .title {
+  display: flex;
   font-size: var(--title-text-size);
+  line-height: var(--title-line-height);
   color: var(--text-on-lighter2);
   font-weight: 900;
   width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-height: 20px;
+  margin-bottom: 10px;
 }
 
 .title:hover,
@@ -134,7 +136,6 @@
 }
 
 .description {
-  flex-grow: 1;
   font-size: var(--body-text-size);
   overflow: hidden;
   margin-bottom: 5px;
@@ -142,13 +143,12 @@
 
 .link {
   font-weight: 700;
-  background: var(--bg-teal);
-  color: var(--text-on-teal);
-  padding: 5px 10px;
-  align-self: flex-start;
+  padding-bottom: 3px;
+  font-size: 12px;
+  line-height: 12px;
+  color: var(--text-highlight);
 }
 
-.link:hover {
-  color: var(--text-on-lighter);
-  background: var(--bg-lighter);
+.link svg {
+  margin-left: 5px;
 }
