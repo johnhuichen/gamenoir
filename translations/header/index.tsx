@@ -3,7 +3,7 @@ interface Translation {
 }
 
 const chineseTranslations: Translation = {
-  brand: "黑游",
+  brand: "墨黑网页游戏",
 };
 const englishTranslations: Translation = {
   brand: "Game Noir",

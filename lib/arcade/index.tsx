@@ -7,6 +7,7 @@ import remarkHtml from "remark-html";
 export interface ArcadeProps {
   id: string;
   name: string;
+  shortDescription: string;
   gameFile: string;
   imgFile: string;
   descriptionHtml: string;
@@ -26,7 +27,7 @@ async function getArcadeProps(
   const filePath = path.join(mdDirectory, `${id}.md`);
   const fileContent = fs.readFileSync(filePath, "utf8");
   const { data, content } = matter(fileContent);
-  const { name, gameFile, imgFile } = data;
+  const { name, shortDescription, gameFile, imgFile } = data;
   const processedContent = await remark()
     .use(remarkHtml)
     .process(content);
@@ -35,6 +36,7 @@ async function getArcadeProps(
   return {
     id,
     name,
+    shortDescription,
     gameFile,
     imgFile,
     descriptionHtml,

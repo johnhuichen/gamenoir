@@ -50,7 +50,8 @@ const Home: React.FC<Props> = ({ games }: Props) => {
   return (
     <>
       <Head>
-        <title>黑游 Game Noir</title>
+        <title>墨黑网页游戏 Game Noir</title>
+        <meta name="description" content="网页重现经典Dos和街机老游戏" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.container}>

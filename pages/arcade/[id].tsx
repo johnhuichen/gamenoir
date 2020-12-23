@@ -88,6 +88,7 @@ const FAQContent: React.FC = () => {
 
 const Arcade: React.FC<ArcadeProps> = ({
   name,
+  shortDescription,
   gameFile,
   imgFile,
 }: ArcadeProps) => {
@@ -115,6 +116,8 @@ const Arcade: React.FC<ArcadeProps> = ({
     <>
       <Head>
         <title>{name}</title>
+        <meta name="description" content={shortDescription} />
+        <meta name="mobile-web-app-capable" content="yes" />
       </Head>
       <div className={styles.container}>
         <Canvas

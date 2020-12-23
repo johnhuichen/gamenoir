@@ -107,6 +107,7 @@ const FAQContent: React.FC = () => {
 
 const Dosgame: React.FC<DosgameProps> = ({
   name,
+  shortDescription,
   gameFile,
   imgFile,
 }: DosgameProps) => {
@@ -134,6 +135,7 @@ const Dosgame: React.FC<DosgameProps> = ({
     <>
       <Head>
         <title>{name}</title>
+        <meta name="description" content={shortDescription} />
         <meta name="mobile-web-app-capable" content="yes" />
       </Head>
       <div className={styles.container}>
