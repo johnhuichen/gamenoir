@@ -42,7 +42,6 @@ const Search: React.FC<Props> = ({
       }, 300),
     [handleChangeInput]
   );
-  console.log(input);
 
   return (
     <div className={styles.searchContainer}>

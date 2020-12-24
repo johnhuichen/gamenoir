@@ -1,6 +1,7 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import uniq from "lodash/uniq";
 
 import { getDosGames, getArcadeGames, HomePageGame } from "lib/home";
 import Emoji from "components/shared/Emoji";
@@ -10,6 +11,7 @@ import styles from "./index.module.css";
 
 interface Props {
   games: HomePageGame[];
+  genres: string[];
 }
 
 const Annoucement: React.FC = () => {
@@ -44,9 +46,7 @@ const Annoucement: React.FC = () => {
   );
 };
 
-const Home: React.FC<Props> = ({ games }: Props) => {
-  const { locale } = useRouter();
-
+const Home: React.FC<Props> = ({ games, genres }: Props) => {
   return (
     <>
       <Head>
@@ -56,7 +56,7 @@ const Home: React.FC<Props> = ({ games }: Props) => {
       </Head>
       <div className={styles.container}>
         <Annoucement />
-        <GameGallery games={games} locale={locale as string} />
+        <GameGallery games={games} genres={genres} />
       </div>
     </>
   );
@@ -67,8 +67,9 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     ...getDosGames(locale as string),
     ...getArcadeGames(locale as string),
   ].sort((a, b) => a.name.localeCompare(b.name, "zh-CN"));
+  const genres = uniq(games.map(game => game.genre));
 
-  return { props: { games } };
+  return { props: { games, genres } };
 };
 
 export default Home;

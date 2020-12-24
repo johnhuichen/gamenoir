@@ -3,7 +3,9 @@ import { useRouter } from "next/router";
 
 import GameCard from "components/shared/GameCard";
 import Search from "components/shared/Search";
+import Filters from "components/shared/Filters";
 import Pagination from "components/shared/Pagination";
+
 import getTranslations from "translations/gameGallery";
 import { HomePageGame } from "lib/home";
 
@@ -11,21 +13,23 @@ import styles from "./GameGallery.module.css";
 
 interface Props {
   games: HomePageGame[];
-  locale: string;
+  genres: string[];
 }
 
 const PAGE_SIZE = 10;
 
-const GameGallery: React.FC<Props> = ({ games, locale }: Props) => {
+const GameGallery: React.FC<Props> = ({ games, genres }: Props) => {
+  const { locale, route } = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredGames, setFilteredGames] = useState<HomePageGame[] | null>(
     null
   );
-  const { route } = useRouter();
   const maxPage = useMemo(() => Math.ceil(games.length / PAGE_SIZE), [
     games.length,
   ]);
-  const translations = useMemo(() => getTranslations(locale), [locale]);
+  const translations = useMemo(() => getTranslations(locale as string), [
+    locale,
+  ]);
   const handleChangeInput = useCallback(
     value => {
       if (!value.trim()) {
@@ -61,11 +65,16 @@ const GameGallery: React.FC<Props> = ({ games, locale }: Props) => {
 
   return (
     <>
-      <div className={styles.searchContainer}>
-        <Search
-          handleChangeInput={handleChangeInput}
-          handleClearSearch={handleClearSearch}
-        />
+      <div className={styles.topContainer}>
+        <div className={styles.searchContainer}>
+          <Search
+            handleChangeInput={handleChangeInput}
+            handleClearSearch={handleClearSearch}
+          />
+        </div>
+        <div className={styles.filterContainer}>
+          <Filters filters={genres} handleFilter={() => {}} />
+        </div>
       </div>
       <div className={styles.gameContianer}>
         {!!gamesToDisplay.length &&

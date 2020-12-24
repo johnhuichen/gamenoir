@@ -6,7 +6,7 @@
   font-size: var(--title-text-size);
   padding: 10px;
   background: var(--bg-lighter2);
-  border-right: 1px solid var(--text-grey);
+  margin-right: 2px;
 }
 
 .page:hover {

@@ -1,6 +1,17 @@
-.searchContainer {
+.topContainer {
+  display: flex;
+  justify-content: space-between;
   background: var(--bg-lighter);
   padding: var(--viewport-padding);
+}
+
+.searchContainer {
+  width: 320px;
+}
+
+.filterContainer {
+  display: flex;
+  align-items: center;
 }
 
 .gameContianer {
