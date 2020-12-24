@@ -1,8 +1,10 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
+import { useRouter } from "next/router";
+
 import GameCard from "components/shared/GameCard";
 import Search from "components/shared/Search";
+import Pagination from "components/shared/Pagination";
 import getTranslations from "translations/gameGallery";
-
 import { HomePageGame } from "lib/home";
 
 import styles from "./GameGallery.module.css";
@@ -12,10 +14,17 @@ interface Props {
   locale: string;
 }
 
+const PAGE_SIZE = 10;
+
 const GameGallery: React.FC<Props> = ({ games, locale }: Props) => {
+  const [currentPage, setCurrentPage] = useState(1);
   const [filteredGames, setFilteredGames] = useState<HomePageGame[] | null>(
     null
   );
+  const { route } = useRouter();
+  const maxPage = useMemo(() => Math.ceil(games.length / PAGE_SIZE), [
+    games.length,
+  ]);
   const translations = useMemo(() => getTranslations(locale), [locale]);
   const handleChangeInput = useCallback(
     value => {
@@ -39,8 +48,16 @@ const GameGallery: React.FC<Props> = ({ games, locale }: Props) => {
   }, []);
 
   const gamesToDisplay = useMemo(() => {
-    return filteredGames || games;
-  }, [filteredGames, games]);
+    const totalGamesToDisplay = filteredGames || games;
+    return totalGamesToDisplay.slice(
+      PAGE_SIZE * (currentPage - 1),
+      PAGE_SIZE * currentPage
+    );
+  }, [filteredGames, games, currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [route]);
 
   return (
     <>
@@ -65,6 +82,13 @@ const GameGallery: React.FC<Props> = ({ games, locale }: Props) => {
         {!gamesToDisplay.length && (
           <div className={styles.notfound}>{translations.notfound}</div>
         )}
+      </div>
+      <div className={styles.paginationContainer}>
+        <Pagination
+          currentPage={currentPage}
+          maxPage={maxPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
     </>
   );

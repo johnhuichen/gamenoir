@@ -7,10 +7,14 @@
   display: flex;
   flex-wrap: wrap;
   background: var(--bg-lighter);
-  padding: 50px var(--viewport-padding);
-  padding-top: 0;
+  padding: 0 var(--viewport-padding);
 }
 
 .notfound {
   color: var(--text-on-lighter);
+}
+
+.paginationContainer {
+  background: var(--bg-lighter);
+  padding: var(--viewport-padding);
 }
