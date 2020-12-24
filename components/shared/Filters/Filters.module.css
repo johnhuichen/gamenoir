@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+}
+
+.filterBtn {
+  padding: 10px;
+  background: var(--bg-lighter2);
+  margin-right: 2px;
+  border: 1px solid transparent;
+}
+
+.filterBtn:hover {
+  border: 1px solid var(--text-primary);
+}
+
+.filterBtn.active {
+  color: var(--text-on-teal);
+  background: var(--bg-teal);
+}
