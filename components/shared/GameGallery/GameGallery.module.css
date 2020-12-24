@@ -1,17 +1,21 @@
 .topContainer {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+
   background: var(--bg-lighter);
   padding: var(--viewport-padding);
 }
 
 .searchContainer {
   width: 320px;
+  margin-bottom: var(--viewport-padding);
 }
 
 .filterContainer {
   display: flex;
   align-items: center;
+  margin-bottom: var(--viewport-padding);
 }
 
 .gameContianer {

@@ -17,23 +17,49 @@ interface Props {
 }
 
 const PAGE_SIZE = 10;
+const INITIAL_FILTERS = [] as string[];
+const INITIAL_PAGES = { [JSON.stringify(INITIAL_FILTERS)]: 1 };
 
 const GameGallery: React.FC<Props> = ({ games, genres }: Props) => {
-  const { locale, route } = useRouter();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [filteredGames, setFilteredGames] = useState<HomePageGame[] | null>(
+  const { locale } = useRouter();
+  const [currentPages, setCurrentPages] = useState<{ [key: string]: number }>(
+    INITIAL_PAGES
+  );
+  const [activeFilters, setActiveFilters] = useState<string[]>(INITIAL_FILTERS);
+  const [searchedGames, setSearchedGames] = useState<HomePageGame[] | null>(
     null
   );
-  const maxPage = useMemo(() => Math.ceil(games.length / PAGE_SIZE), [
-    games.length,
-  ]);
+  const currentPage = useMemo(
+    () => currentPages[JSON.stringify(activeFilters)],
+    [currentPages, activeFilters]
+  );
   const translations = useMemo(() => getTranslations(locale as string), [
     locale,
   ]);
+  const filteredGames = useMemo(() => {
+    const gamePool = searchedGames || games;
+
+    if (activeFilters.length) {
+      return gamePool.filter(game => activeFilters.includes(game.genre));
+    }
+
+    return gamePool;
+  }, [searchedGames, games, activeFilters]);
+  const gamesToDisplay = useMemo(() => {
+    return filteredGames.slice(
+      PAGE_SIZE * (currentPage - 1),
+      PAGE_SIZE * currentPage
+    );
+  }, [filteredGames, currentPage]);
+
+  const maxPage = useMemo(() => Math.ceil(filteredGames.length / PAGE_SIZE), [
+    filteredGames.length,
+  ]);
+
   const handleChangeInput = useCallback(
     value => {
       if (!value.trim()) {
-        setFilteredGames(null);
+        setSearchedGames(null);
       }
 
       const keyword = value.trim().toLowerCase();
@@ -42,26 +68,46 @@ const GameGallery: React.FC<Props> = ({ games, genres }: Props) => {
           game.name.toLowerCase().includes(keyword) ||
           game.shortDescription.toLowerCase().includes(keyword)
       );
-      setFilteredGames(result);
+      setSearchedGames(result);
+      setCurrentPages({
+        ...currentPages,
+        [JSON.stringify(activeFilters)]: 1,
+      });
     },
     [games]
   );
 
   const handleClearSearch = useCallback(() => {
-    setFilteredGames(null);
+    setSearchedGames(null);
   }, []);
 
-  const gamesToDisplay = useMemo(() => {
-    const totalGamesToDisplay = filteredGames || games;
-    return totalGamesToDisplay.slice(
-      PAGE_SIZE * (currentPage - 1),
-      PAGE_SIZE * currentPage
-    );
-  }, [filteredGames, games, currentPage]);
+  const handleChangeCurrentPage = useCallback(
+    page => {
+      setCurrentPages({
+        ...currentPages,
+        [JSON.stringify(activeFilters)]: page,
+      });
+    },
+    [currentPages, activeFilters]
+  );
+
+  const handleChangeActiveFilters = useCallback(
+    filters => {
+      const key = JSON.stringify(filters);
+      if (!currentPages[key]) {
+        setCurrentPages({ ...currentPages, [key]: 1 });
+      }
+
+      setActiveFilters(filters);
+    },
+    [currentPages]
+  );
 
   useEffect(() => {
-    setCurrentPage(1);
-  }, [route]);
+    setActiveFilters(INITIAL_FILTERS);
+    setCurrentPages(INITIAL_PAGES);
+  }, [locale]);
+  console.log(activeFilters, currentPage);
 
   return (
     <>
@@ -73,7 +119,11 @@ const GameGallery: React.FC<Props> = ({ games, genres }: Props) => {
           />
         </div>
         <div className={styles.filterContainer}>
-          <Filters filters={genres} handleFilter={() => {}} />
+          <Filters
+            filters={genres}
+            activeFilters={activeFilters}
+            handleChangeActiveFilters={handleChangeActiveFilters}
+          />
         </div>
       </div>
       <div className={styles.gameContianer}>
@@ -96,7 +146,7 @@ const GameGallery: React.FC<Props> = ({ games, genres }: Props) => {
         <Pagination
           currentPage={currentPage}
           maxPage={maxPage}
-          setCurrentPage={setCurrentPage}
+          handleChangeCurrentPage={handleChangeCurrentPage}
         />
       </div>
     </>

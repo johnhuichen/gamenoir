@@ -1,10 +1,12 @@
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import cn from "classnames";
 
 import styles from "./Filters.module.css";
 
 interface Props {
   filters: string[];
+  activeFilters: string[];
+  handleChangeActiveFilters: (filters: string[]) => void;
 }
 
 interface FilterProps {
@@ -28,19 +30,21 @@ const Filter: React.FC<FilterProps> = ({
   );
 };
 
-const Filters: React.FC<Props> = ({ filters }: Props) => {
-  const [activeFilters, setActiveFilters] = useState<string[]>([]);
-
+const Filters: React.FC<Props> = ({
+  filters,
+  activeFilters,
+  handleChangeActiveFilters,
+}: Props) => {
   const handleFilter = useCallback(
     filter => {
       if (activeFilters.includes(filter)) {
         const newActiveFilters = activeFilters.filter(item => item !== filter);
-        setActiveFilters(newActiveFilters);
+        handleChangeActiveFilters(newActiveFilters);
       } else {
-        setActiveFilters([...activeFilters, filter]);
+        handleChangeActiveFilters([...activeFilters, filter]);
       }
     },
-    [activeFilters]
+    [activeFilters, handleChangeActiveFilters]
   );
 
   return (
