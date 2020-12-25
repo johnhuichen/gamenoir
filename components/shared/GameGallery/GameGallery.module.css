@@ -28,8 +28,3 @@
 .notfound {
   color: var(--text-on-lighter);
 }
-
-.paginationContainer {
-  background: var(--bg-lighter);
-  padding: var(--viewport-padding);
-}

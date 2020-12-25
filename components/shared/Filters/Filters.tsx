@@ -11,19 +11,19 @@ interface Props {
 
 interface FilterProps {
   filter: string;
-  handleFilter: (filter: string) => void;
+  handleClickFilter: (filter: string) => void;
   isActive: boolean;
 }
 
 const Filter: React.FC<FilterProps> = ({
   filter,
-  handleFilter,
+  handleClickFilter,
   isActive,
 }: FilterProps) => {
   return (
     <button
       className={cn(styles.filterBtn, { [styles.active]: isActive })}
-      onClick={() => handleFilter(filter)}
+      onClick={() => handleClickFilter(filter)}
     >
       {filter}
     </button>
@@ -33,27 +33,15 @@ const Filter: React.FC<FilterProps> = ({
 const Filters: React.FC<Props> = ({
   filters,
   activeFilters,
-  handleChangeActiveFilters,
+  handleClickFilter,
 }: Props) => {
-  const handleFilter = useCallback(
-    filter => {
-      if (activeFilters.includes(filter)) {
-        const newActiveFilters = activeFilters.filter(item => item !== filter);
-        handleChangeActiveFilters(newActiveFilters);
-      } else {
-        handleChangeActiveFilters([...activeFilters, filter]);
-      }
-    },
-    [activeFilters, handleChangeActiveFilters]
-  );
-
   return (
     <div className={styles.container}>
       {filters.map(filter => (
         <Filter
           key={`filter-${filter}`}
           filter={filter}
-          handleFilter={handleFilter}
+          handleClickFilter={handleClickFilter}
           isActive={activeFilters.includes(filter)}
         />
       ))}

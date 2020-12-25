@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import GameCard from "components/shared/GameCard";
 import Search from "components/shared/Search";
 import Filters from "components/shared/Filters";
-import Pagination from "components/shared/Pagination";
 
 import getTranslations from "translations/gameGallery";
 import { HomePageGame } from "lib/home";
@@ -16,22 +15,13 @@ interface Props {
   genres: string[];
 }
 
-const PAGE_SIZE = 10;
 const INITIAL_FILTERS = [] as string[];
-const INITIAL_PAGES = { [JSON.stringify(INITIAL_FILTERS)]: 1 };
 
 const GameGallery: React.FC<Props> = ({ games, genres }: Props) => {
   const { locale } = useRouter();
-  const [currentPages, setCurrentPages] = useState<{ [key: string]: number }>(
-    INITIAL_PAGES
-  );
   const [activeFilters, setActiveFilters] = useState<string[]>(INITIAL_FILTERS);
   const [searchedGames, setSearchedGames] = useState<HomePageGame[] | null>(
     null
-  );
-  const currentPage = useMemo(
-    () => currentPages[JSON.stringify(activeFilters)],
-    [currentPages, activeFilters]
   );
   const translations = useMemo(() => getTranslations(locale as string), [
     locale,
@@ -45,16 +35,6 @@ const GameGallery: React.FC<Props> = ({ games, genres }: Props) => {
 
     return gamePool;
   }, [searchedGames, games, activeFilters]);
-  const gamesToDisplay = useMemo(() => {
-    return filteredGames.slice(
-      PAGE_SIZE * (currentPage - 1),
-      PAGE_SIZE * currentPage
-    );
-  }, [filteredGames, currentPage]);
-
-  const maxPage = useMemo(() => Math.ceil(filteredGames.length / PAGE_SIZE), [
-    filteredGames.length,
-  ]);
 
   const handleChangeInput = useCallback(
     value => {
@@ -69,10 +49,6 @@ const GameGallery: React.FC<Props> = ({ games, genres }: Props) => {
           game.shortDescription.toLowerCase().includes(keyword)
       );
       setSearchedGames(result);
-      setCurrentPages({
-        ...currentPages,
-        [JSON.stringify(activeFilters)]: 1,
-      });
     },
     [games]
   );
@@ -81,33 +57,20 @@ const GameGallery: React.FC<Props> = ({ games, genres }: Props) => {
     setSearchedGames(null);
   }, []);
 
-  const handleChangeCurrentPage = useCallback(
-    page => {
-      setCurrentPages({
-        ...currentPages,
-        [JSON.stringify(activeFilters)]: page,
-      });
-    },
-    [currentPages, activeFilters]
-  );
-
-  const handleChangeActiveFilters = useCallback(
-    filters => {
-      const key = JSON.stringify(filters);
-      if (!currentPages[key]) {
-        setCurrentPages({ ...currentPages, [key]: 1 });
+  const handleClickFilter = useCallback(
+    filter => {
+      if (activeFilters.includes(filter)) {
+        setActiveFilters([]);
+      } else {
+        setActiveFilters([filter]);
       }
-
-      setActiveFilters(filters);
     },
-    [currentPages]
+    [activeFilters]
   );
 
   useEffect(() => {
     setActiveFilters(INITIAL_FILTERS);
-    setCurrentPages(INITIAL_PAGES);
   }, [locale]);
-  console.log(activeFilters, currentPage);
 
   return (
     <>
@@ -122,13 +85,13 @@ const GameGallery: React.FC<Props> = ({ games, genres }: Props) => {
           <Filters
             filters={genres}
             activeFilters={activeFilters}
-            handleChangeActiveFilters={handleChangeActiveFilters}
+            handleClickFilter={handleClickFilter}
           />
         </div>
       </div>
       <div className={styles.gameContianer}>
-        {!!gamesToDisplay.length &&
-          gamesToDisplay.map(game => (
+        {!!filteredGames.length &&
+          filteredGames.map(game => (
             <GameCard
               key={`game-${game.id}`}
               id={game.id}
@@ -138,16 +101,9 @@ const GameGallery: React.FC<Props> = ({ games, genres }: Props) => {
               gameType={game.gameType}
             />
           ))}
-        {!gamesToDisplay.length && (
+        {!filteredGames.length && (
           <div className={styles.notfound}>{translations.notfound}</div>
         )}
-      </div>
-      <div className={styles.paginationContainer}>
-        <Pagination
-          currentPage={currentPage}
-          maxPage={maxPage}
-          handleChangeCurrentPage={handleChangeCurrentPage}
-        />
       </div>
     </>
   );
