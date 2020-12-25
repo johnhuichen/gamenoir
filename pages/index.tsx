@@ -35,9 +35,12 @@ const Annoucement: React.FC = () => {
   return (
     <div className={styles.announcement}>
       圣诞快乐! <Emoji symbol="🎉" label="Party Pooper" />{" "}
-      <Emoji symbol="🎉" label="Party Pooper" /> <br />
+      <Emoji symbol="🎉" label="Party Pooper" />
       <br />
-      我们提供各种Dos和街机老游戏的在线试玩,每款游戏都经过我们测试可以运行。友情提示：在电脑上玩游戏的效果要比手机上更好哦
+      <br />
+      Dos和街机老游戏的在线试玩,每款游戏都经过我们测试，确保运行良好。
+      <br />
+      友情提示：在电脑上玩游戏的效果要比手机上更好。
       <br />
       <br />
       如果你在游戏过程中遇到什么疑难困惑，或者你有一款非常想玩的老游戏，你可以直接给我们发邮件(
