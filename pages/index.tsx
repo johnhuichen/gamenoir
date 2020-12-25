@@ -38,7 +38,7 @@ const Annoucement: React.FC = () => {
       <Emoji symbol="🎉" label="Party Pooper" />
       <br />
       <br />
-      Dos和街机老游戏的在线试玩,每款游戏都经过我们测试，确保运行良好。
+      Dos和街机老游戏在线试玩,每款游戏都经过我们测试，确保运行良好。
       <br />
       友情提示：在电脑上玩游戏的效果要比手机上更好。
       <br />
