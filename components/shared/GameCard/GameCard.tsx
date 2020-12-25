@@ -28,7 +28,7 @@ const GameCard: React.FC<Props> = ({
     locale,
   ]);
   const src = useMemo(
-    () => `${imgFile.substring(0, imgFile.lastIndexOf("/"))}/250.jpg`,
+    () => `${imgFile.substring(0, imgFile.lastIndexOf("/"))}/250.webp`,
     [imgFile]
   );
   return (
