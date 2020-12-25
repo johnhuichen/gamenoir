@@ -38,10 +38,6 @@ class MyDocument extends Document {
           )}
           {/* End Google Tag Manager */}
           <link
-            href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-            rel="stylesheet"
-          />
-          <link
             href="https://fonts.googleapis.com/css?family=Crimson+Text"
             rel="stylesheet"
           />

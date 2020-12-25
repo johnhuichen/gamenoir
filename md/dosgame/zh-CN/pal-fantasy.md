@@ -1,7 +1,7 @@
 ---
 name: "仙剑奇侠传梦幻版"
 gameFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E6%A2%A6%E5%B9%BB%E7%89%88/pal-fantasy.zip"
-imgFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E6%A2%A6%E5%B9%BB%E7%89%88/original.jpg"
+imgFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E6%A2%A6%E5%B9%BB%E7%89%88/original.webp"
 shortDescription: "强烈推荐！外塞之雾的梦幻版，提升战斗难度和游戏时长"
 genre: "RPG"
 topic: "仙剑奇侠传"
