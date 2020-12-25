@@ -1,26 +1,45 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
+import { useRouter } from "next/router";
+
 import GameCard from "components/shared/GameCard";
 import Search from "components/shared/Search";
-import getTranslations from "translations/gameGallery";
+import Filters from "components/shared/Filters";
 
+import getTranslations from "translations/gameGallery";
 import { HomePageGame } from "lib/home";
 
 import styles from "./GameGallery.module.css";
 
 interface Props {
   games: HomePageGame[];
-  locale: string;
+  genres: string[];
 }
 
-const GameGallery: React.FC<Props> = ({ games, locale }: Props) => {
-  const [filteredGames, setFilteredGames] = useState<HomePageGame[] | null>(
+const INITIAL_FILTERS = [] as string[];
+
+const GameGallery: React.FC<Props> = ({ games, genres }: Props) => {
+  const { locale } = useRouter();
+  const [activeFilters, setActiveFilters] = useState<string[]>(INITIAL_FILTERS);
+  const [searchedGames, setSearchedGames] = useState<HomePageGame[] | null>(
     null
   );
-  const translations = useMemo(() => getTranslations(locale), [locale]);
+  const translations = useMemo(() => getTranslations(locale as string), [
+    locale,
+  ]);
+  const filteredGames = useMemo(() => {
+    const gamePool = searchedGames || games;
+
+    if (activeFilters.length) {
+      return gamePool.filter(game => activeFilters.includes(game.genre));
+    }
+
+    return gamePool;
+  }, [searchedGames, games, activeFilters]);
+
   const handleChangeInput = useCallback(
     value => {
       if (!value.trim()) {
-        setFilteredGames(null);
+        setSearchedGames(null);
       }
 
       const keyword = value.trim().toLowerCase();
@@ -29,30 +48,50 @@ const GameGallery: React.FC<Props> = ({ games, locale }: Props) => {
           game.name.toLowerCase().includes(keyword) ||
           game.shortDescription.toLowerCase().includes(keyword)
       );
-      setFilteredGames(result);
+      setSearchedGames(result);
     },
     [games]
   );
 
   const handleClearSearch = useCallback(() => {
-    setFilteredGames(null);
+    setSearchedGames(null);
   }, []);
 
-  const gamesToDisplay = useMemo(() => {
-    return filteredGames || games;
-  }, [filteredGames, games]);
+  const handleClickFilter = useCallback(
+    filter => {
+      if (activeFilters.includes(filter)) {
+        setActiveFilters([]);
+      } else {
+        setActiveFilters([filter]);
+      }
+    },
+    [activeFilters]
+  );
+
+  useEffect(() => {
+    setActiveFilters(INITIAL_FILTERS);
+  }, [locale]);
 
   return (
     <>
-      <div className={styles.searchContainer}>
-        <Search
-          handleChangeInput={handleChangeInput}
-          handleClearSearch={handleClearSearch}
-        />
+      <div className={styles.topContainer}>
+        <div className={styles.searchContainer}>
+          <Search
+            handleChangeInput={handleChangeInput}
+            handleClearSearch={handleClearSearch}
+          />
+        </div>
+        <div className={styles.filterContainer}>
+          <Filters
+            filters={genres}
+            activeFilters={activeFilters}
+            handleClickFilter={handleClickFilter}
+          />
+        </div>
       </div>
       <div className={styles.gameContianer}>
-        {!!gamesToDisplay.length &&
-          gamesToDisplay.map(game => (
+        {!!filteredGames.length &&
+          filteredGames.map(game => (
             <GameCard
               key={`game-${game.id}`}
               id={game.id}
@@ -62,7 +101,7 @@ const GameGallery: React.FC<Props> = ({ games, locale }: Props) => {
               gameType={game.gameType}
             />
           ))}
-        {!gamesToDisplay.length && (
+        {!filteredGames.length && (
           <div className={styles.notfound}>{translations.notfound}</div>
         )}
       </div>
