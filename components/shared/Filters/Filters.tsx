@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import cn from "classnames";
 
 import styles from "./Filters.module.css";
@@ -6,7 +5,7 @@ import styles from "./Filters.module.css";
 interface Props {
   filters: string[];
   activeFilters: string[];
-  handleChangeActiveFilters: (filters: string[]) => void;
+  handleClickFilter: (filters: string) => void;
 }
 
 interface FilterProps {
