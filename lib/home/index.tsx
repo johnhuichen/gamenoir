@@ -8,6 +8,7 @@ export interface HomePageGame {
   name: string;
   imgFile: string;
   shortDescription: string;
+  genre: string;
 }
 
 function getGameDataForDir(dir: string, gameType: string): HomePageGame[] {
@@ -16,13 +17,14 @@ function getGameDataForDir(dir: string, gameType: string): HomePageGame[] {
     const filePath = path.join(dir, fileName);
     const fileContent = fs.readFileSync(filePath, "utf8");
     const { data } = matter(fileContent);
-    const { name, imgFile, shortDescription } = data;
+    const { name, imgFile, shortDescription, genre } = data;
     return {
       id: fileName.replace(/\.md$/, ""),
+      gameType,
       name,
       imgFile,
       shortDescription,
-      gameType,
+      genre,
     };
   });
   return gameData;
