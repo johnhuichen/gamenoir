@@ -7,6 +7,7 @@ import uniq from "lodash/uniq";
 import { getDosGames, getArcadeGames, HomePageGame } from "lib/home";
 import Emoji from "components/shared/Emoji";
 import GameGallery from "components/shared/GameGallery";
+import Pagination from "components/shared/Pagination";
 import getTranslations from "translations/home";
 
 import styles from "./index.module.css";
@@ -14,6 +15,7 @@ import styles from "./index.module.css";
 interface Props {
   games: HomePageGame[];
   genres: string[];
+  maxPage: number;
 }
 
 const Annoucement: React.FC = () => {
@@ -43,7 +45,8 @@ const Annoucement: React.FC = () => {
       <br />
       <br />
       这里每款游戏都经过我们测试。友情提示：在电脑上玩游戏的效果要比手机上更好。
-      最新添加： 大航海时代2，鬼马小英雄，英雄传说1-3
+      最新添加：
+      大航海时代2，鬼马小英雄，英雄传说1/2/3，天使帝国1/2，乌龙院，特勤机甲队1/2，波斯王子1/2，富甲天下1/2
       <br />
       <br />
       如果你在游戏过程中遇到什么疑难困惑，或者你有一款非常想玩的老游戏，你可以直接给我们发邮件(
@@ -52,7 +55,12 @@ const Annoucement: React.FC = () => {
   );
 };
 
-const Home: React.FC<Props> = ({ games, genres }: Props) => {
+const PAGE_SIZE = 10;
+const getPageHref = (page: number) => {
+  return `/home/${page}`;
+};
+
+const Home: React.FC<Props> = ({ games, genres, maxPage }: Props) => {
   const { locale } = useRouter();
   const translations = useMemo(() => getTranslations(locale as string), [
     locale,
@@ -65,22 +73,29 @@ const Home: React.FC<Props> = ({ games, genres }: Props) => {
         <meta name="description" content={translations.metaDescription} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Annoucement />
       <div className={styles.container}>
-        <Annoucement />
         <GameGallery games={games} genres={genres} />
+        <Pagination
+          activePage={1}
+          maxPage={maxPage}
+          getPageHref={getPageHref}
+        />
       </div>
     </>
   );
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const games = [
+  const allGames = [
     ...getDosGames(locale as string),
     ...getArcadeGames(locale as string),
   ].sort((a, b) => a.name.localeCompare(b.name, "zh-CN"));
-  const genres = uniq(games.map(game => game.genre));
+  const games = allGames.slice(0, 10);
+  const genres = uniq(allGames.map(game => game.genre));
+  const maxPage = Math.ceil(allGames.length / PAGE_SIZE);
 
-  return { props: { games, genres } };
+  return { props: { games, genres, maxPage } };
 };
 
 export default Home;

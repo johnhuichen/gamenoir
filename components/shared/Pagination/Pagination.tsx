@@ -1,72 +1,58 @@
-import { useCallback } from "react";
+import { useMemo } from "react";
+import Link from "next/link";
 import cn from "classnames";
 
 import styles from "./Pagination.module.css";
 
 interface Props {
-  currentPage: number;
+  activePage: number;
   maxPage: number;
-  handleChangeCurrentPage: (page: number) => void;
+  getPageHref: (page: number) => string;
 }
 
 interface PageProps {
   page: number;
-  currentPage: number;
-  handleChangeCurrentPage: (page: number) => void;
+  activePage: number;
+  getPageHref: (page: number) => string;
 }
 
 const Page: React.FC<PageProps> = ({
   page,
-  currentPage,
-  handleChangeCurrentPage,
+  activePage,
+  getPageHref,
 }: PageProps) => {
-  const handleClick = useCallback(() => {
-    handleChangeCurrentPage(page);
-  }, [page, handleChangeCurrentPage]);
+  const href = useMemo(() => getPageHref(page), [page, getPageHref]);
+
+  if (page === activePage) {
+    return <div className={cn(styles.page, styles.active)}>{page}</div>;
+  }
+
   return (
-    <button
-      className={cn(styles.page, { [styles.active]: page === currentPage })}
-      onClick={handleClick}
-      disabled={page === currentPage}
-    >
-      {page}
-    </button>
+    <Link href={href}>
+      <a href={href} className={styles.page}>
+        {page}
+      </a>
+    </Link>
   );
 };
 
 const Pagination: React.FC<Props> = ({
-  currentPage,
+  activePage,
   maxPage,
-  handleChangeCurrentPage,
+  getPageHref,
 }: Props) => {
   const range = [
-    currentPage - 2,
-    currentPage - 1,
-    currentPage,
-    currentPage + 1,
-    currentPage + 2,
+    activePage - 2,
+    activePage - 1,
+    activePage,
+    activePage + 1,
+    activePage + 2,
   ].filter(item => item > 1 && item < maxPage);
-  const handlePrev = useCallback(() => {
-    handleChangeCurrentPage(currentPage - 1);
-  }, [currentPage, handleChangeCurrentPage]);
-  const handleNext = useCallback(() => {
-    handleChangeCurrentPage(currentPage + 1);
-  }, [currentPage, handleChangeCurrentPage]);
 
   return (
     <div className={styles.container}>
-      <button
-        className={styles.page}
-        onClick={handlePrev}
-        disabled={currentPage === 1}
-      >
-        &lt;
-      </button>
-      <Page
-        page={1}
-        currentPage={currentPage}
-        handleChangeCurrentPage={handleChangeCurrentPage}
-      />
+      <div className={styles.page}>&lt;</div>
+      <Page page={1} activePage={activePage} getPageHref={getPageHref} />
       {!range.includes(2) && range.length ? (
         <div className={styles.ellipsis}>...</div>
       ) : null}
@@ -74,8 +60,8 @@ const Pagination: React.FC<Props> = ({
         <Page
           key={`page-${page}`}
           page={page}
-          currentPage={currentPage}
-          handleChangeCurrentPage={handleChangeCurrentPage}
+          activePage={activePage}
+          getPageHref={getPageHref}
         />
       ))}
       {!range.includes(maxPage - 1) && range.length ? (
@@ -84,17 +70,11 @@ const Pagination: React.FC<Props> = ({
       {maxPage > 1 && (
         <Page
           page={maxPage}
-          currentPage={currentPage}
-          handleChangeCurrentPage={handleChangeCurrentPage}
+          activePage={activePage}
+          getPageHref={getPageHref}
         />
       )}
-      <button
-        className={styles.page}
-        onClick={handleNext}
-        disabled={currentPage === maxPage}
-      >
-        &gt;
-      </button>
+      <div className={styles.page}>&gt;</div>
     </div>
   );
 };
