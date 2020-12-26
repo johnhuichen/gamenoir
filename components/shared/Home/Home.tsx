@@ -19,7 +19,6 @@ export interface HomeProps {
 }
 
 const PAGE_SIZE = 10;
-const getFilterHref = (filter: string) => `/genre/${filter}/1`;
 
 const Home: React.FC<HomeProps> = ({
   games,
@@ -35,6 +34,15 @@ const Home: React.FC<HomeProps> = ({
         return `/genre/${activeFilter}/${page}`;
       }
       return `/home/${page}`;
+    },
+    [activeFilter]
+  );
+  const getFilterHref = useCallback(
+    (filter: string) => {
+      if (filter === activeFilter) {
+        return `/`;
+      }
+      return `/genre/${filter}/1`;
     },
     [activeFilter]
   );

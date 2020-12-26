@@ -78,7 +78,9 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     .sort((a, b) => a.name.localeCompare(b.name, "zh-CN"))
     .slice((activePage - 1) * 10, activePage * 10);
   const translations = getTranslations(locale as string);
-  const genres = uniq(allGames.map(game => game.genre));
+  const genres = uniq(allGames.map(game => game.genre)).sort((a, b) =>
+    a > b ? -1 : 1
+  );
 
   return {
     props: { games, activePage, maxPage, activeGenre, genres, translations },

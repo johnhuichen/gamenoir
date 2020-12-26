@@ -36,9 +36,11 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     ...getArcadeGames(locale as string),
   ].sort((a, b) => a.name.localeCompare(b.name, "zh-CN"));
   const games = allGames.slice(0, 10);
-  const genres = uniq(allGames.map(game => game.genre));
   const maxPage = Math.ceil(allGames.length / PAGE_SIZE);
   const translations = getTranslations(locale as string);
+  const genres = uniq(allGames.map(game => game.genre)).sort((a, b) =>
+    a > b ? -1 : 1
+  );
 
   return { props: { games, maxPage, genres, translations } };
 };

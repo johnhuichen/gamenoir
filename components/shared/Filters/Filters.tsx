@@ -23,13 +23,12 @@ const Filter: React.FC<FilterProps> = ({
 }: FilterProps) => {
   const href = useMemo(() => getFilterHref(filter), [filter, getFilterHref]);
 
-  if (isActive) {
-    return <div className={cn(styles.filterBtn, styles.active)}>{filter}</div>;
-  }
-
   return (
     <Link href={href}>
-      <a href={href} className={styles.filterBtn}>
+      <a
+        href={href}
+        className={cn(styles.filterBtn, { [styles.active]: isActive })}
+      >
         {filter}
       </a>
     </Link>
