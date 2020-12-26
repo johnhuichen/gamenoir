@@ -1,47 +1,59 @@
+import { useMemo } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import cn from "classnames";
+
+import getTranslations from "translations/genre";
 
 import styles from "./Filters.module.css";
 
 interface Props {
   filters: string[];
-  activeFilters: string[];
-  handleClickFilter: (filters: string) => void;
+  activeFilter: string | null;
+  getFilterHref: (filters: string) => string;
 }
 
 interface FilterProps {
-  filter: string;
-  handleClickFilter: (filter: string) => void;
+  label: string;
   isActive: boolean;
+  href: string;
 }
 
 const Filter: React.FC<FilterProps> = ({
-  filter,
-  handleClickFilter,
+  label,
+  href,
   isActive,
 }: FilterProps) => {
   return (
-    <button
-      className={cn(styles.filterBtn, { [styles.active]: isActive })}
-      onClick={() => handleClickFilter(filter)}
-    >
-      {filter}
-    </button>
+    <Link href={href}>
+      <a
+        href={href}
+        className={cn(styles.filterBtn, { [styles.active]: isActive })}
+      >
+        {label}
+      </a>
+    </Link>
   );
 };
 
 const Filters: React.FC<Props> = ({
   filters,
-  activeFilters,
-  handleClickFilter,
+  activeFilter,
+  getFilterHref,
 }: Props) => {
+  const { locale } = useRouter();
+  const translations = useMemo(() => getTranslations(locale as string), [
+    locale,
+  ]);
+
   return (
     <div className={styles.container}>
       {filters.map(filter => (
         <Filter
           key={`filter-${filter}`}
-          filter={filter}
-          handleClickFilter={handleClickFilter}
-          isActive={activeFilters.includes(filter)}
+          label={translations[filter]}
+          href={getFilterHref(filter)}
+          isActive={filter === activeFilter}
         />
       ))}
     </div>

@@ -59,7 +59,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Microsoft Yahei", "Crimson+Text", sans-serif;
+  font-family: "Crimson+Text", sans-serif;
   color: var(--text-primary);
   line-height: var(--body-line-height);
   font-size: var(--body-text-size);
