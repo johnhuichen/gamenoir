@@ -20,9 +20,10 @@ const HomeFirstPage: React.FC<Props> = ({
 }: Props) => {
   return (
     <Home
+      games={games}
       activePage={1}
       maxPage={maxPage}
-      games={games}
+      activeFilter={null}
       translations={translations}
       genres={genres}
     />

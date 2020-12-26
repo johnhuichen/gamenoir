@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useCallback } from "react";
 import Head from "next/head";
 
 import { HomePageGame } from "lib/home";
@@ -10,24 +10,35 @@ import Announcement from "./Announcement";
 import styles from "./Home.module.css";
 
 export interface HomeProps {
+  games: HomePageGame[];
   activePage: number;
   maxPage: number;
-  games: HomePageGame[];
+  activeFilter: string | null;
   genres: string[];
   translations: { [key: string]: string };
 }
 
 const PAGE_SIZE = 10;
-const getPageHref = (page: number) => `/home/${page}`;
 const getFilterHref = (filter: string) => `/genre/${filter}/1`;
 
 const Home: React.FC<HomeProps> = ({
+  games,
   activePage,
   maxPage,
-  games,
+  activeFilter,
   genres,
   translations,
 }: HomeProps) => {
+  const getPageHref = useCallback(
+    (page: number) => {
+      if (activeFilter) {
+        return `/genre/${activeFilter}/${page}`;
+      }
+      return `/home/${page}`;
+    },
+    [activeFilter]
+  );
+
   return (
     <>
       <Head>
@@ -38,7 +49,7 @@ const Home: React.FC<HomeProps> = ({
       <Announcement />
       <div className={styles.container}>
         <Filters
-          activeFilter={null}
+          activeFilter={activeFilter}
           filters={genres}
           getFilterHref={getFilterHref}
         />

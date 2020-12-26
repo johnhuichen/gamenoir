@@ -7,25 +7,26 @@ import Home, { PAGE_SIZE } from "components/shared/Home";
 import getTranslations from "translations/home";
 
 interface Props {
-  page: number;
-  maxPage: number;
   games: HomePageGame[];
+  activePage: number;
+  maxPage: number;
   genres: string[];
   translations: { [key: string]: string };
 }
 
 const PaginatedHome: React.FC<Props> = ({
-  page,
-  maxPage,
   games,
+  activePage,
+  maxPage,
   genres,
   translations,
 }: Props) => {
   return (
     <Home
-      activePage={page}
-      maxPage={maxPage}
       games={games}
+      activePage={activePage}
+      maxPage={maxPage}
+      activeFilter={null}
       genres={genres}
       translations={translations}
     />
@@ -52,7 +53,7 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const page = parseInt(params.page);
+  const activePage = parseInt(params.page);
   const allGames = [
     ...getDosGames(locale as string),
     ...getArcadeGames(locale as string),
@@ -60,11 +61,11 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const maxPage = Math.ceil(allGames.length / PAGE_SIZE);
   const games = allGames
     .sort((a, b) => a.name.localeCompare(b.name, "zh-CN"))
-    .slice((page - 1) * 10, page * 10);
+    .slice((activePage - 1) * 10, activePage * 10);
   const translations = getTranslations(locale as string);
   const genres = uniq(allGames.map(game => game.genre));
 
-  return { props: { games, maxPage, page, genres, translations } };
+  return { props: { games, maxPage, activePage, genres, translations } };
 };
 
 export default PaginatedHome;
