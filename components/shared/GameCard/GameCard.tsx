@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import getTranslations from "translations/gameCard";
 
@@ -35,7 +36,11 @@ const GameCard: React.FC<Props> = ({
     <div className={styles.container}>
       <div className={styles.gameCard}>
         <Link href={`/${gameType}/${id}`}>
-          <img className={styles.img} src={src} alt={`${name}-avatar`} />
+          <LazyLoadImage
+            className={styles.img}
+            src={src}
+            alt={`${name}-game-poster`}
+          />
         </Link>
         <div className={styles.textWrapper}>
           <Link href={`/${gameType}/${id}`}>
