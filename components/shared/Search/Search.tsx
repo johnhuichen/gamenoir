@@ -2,7 +2,6 @@ import { createRef, useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
-import cn from "classnames";
 import debounce from "lodash/debounce";
 
 import getTranslations from "translations/search";
@@ -21,6 +20,7 @@ const Search: React.FC = () => {
   const clearSearch = useCallback(() => {
     if (inputRef.current) {
       inputRef.current.value = "";
+      setInput("");
     }
   }, [inputRef]);
 
@@ -37,20 +37,20 @@ const Search: React.FC = () => {
     e => {
       e.preventDefault();
       const value = inputRef.current?.value?.trim();
-      if (value !== "") {
-        push(`/search/${value}`);
+      if (value) {
+        push(`/search?keywords=${value}`);
       }
     },
-    [inputRef]
+    [inputRef, push]
   );
 
   return (
-    <div className={styles.searchContainer}>
+    <div className={styles.container}>
       <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} />
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className={styles.form}>
         <input
           ref={inputRef}
-          className={styles.searchInput}
+          className={styles.input}
           placeholder={translations.searchPlaceholder}
           onChange={onChange}
         />

@@ -1,4 +1,4 @@
-.searchContainer {
+.container {
   position: relative;
 
   display: flex;
@@ -12,7 +12,7 @@
   border-bottom: 1px solid var(--text-on-lighter);
 }
 
-.searchContainer svg {
+.container svg {
   color: var(--text-on-lighter);
   font-size: var(--body-text-size);
 }
@@ -21,7 +21,11 @@
   margin-right: 10px;
 }
 
-.searchInput {
+.form {
+  flex-grow: 1;
+}
+
+.input {
   color: var(--text-on-lighter);
   font-size: var(--body-text-size);
   border: none;
@@ -30,7 +34,7 @@
   width: 100%;
 }
 
-.searchInput:focus {
+.input:focus {
   outline: none;
 }
 
