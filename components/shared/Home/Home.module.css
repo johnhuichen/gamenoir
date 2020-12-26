@@ -15,3 +15,7 @@
   display: inline;
   color: var(--text-highlight);
 }
+
+.spacer {
+  height: var(--viewport-padding);
+}

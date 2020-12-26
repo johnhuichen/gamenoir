@@ -10,7 +10,6 @@ import styles from "./GameGallery.module.css";
 
 interface Props {
   games: HomePageGame[];
-  genres: string[];
 }
 
 const GameGallery: React.FC<Props> = ({ games }: Props) => {
