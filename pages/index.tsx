@@ -1,17 +1,32 @@
 import { GetStaticProps } from "next";
-// import uniq from "lodash/uniq";
+import uniq from "lodash/uniq";
 
 import { getDosGames, getArcadeGames, HomePageGame } from "lib/home";
 import Home, { PAGE_SIZE } from "components/shared/Home";
+import getTranslations from "translations/home";
 
 interface Props {
   games: HomePageGame[];
   maxPage: number;
   genres: string[];
+  translations: { [key: string]: string };
 }
 
-const HomeFirstPage: React.FC<Props> = ({ games, maxPage }: Props) => {
-  return <Home activePage={1} maxPage={maxPage} games={games} />;
+const HomeFirstPage: React.FC<Props> = ({
+  games,
+  maxPage,
+  translations,
+  genres,
+}: Props) => {
+  return (
+    <Home
+      activePage={1}
+      maxPage={maxPage}
+      games={games}
+      translations={translations}
+      genres={genres}
+    />
+  );
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
@@ -20,10 +35,11 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     ...getArcadeGames(locale as string),
   ].sort((a, b) => a.name.localeCompare(b.name, "zh-CN"));
   const games = allGames.slice(0, 10);
-  // const genres = uniq(allGames.map(game => game.genre));
+  const genres = uniq(allGames.map(game => game.genre));
   const maxPage = Math.ceil(allGames.length / PAGE_SIZE);
+  const translations = getTranslations(locale as string);
 
-  return { props: { games, maxPage } };
+  return { props: { games, maxPage, genres, translations } };
 };
 
 export default HomeFirstPage;

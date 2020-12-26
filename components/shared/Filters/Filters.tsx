@@ -1,38 +1,45 @@
+import { useMemo } from "react";
+import Link from "next/link";
 import cn from "classnames";
 
 import styles from "./Filters.module.css";
 
 interface Props {
   filters: string[];
-  activeFilters: string[];
-  handleClickFilter: (filters: string) => void;
+  activeFilter: string | null;
+  getFilterHref: (filters: string) => string;
 }
 
 interface FilterProps {
   filter: string;
-  handleClickFilter: (filter: string) => void;
+  getFilterHref: (filter: string) => string;
   isActive: boolean;
 }
 
 const Filter: React.FC<FilterProps> = ({
   filter,
-  handleClickFilter,
+  getFilterHref,
   isActive,
 }: FilterProps) => {
+  const href = useMemo(() => getFilterHref(filter), [filter, getFilterHref]);
+
+  if (isActive) {
+    return <div className={cn(styles.filterBtn, styles.active)}>{filter}</div>;
+  }
+
   return (
-    <button
-      className={cn(styles.filterBtn, { [styles.active]: isActive })}
-      onClick={() => handleClickFilter(filter)}
-    >
-      {filter}
-    </button>
+    <Link href={href}>
+      <a href={href} className={styles.filterBtn}>
+        {filter}
+      </a>
+    </Link>
   );
 };
 
 const Filters: React.FC<Props> = ({
   filters,
-  activeFilters,
-  handleClickFilter,
+  activeFilter,
+  getFilterHref,
 }: Props) => {
   return (
     <div className={styles.container}>
@@ -40,8 +47,8 @@ const Filters: React.FC<Props> = ({
         <Filter
           key={`filter-${filter}`}
           filter={filter}
-          handleClickFilter={handleClickFilter}
-          isActive={activeFilters.includes(filter)}
+          isActive={filter === activeFilter}
+          getFilterHref={getFilterHref}
         />
       ))}
     </div>
