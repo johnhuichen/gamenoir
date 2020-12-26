@@ -1,8 +1,7 @@
 import { GetStaticProps, GetStaticPaths } from "next";
 import range from "lodash/range";
-import uniq from "lodash/uniq";
 
-import { getDosGames, getArcadeGames, HomePageGame } from "lib/home";
+import { gamesByLocale, genresByLocale, HomePageGame } from "lib/home";
 import Home, { PAGE_SIZE } from "components/shared/Home";
 import getTranslations from "translations/home";
 
@@ -38,11 +37,8 @@ const GenrePage: React.FC<Props> = ({
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const paths = (locales || [])
     .map(locale => {
-      const allGames = [
-        ...getDosGames(locale as string),
-        ...getArcadeGames(locale as string),
-      ];
-      const genres = uniq(allGames.map(game => game.genre));
+      const allGames = gamesByLocale[locale as string] || [];
+      const genres = genresByLocale[locale as string] || [];
 
       return genres.map(genre => ({
         locale,
@@ -67,20 +63,13 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const { page: pageString, genre: activeGenre } = params;
   const activePage = parseInt(pageString);
+  const allGames = gamesByLocale[locale as string] || [];
+  const genres = genresByLocale[locale as string] || [];
 
-  const allGames = [
-    ...getDosGames(locale as string),
-    ...getArcadeGames(locale as string),
-  ];
   const allGamesInGenre = allGames.filter(game => game.genre === activeGenre);
   const maxPage = Math.ceil(allGamesInGenre.length / PAGE_SIZE);
-  const games = allGamesInGenre
-    .sort((a, b) => a.name.localeCompare(b.name, "zh-CN"))
-    .slice((activePage - 1) * 10, activePage * 10);
+  const games = allGamesInGenre.slice((activePage - 1) * 10, activePage * 10);
   const translations = getTranslations(locale as string);
-  const genres = uniq(allGames.map(game => game.genre)).sort((a, b) =>
-    a > b ? -1 : 1
-  );
 
   return {
     props: { games, activePage, maxPage, activeGenre, genres, translations },

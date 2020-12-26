@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import uniq from "lodash/uniq";
 
 export interface HomePageGame {
   id: string;
@@ -39,4 +40,28 @@ function getArcadeGames(locale: string): HomePageGame[] {
   return getGameDataForDir(arcadeMdDir, "arcade");
 }
 
-export { getDosGames, getArcadeGames };
+const locales = ["zh-CN", "en-US"];
+
+const gamesByLocale: { [key: string]: HomePageGame[] } = locales.reduce(
+  (acc, locale) => {
+    const games = [
+      ...getDosGames(locale),
+      ...getArcadeGames(locale),
+    ].sort((a, b) => a.name.localeCompare(b.name, locale));
+
+    return { ...acc, [locale]: games };
+  },
+  {}
+);
+
+const genresByLocale: { [key: string]: string[] } = Object.entries(
+  gamesByLocale
+).reduce((acc, [locale, games]) => {
+  const genres = uniq(games.map(game => game.genre)).sort((a, b) =>
+    a > b ? -1 : 1
+  );
+
+  return { ...acc, [locale]: genres };
+}, {});
+
+export { gamesByLocale, genresByLocale };

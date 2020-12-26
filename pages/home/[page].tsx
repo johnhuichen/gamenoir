@@ -1,8 +1,7 @@
 import { GetStaticProps, GetStaticPaths } from "next";
 import range from "lodash/range";
-import uniq from "lodash/uniq";
 
-import { getDosGames, getArcadeGames, HomePageGame } from "lib/home";
+import { gamesByLocale, genresByLocale, HomePageGame } from "lib/home";
 import Home, { PAGE_SIZE } from "components/shared/Home";
 import getTranslations from "translations/home";
 
@@ -36,10 +35,7 @@ const PaginatedHome: React.FC<Props> = ({
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const paths = (locales || [])
     .map(locale => {
-      const allGames = [
-        ...getDosGames(locale as string),
-        ...getArcadeGames(locale as string),
-      ];
+      const allGames = gamesByLocale[locale as string] || [];
       const maxPage = Math.ceil(allGames.length / PAGE_SIZE);
 
       return range(1, maxPage + 1).map(page => ({
@@ -54,18 +50,12 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const activePage = parseInt(params.page);
-  const allGames = [
-    ...getDosGames(locale as string),
-    ...getArcadeGames(locale as string),
-  ];
+  const allGames = gamesByLocale[locale as string] || [];
+  const genres = genresByLocale[locale as string] || [];
+
+  const games = allGames.slice((activePage - 1) * 10, activePage * 10);
   const maxPage = Math.ceil(allGames.length / PAGE_SIZE);
-  const games = allGames
-    .sort((a, b) => a.name.localeCompare(b.name, "zh-CN"))
-    .slice((activePage - 1) * 10, activePage * 10);
   const translations = getTranslations(locale as string);
-  const genres = uniq(allGames.map(game => game.genre)).sort((a, b) =>
-    a > b ? -1 : 1
-  );
 
   return { props: { games, maxPage, activePage, genres, translations } };
 };
