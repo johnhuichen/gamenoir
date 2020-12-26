@@ -5,8 +5,8 @@
   align-items: center;
   flex-grow: 1;
   padding: 5px 10px;
+  max-width: 300px;
   cursor: pointer;
-  height: 35px;
 
   color: var(--text-on-lighter);
   border-bottom: 1px solid var(--text-on-lighter);
