@@ -10,18 +10,10 @@ import getTranslations from "translations/header";
 import styles from "./Header.module.css";
 
 const HeaderLarge: React.FC = () => {
-  const { route, locale } = useRouter();
+  const { locale } = useRouter();
   const translations = useMemo(() => getTranslations(locale as string), [
     locale,
   ]);
-
-  const localeHref = useMemo(() => {
-    if (/^\/dosgame/.test(route) || /^\/arcade/.test(route)) {
-      return "/";
-    }
-
-    return route;
-  }, [route]);
 
   return (
     <div className={styles.container}>
@@ -34,21 +26,21 @@ const HeaderLarge: React.FC = () => {
         </Link>
       </div>
       <div className={styles.rightContainer}>
-        <Link href={localeHref} locale={locale === "zh-CN" ? "en-US" : "zh-CN"}>
-          <a href={localeHref} className={cn(styles.localeLink, {})}>
+        <Link href={"/"} locale={locale === "zh-CN" ? "en-US" : "zh-CN"}>
+          <a href={"/"} className={cn(styles.localeLink, {})}>
             <div
               className={cn({
                 [styles.active]: locale === "zh-CN",
               })}
             >
-              中
+              中文
             </div>
             <div
               className={cn({
                 [styles.active]: locale === "en-US",
               })}
             >
-              En
+              English
             </div>
           </a>
         </Link>

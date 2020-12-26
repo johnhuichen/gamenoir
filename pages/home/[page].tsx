@@ -49,7 +49,7 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const activePage = parseInt(params.page);
+  const activePage = parseInt(params?.page as string);
   const allGames = gamesByLocale[locale as string] || [];
   const genres = genresByLocale[locale as string] || [];
 
