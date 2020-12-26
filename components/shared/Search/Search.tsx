@@ -21,6 +21,7 @@ const Search: React.FC = () => {
     if (inputRef.current) {
       inputRef.current.value = "";
       setInput("");
+      inputRef.current.focus();
     }
   }, [inputRef]);
 
