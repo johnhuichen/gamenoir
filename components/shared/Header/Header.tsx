@@ -40,7 +40,7 @@ const HeaderLarge: React.FC = () => {
                 [styles.active]: locale === "en-US",
               })}
             >
-              English
+              EN
             </div>
           </a>
         </Link>
