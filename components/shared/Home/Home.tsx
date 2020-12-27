@@ -40,7 +40,7 @@ const Home: React.FC<HomeProps> = ({
   const getFilterHref = useCallback(
     (filter: string) => {
       if (filter === activeFilter) {
-        return `/`;
+        return `/home/1`;
       }
       return `/genre/${filter}/1`;
     },

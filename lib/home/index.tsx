@@ -57,9 +57,17 @@ const gamesByLocale: { [key: string]: HomePageGame[] } = locales.reduce(
 const genresByLocale: { [key: string]: string[] } = Object.entries(
   gamesByLocale
 ).reduce((acc, [locale, games]) => {
-  const genres = uniq(games.map(game => game.genre)).sort((a, b) =>
-    a > b ? -1 : 1
-  );
+  const genres = uniq(games.map(game => game.genre)).sort((a, b) => {
+    if (a === "CLS") {
+      return -1;
+    }
+
+    if (b === "CLS") {
+      return 1;
+    }
+
+    return a > b ? -1 : 1;
+  });
 
   return { ...acc, [locale]: genres };
 }, {});

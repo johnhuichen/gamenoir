@@ -3,6 +3,7 @@ interface Translation {
 }
 
 const chineseTranslations: Translation = {
+  CLS: "超经典",
   SLG: "战旗",
   SIM: "模拟",
   RPG: "RPG",
@@ -11,6 +12,7 @@ const chineseTranslations: Translation = {
   ACT: "横幅",
 };
 const englishTranslations: Translation = {
+  CLS: "Timeless",
   SLG: "SLG",
   SIM: "Simulation",
   RPG: "RPG",
