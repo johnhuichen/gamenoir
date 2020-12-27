@@ -6,6 +6,8 @@ import getTranslations from "translations/home";
 
 interface Props {
   games: HomePageGame[];
+  activePage: number;
+  activeGenre: string;
   maxPage: number;
   genres: string[];
   translations: { [key: string]: string };
@@ -13,6 +15,8 @@ interface Props {
 
 const HomeFirstPage: React.FC<Props> = ({
   games,
+  activePage,
+  activeGenre,
   maxPage,
   translations,
   genres,
@@ -20,9 +24,9 @@ const HomeFirstPage: React.FC<Props> = ({
   return (
     <Home
       games={games}
-      activePage={1}
+      activePage={activePage}
       maxPage={maxPage}
-      activeFilter={null}
+      activeFilter={activeGenre}
       translations={translations}
       genres={genres}
     />
@@ -30,14 +34,19 @@ const HomeFirstPage: React.FC<Props> = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  const activePage = 1;
+  const activeGenre = "CLS";
   const allGames = gamesByLocale[locale as string] || [];
   const genres = genresByLocale[locale as string] || [];
 
-  const games = allGames.slice(0, 10);
-  const maxPage = Math.ceil(allGames.length / PAGE_SIZE);
+  const allGamesInGenre = allGames.filter(game => game.genre === activeGenre);
+  const maxPage = Math.ceil(allGamesInGenre.length / PAGE_SIZE);
+  const games = allGamesInGenre.slice(0, 10);
   const translations = getTranslations(locale as string);
 
-  return { props: { games, maxPage, genres, translations } };
+  return {
+    props: { games, activePage, activeGenre, maxPage, genres, translations },
+  };
 };
 
 export default HomeFirstPage;

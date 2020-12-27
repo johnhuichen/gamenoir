@@ -72,7 +72,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const translations = getTranslations(locale as string);
 
   return {
-    props: { games, activePage, maxPage, activeGenre, genres, translations },
+    props: { games, activePage, activeGenre, maxPage, genres, translations },
   };
 };
 
