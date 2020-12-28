@@ -120,7 +120,12 @@ const Canvas: React.FC<Props> = ({
       {!isReady && (
         <img className={styles.canvasImg} src={imgFile} alt="game background" />
       )}
-      <canvas id="canvas" className={styles.canvas} ref={canvasRef} />
+      <canvas
+        id="canvas"
+        className={styles.canvas}
+        ref={canvasRef}
+        onContextMenu={e => e.preventDefault()}
+      />
       <CanvasControl
         faqContent={faqContent}
         isNormal={isNormal}
