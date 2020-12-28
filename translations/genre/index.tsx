@@ -5,12 +5,12 @@ interface Translation {
 const chineseTranslations: Translation = {
   CLS: "超经典",
   SLG: "战旗",
-  SIM: "模拟",
+  SIM: "经营",
   RPG: "RPG",
   FG: "格斗",
   BRD: "棋牌",
-  ACT: "横幅",
-  AVG: "剧情",
+  ACT: "动作",
+  AVG: "AVG",
 };
 const englishTranslations: Translation = {
   CLS: "Timeless",
