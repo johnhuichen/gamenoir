@@ -10,6 +10,7 @@ const chineseTranslations: Translation = {
   FG: "格斗",
   BRD: "棋牌",
   ACT: "横幅",
+  AVG: "剧情",
 };
 const englishTranslations: Translation = {
   CLS: "Timeless",
@@ -21,6 +22,7 @@ const englishTranslations: Translation = {
   ACT: "Action",
   TBSG: "Strategy",
   FPS: "FPS",
+  AVG: "AVG",
 };
 
 const getTranslations = (locale: string): Translation => {
