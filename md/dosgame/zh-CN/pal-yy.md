@@ -2,7 +2,7 @@
 name: "仙剑奇侠传月影版"
 gameFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E6%9C%88%E5%BD%B1%E7%89%88/pal-yy.zip"
 imgFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E6%9C%88%E5%BD%B1%E7%89%88/original.webp"
-shortDescription: "强烈推荐！月英特别版，在梦幻版基础上修改，稍微有点卡"
+shortDescription: "月英特别版，在梦幻版基础上修改，稍微有点卡"
 genre: "RPG"
 topic: "仙剑奇侠传"
 version: "Mod"
