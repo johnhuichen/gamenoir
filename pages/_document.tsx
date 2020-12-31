@@ -37,6 +37,11 @@ class MyDocument extends Document {
             />
           )}
           {/* End Google Tag Manager */}
+          <script
+            data-ad-client="ca-pub-6832276300619596"
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+          />
           <link
             href="https://fonts.googleapis.com/css?family=Crimson+Text"
             rel="stylesheet"
