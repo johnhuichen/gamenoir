@@ -34,6 +34,9 @@ const Announcement: React.FC = () => {
       最新添加： 主题医院，阿猫阿狗，无声狂啸
       <br />
       <br />
+      有很多朋友反馈说在国内加载速度有点慢。如果在国内有使用云硬盘经验的专家请和我们联系
+      <br />
+      <br />
       如果你在游戏过程中遇到什么疑难困惑，或者你有一款非常想玩的老游戏，你可以直接给我们发邮件(
       <a href="mailto:cliffgoslinginc@gmail.com">cliffgoslinginc@gmail.com</a>)
     </div>
