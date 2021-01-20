@@ -4,8 +4,6 @@ gameFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E7%82%8E%E9%BE%99%E9%AA
 imgFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E7%82%8E%E9%BE%99%E9%AA%91%E5%A3%AB%E5%9B%A22%E5%B9%B3%E8%A1%A1%E7%89%88/original.webp"
 shortDescription: "强烈推荐！敌我休息都不会回复生命值，同时对关卡调整，增加挑战性，引爆新激情!"
 genre: "SLG"
-topic: "炎龙骑士团"
-version: "Mod"
 ---
 
 Test5.23 版更新总览 【由于还是 test 版本 难免会有不足之处 希望能得到各位玩家的反馈 特别是难度方面的体会 联系 QQ:28813076 QQ 群:4975543 邮箱地址:stylkkk@163.com】

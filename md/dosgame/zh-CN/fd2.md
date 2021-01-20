@@ -4,8 +4,6 @@ gameFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E7%82%8E%E9%BE%99%E9%AA
 imgFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E7%82%8E%E9%BE%99%E9%AA%91%E5%A3%AB%E5%9B%A22/original.webp"
 shortDescription: "强烈推荐！大气的战斗画面和严谨的战旗设计，至今仍有大量骨灰玩家在挑战不同玩法。"
 genre: "CLS"
-topic: "炎龙骑士团"
-version: "原版"
 ---
 
 ## 攻略

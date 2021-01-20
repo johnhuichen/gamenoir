@@ -2,8 +2,6 @@
 name: "富甲天下"
 gameFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E5%AF%8C%E7%94%B2%E5%A4%A9%E4%B8%8B/mk1.zip"
 imgFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E5%AF%8C%E7%94%B2%E5%A4%A9%E4%B8%8B/original.webp"
-shortDescription: "画面和游戏性不如2代，但依然非常欢乐"
+shortDescription: "可以说是奠定了这个很受欢迎系列游戏的基础的第一代"
 genre: "BRD"
-topic: "富甲天下"
-version: "原版"
 ---
