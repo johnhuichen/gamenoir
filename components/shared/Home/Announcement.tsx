@@ -23,7 +23,7 @@ const Announcement: React.FC = () => {
 
   return (
     <div className={styles.announcement}>
-      圣诞快乐! <Emoji symbol="🎉" label="Party Pooper" />{" "}
+      春节快乐! <Emoji symbol="🎉" label="Party Pooper" />{" "}
       <Emoji symbol="🎉" label="Party Pooper" />
       <br />
       <br />
