@@ -10,7 +10,7 @@ const chineseTranslations: Translation = {
   FG: "格斗",
   BRD: "棋牌",
   ACT: "动作",
-  AVG: "AVG",
+  AVG: "解谜",
 };
 const englishTranslations: Translation = {
   CLS: "Timeless",
