@@ -161,7 +161,7 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const paths = (locales || [])
     .map(locale =>
       getDosgameIds(locale).map(id => ({
-        params: { id },
+        params: { id: encodeURI(id) },
         locale,
       }))
     )
