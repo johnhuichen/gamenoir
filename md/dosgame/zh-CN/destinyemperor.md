@@ -1,7 +1,7 @@
 ---
-name: "创世纪7下巨蛇之岛"
-gameFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E5%88%9B%E4%B8%96%E7%BA%AA7%E4%B8%8B%E5%B7%A8%E8%9B%87%E4%B9%8B%E5%B2%9B/serpent.zip"
-imgFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E5%88%9B%E4%B8%96%E7%BA%AA7%E4%B8%8B%E5%B7%A8%E8%9B%87%E4%B9%8B%E5%B2%9B/original.webp"
-shortDescription: "作为因为太过庞大而无法一次性完成的作品，创世纪7被分割为了推出时间相隔不长的上下两部，本作的基本玩法和系统与前作没有任何改变，只在头像绘制和AI处理上做出了一定的改良，主要还是对于剧情和冒险舞台的延续"
+name: "吞食天地"
+gameFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E5%90%9E%E9%A3%9F%E5%A4%A9%E5%9C%B0/sangoku.zip"
+imgFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E5%90%9E%E9%A3%9F%E5%A4%A9%E5%9C%B0/original.webp"
+shortDescription: "Capcom公司于1989年制作和发行的街机清版动作游戏，根据同名漫画吞食天地制作。"
 genre: "ACT"
 ---
