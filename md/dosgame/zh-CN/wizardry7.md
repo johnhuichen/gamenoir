@@ -1,0 +1,7 @@
+---
+name: "巫术7失落的加帝亚"
+gameFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E5%B7%AB%E6%9C%AF7%E5%A4%B1%E8%90%BD%E7%9A%84%E5%8A%A0%E5%B8%9D%E4%BA%9A/wizardry7.zip"
+imgFile: "https://gamenoir.nyc3.digitaloceanspaces.com/%E5%B7%AB%E6%9C%AF7%E5%A4%B1%E8%90%BD%E7%9A%84%E5%8A%A0%E5%B8%9D%E4%BA%9A/original.webp"
+shortDescription: "第一款令人感觉身临奇境的巫术游戏"
+genre: "RPG"
+---
