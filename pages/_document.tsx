@@ -46,6 +46,10 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Crimson+Text"
             rel="stylesheet"
           />
+          <link
+            href="https://use.fontawesome.com/releases/v5.12.1/css/svg-with-js.css"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />
