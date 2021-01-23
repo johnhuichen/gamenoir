@@ -141,7 +141,7 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const paths = (locales || [])
     .map(locale =>
       getArcadeGameIds(locale).map(id => ({
-        params: { id },
+        params: { id: encodeURI(id) },
         locale,
       }))
     )
