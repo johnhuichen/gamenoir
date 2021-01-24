@@ -134,7 +134,7 @@ const Dosgame: React.FC<DosgameProps> = ({
   return (
     <>
       <Head>
-        <title>{name}</title>
+        <title>{`${name} 网页Dos老游戏`}</title>
         <meta name="description" content={shortDescription} />
         <meta name="mobile-web-app-capable" content="yes" />
       </Head>
