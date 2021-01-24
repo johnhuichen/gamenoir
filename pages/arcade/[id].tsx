@@ -115,7 +115,7 @@ const Arcade: React.FC<ArcadeProps> = ({
   return (
     <>
       <Head>
-        <title>{name}</title>
+        <title>{`${name} 网页街机老游戏`}</title>
         <meta name="description" content={shortDescription} />
         <meta name="mobile-web-app-capable" content="yes" />
       </Head>
