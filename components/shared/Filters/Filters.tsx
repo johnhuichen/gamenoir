@@ -48,6 +48,11 @@ const Filters: React.FC<Props> = ({
 
   return (
     <div className={styles.container}>
+      <Filter
+        label={translations.ALL}
+        href="/home/1"
+        isActive={!activeFilter}
+      />
       {filters.map(filter => (
         <Filter
           key={`filter-${filter}`}
