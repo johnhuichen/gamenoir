@@ -39,7 +39,9 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const allGames = gamesByLocale[locale as string] || [];
   const genres = genresByLocale[locale as string] || [];
 
-  const allGamesInGenre = allGames.filter(game => game.genre === activeGenre);
+  const allGamesInGenre = allGames.filter(game =>
+    game.genre.split(",").includes(activeGenre)
+  );
   const maxPage = Math.ceil(allGamesInGenre.length / PAGE_SIZE);
   const games = allGamesInGenre.slice(0, 10);
   const translations = getTranslations(locale as string);

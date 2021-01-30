@@ -11,6 +11,7 @@ const chineseTranslations: Translation = {
   BRD: "棋牌",
   ACT: "动作",
   AVG: "解谜",
+  ALL: "全部",
 };
 const englishTranslations: Translation = {
   CLS: "Timeless",
@@ -23,6 +24,7 @@ const englishTranslations: Translation = {
   TBSG: "Strategy",
   FPS: "FPS",
   AVG: "AVG",
+  ALL: "ALL",
 };
 
 const getTranslations = (locale: string): Translation => {
