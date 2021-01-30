@@ -43,7 +43,7 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
       return genres.map(genre => ({
         locale,
         genre,
-        games: allGames.filter(game => game.genre === genre),
+        games: allGames.filter(game => game.genre.split(",").includes(genre)),
       }));
     })
     .flat()
@@ -66,7 +66,9 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const allGames = gamesByLocale[locale as string] || [];
   const genres = genresByLocale[locale as string] || [];
 
-  const allGamesInGenre = allGames.filter(game => game.genre === activeGenre);
+  const allGamesInGenre = allGames.filter(game =>
+    game.genre.split(",").includes(activeGenre)
+  );
   const maxPage = Math.ceil(allGamesInGenre.length / PAGE_SIZE);
   const games = allGamesInGenre.slice((activePage - 1) * 10, activePage * 10);
   const translations = getTranslations(locale as string);
