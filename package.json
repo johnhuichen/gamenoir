@@ -22,7 +22,7 @@
     "react-lazy-load-image-component": "^1.5.1",
     "remark": "^13.0.0",
     "remark-html": "^13.0.1",
-    "usedosbox": "1.0.8"
+    "usedosbox": "1.0.9"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",

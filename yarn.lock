@@ -5339,10 +5339,10 @@ use@^3.1.0:
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
   integrity sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==
 
-usedosbox@1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/usedosbox/-/usedosbox-1.0.8.tgz#535c50734eb7dab9803e9a9d83bf9e8f7a64c9a1"
-  integrity sha512-28w1ECyWVVof2Jt9XHDktSqJ+11UhkQwmHjgonKU3B/SNBbOjXOo3+cVZP00ijuDlxtcziU42wXbZUTA0Urfpg==
+usedosbox@1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/usedosbox/-/usedosbox-1.0.9.tgz#6322e510f801fcf5dae2f3db8a68209729ef715c"
+  integrity sha512-3wglplCQEB7/RBnwmEbKxQQpKNOuGarpLziTmwXz5DzAIwtcWL0+QaSicmJtvENziCrmxtoanVZlLBkVHrGsoQ==
   dependencies:
     browserfs "^1.4.3"
 
