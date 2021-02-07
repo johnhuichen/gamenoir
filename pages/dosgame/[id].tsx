@@ -4,7 +4,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 import { getDosgameIds, getDosgameProps, DosgameProps } from "lib/dosgame";
-import useDosbox from "hooks/useDosbox";
+import { useDosbox } from "usedosbox";
 import Canvas, { CanvasElement } from "components/shared/Canvas";
 import VirtualKeyboard from "components/shared/VirtualKeyboard";
 
@@ -123,6 +123,7 @@ const Dosgame: React.FC<DosgameProps> = ({
   } = useDosbox({
     canvasRef,
     gameFile,
+    dosboxUrl: "/dosbox-sync.js",
   });
 
   useEffect(() => {
